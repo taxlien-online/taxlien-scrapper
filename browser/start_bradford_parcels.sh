@@ -1,1 +1,1 @@
-npm start parcels bradford
+npm start config_parcel_fl_bradford

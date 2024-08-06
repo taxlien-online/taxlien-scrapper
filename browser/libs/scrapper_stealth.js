@@ -10,7 +10,7 @@ import { connect } from 'puppeteer-real-browser'
 import randomUseragent from 'random-useragent';
 
 
-import { scrapper_start } from './scrapper_cfg.js';
+import { scrapper_start } from './scrapper_start.js';
 const USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
 
 export async function scrapper_stealth(
