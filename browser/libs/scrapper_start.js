@@ -80,10 +80,14 @@ export async function scrapper_iteration(config, browser, page,frame) {
     await sleep(config.DELAY_NEXT);
     console.log("Нажимаю");
 
+    var clickbutton = await waitforelementbyselectors(page,frame, config.NEXT_BUTTON_SELECTOR, 60000, config.RESULTS_PATH + "last.png");
+    var clickres=await clickbutton.click();
+
+    /*
     var click = await pageclick(frame, config.NEXT_BUTTON_SELECTOR);
     if (!click) {
         console.log("Ерунда какая-то!!! Не нажимается");
-    }
+    }*/
     console.log("Ожидаю загрузки");
     await waitload(frame);
 }

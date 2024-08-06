@@ -34,8 +34,8 @@ var config_gis = {
     
     URL: (id) => `https://union.floridapa.com/gis/?pin=${id}`,
     START: '1805210000005700',
-    PARCEL_INPUT_SELECTOR: ['#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(3) > b'],
-    NEXT_BUTTON_SELECTOR: [''],//#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(4) > a > input',
+    PARCEL_TEXT_SELECTOR: ['#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(3) > b'],
+    NEXT_BUTTON_SELECTOR: ['#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(4) > a > input'],//#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(4) > a > input',
     PREV_BUTTON_SELECTOR: ['#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(2) > a > input'],
     FRAME_NAME: "recordSearchContent_1_iframe",
     DELAY: 3000,

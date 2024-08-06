@@ -19,6 +19,7 @@ export async function pageload(page, URL) {
     }
 }
 
+
 export async function pageclick(page, SELECTOR) {
     try {
         await page.waitForSelector(SELECTOR, { visible: true });
@@ -123,8 +124,9 @@ export async function waitforiframe(page, IFRAME_NAME, timeout) {
 }
 
 
-export async function getselector(frame, selector) {
+export async function getselector(frame, SELECTOR) {
     try {
+        console.log("getselector:", SELECTOR);
         var element;
         element = await frame.$(SELECTOR); // Get the element handle
 
@@ -136,6 +138,7 @@ export async function getselector(frame, selector) {
 
         return element;
     } catch (error) {
+        console.log(error)
         return false;
     }
 }
@@ -145,14 +148,15 @@ export async function waitforelementbyselectors(page,frame, SELECTORS, timeout, 
     console.log("!!!waitforelementbyselectorS!!!");
     await page.screenshot({ path: screen_filename });
 
+    console.log("frame:", frame);
     console.log("selectors:", SELECTORS);
     while (true) {
-        SELECTORS.forEach(selector => {
-            var element = getselector(frame, selector);
-            if (element != false) return element;
-        });
+        for (const selector of SELECTORS) {
+            var element = await getselector(frame, selector);
+            if (element) return element;
+        };
 
-        console.log("no element:");
+        console.log("no element...");
         await sleep(30000);
     }
     //TODO: if timeout retur false;
