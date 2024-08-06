@@ -5,7 +5,7 @@ import { parse } from 'csv-parse';
 
 
 //const fs = require('fs');
-import { waitforpageclick, waitload, pageload, pageclick, waitforframe, waitforiframe, waitforelementbyselector, saveresult, fixdebug, sleep } from './process.js';
+import { waitforpageclick, waitload, pageload, pageclick, waitforframe, waitforiframe, waitforelementbyselector,waitforelementbyselectors, saveresult, fixdebug, sleep } from './process.js';
 import { savePictures, movePictures, checkAndCreateDir, writeVariableToFile, readVariableFromFile } from './functions.js';
 
 
@@ -24,10 +24,17 @@ export async function scrapper_start(config, browser, page) {
 }
 
 export async function scrapper_loop(config, browser, page) {
-    await pageload(page, config.URL);
-    var frame = page;
+    const url=config.URL(config.START);
 
-    if (config.AGREE_BUTTON_SELECTOR != "") {
+    await pageload(page, url);
+    await sleep(1000);
+
+    var frame = page;
+    if (typeof config.FRAME_NAME !== 'undefined') {
+        var frame = await waitforframe(page, config.FRAME_NAME, 6000);
+    }
+
+    if (typeof config.AGREE_BUTTON_SELECTOR !== 'undefined') {
         /*
         while (true) {
             try {
@@ -49,7 +56,7 @@ export async function scrapper_loop(config, browser, page) {
     }
 
     for (var i = config.I_MIN; i < config.I_MAX; i++) {
-        await scrapper_iteration(config, browser, page);
+        await scrapper_iteration(config, browser, page,frame);
     }
 }
 
@@ -57,8 +64,8 @@ export async function scrapper_csv(config, browser, page)
 {
 }
 
-export async function scrapper_iteration(config, browser, page) {
-    var parcelfield = await waitforelementbyselector(frame, config.PARCEL_TEXT_SELECTOR, 60000, config.RESULTS_PATH + "last.png");
+export async function scrapper_iteration(config, browser, page,frame) {
+    var parcelfield = await waitforelementbyselectors(page,frame, config.PARCEL_TEXT_SELECTOR, 60000, config.RESULTS_PATH + "last.png");
     const content = await frame.evaluate(el => el.textContent, parcelfield);
     console.log("content");
     console.log(content);

@@ -38,7 +38,9 @@ var config_gis = {
     NEXT_BUTTON_SELECTOR: [''],//#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(4) > a > input',
     PREV_BUTTON_SELECTOR: ['#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(2) > a > input'],
     FRAME_NAME: "recordSearchContent_1_iframe",
-    DELAY: 3000
+    DELAY: 3000,
+
+    PROXY: { host: 'socks5://localhost', port: '10809' },
 }
 
 var config_parcel_fl_bradford = {
@@ -51,7 +53,7 @@ var config_parcel_fl_bradford = {
     //PARCEL_FORMAT = (parcel) => `${parcel.slice(0, 6)}-${parcel.slice(6, 14)}-${parcel.slice(14)}`,
 
     COUNTY:"fl_bradford",
-    RESULTS_PATH: '../taxlien_db/res/parcel_fl_bradford/',
+    RESULTS_PATH: '../../taxlien_db/res/parcel_fl_bradford/',
 }
 
 var config_parcel_fl_columbia = {

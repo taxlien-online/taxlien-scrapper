@@ -26,22 +26,22 @@ const config_qpublic = {
     PROXY: { host: 'socks5://localhost', port: '10808' },
 }
 
-config_parcel_fl_dixe =
+var config_parcel_fl_dixe =
 {
     ...config_qpublic,
     COUNTY: "fl_dixie",
     RESULTS_PATH: 'res/parcel_fl_dixie/',
-    URL: "https://qpublic.schneidercorp.com/Application.aspx?AppID=867&LayerID=16385&PageTypeID=4&PageID=7232&Q=1299906831&KeyValue=34-09-13-4496-0000-0040";
+    URL: "https://qpublic.schneidercorp.com/Application.aspx?AppID=867&LayerID=16385&PageTypeID=4&PageID=7232&Q=1299906831&KeyValue=34-09-13-4496-0000-0040",
     //PROXY:{};
     PROXY: { host: 'socks5://localhost', port: '10809' },
 };
 
-config_parcel_fl_clay =
+var config_parcel_fl_clay =
 {
     ...config_qpublic,
     COUNTY: "fl_clay",
     RESULTS_PATH: 'res/parcel_fl_clay/',
-    URL: "https://qpublic.schneidercorp.com/Application.aspx?AppID=830&LayerID=15008&PageTypeID=4&PageID=6756&Q=872484422&KeyValue=38-06-26-017620-000-00";
+    URL: "https://qpublic.schneidercorp.com/Application.aspx?AppID=830&LayerID=15008&PageTypeID=4&PageID=6756&Q=872484422&KeyValue=38-06-26-017620-000-00",
     //PROXY:{};
     PROXY: { host: 'socks5://localhost', port: '10810' },
 };

@@ -42,7 +42,7 @@ export async function waitforpageclick(page, SELECTOR, timeout, screen_filename)
         try {
             var element;
             await page.screenshot({ path: screen_filename });
-            if (await pageclick(page,SELECTOR)) return;
+            if (await pageclick(page, SELECTOR)) return;
         } catch (error) {
             console.log('Element not found, retrying...');
             console.log(error);
@@ -53,17 +53,17 @@ export async function waitforpageclick(page, SELECTOR, timeout, screen_filename)
 
 
 export async function waitload(page) {
-        await sleep(2000);
-        try {
-            await page.waitForNetworkIdle({ waitUntil: 'networkidle2' });
-        } catch (error) {
-            console.log(error)
-            await sleep(5000);
-            return false;
-        }           
-        await sleep(2000);
+    await sleep(2000);
+    try {
+        await page.waitForNetworkIdle({ waitUntil: 'networkidle2' });
+    } catch (error) {
+        console.log(error)
+        await sleep(5000);
+        return false;
+    }
+    await sleep(2000);
 }
- 
+
 
 export async function waitforframe(page, FRAME_NAME, timeout) {
     if (!FRAME_NAME) return page;
@@ -78,7 +78,7 @@ export async function waitforframe(page, FRAME_NAME, timeout) {
             var frame = await frames.find(f => f.name() === FRAME_NAME);
             //var frame = frames[FRAME_NAME];
             if (!frame) continue;
-            
+
             console.log("frame:", frame)
             return frame;
 
@@ -102,13 +102,13 @@ export async function waitforiframe(page, IFRAME_NAME, timeout) {
     while (true) {
         try {
             var frames = page.frames();
-            const frameHandle = await page.$('iframe[name="'+IFRAME_NAME+'"], iframe#'+IFRAME_NAME);
+            const frameHandle = await page.$('iframe[name="' + IFRAME_NAME + '"], iframe#' + IFRAME_NAME);
             const frame = await frameHandle.contentFrame();
             //console.log("frames:",frames)
             //var frame = await frames.find(f => f.name() === FRAME_NAME);
             //var frame = frames[FRAME_NAME];
             if (!frame) continue;
-            
+
             console.log("frame:", frame)
             return frame;
 
@@ -123,14 +123,44 @@ export async function waitforiframe(page, IFRAME_NAME, timeout) {
 }
 
 
+export async function getselector(frame, selector) {
+    try {
+        var element;
+        element = await frame.$(SELECTOR); // Get the element handle
+
+        console.log("element:", element);
+        if (!element) {
+            console.log('!element');
+            return false
+        }
+
+        return element;
+    } catch (error) {
+        return false;
+    }
+}
 
 
+export async function waitforelementbyselectors(page,frame, SELECTORS, timeout, screen_filename) {
+    console.log("!!!waitforelementbyselectorS!!!");
+    await page.screenshot({ path: screen_filename });
 
+    console.log("selectors:", SELECTORS);
+    while (true) {
+        SELECTORS.forEach(selector => {
+            var element = getselector(frame, selector);
+            if (element != false) return element;
+        });
 
+        console.log("no element:");
+        await sleep(30000);
+    }
+    //TODO: if timeout retur false;
+}
 
 
 export async function waitforelementbyselector(frame, SELECTOR, timeout, screen_filename) {
-    console.log("!!!waitforselector!!!");
+    console.log("!!!waitforelementbyselector!!!");
 
     //const html = await frame.content();
     //console.log("html",html);
@@ -157,15 +187,15 @@ export async function waitforelementbyselector(frame, SELECTOR, timeout, screen_
             //  return elementHandle;
             //} 
 
-/*
-            //element = await frame.$(SELECTOR);
-            console.log("frame:",frame);
-            element = await frame.evaluate((SELECTOR) => {
-                const element = document.evaluate(SELECTOR, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-                console.log("element:", element);
-                return element;
-            }, SELECTOR);
-*/
+            /*
+                        //element = await frame.$(SELECTOR);
+                        console.log("frame:",frame);
+                        element = await frame.evaluate((SELECTOR) => {
+                            const element = document.evaluate(SELECTOR, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                            console.log("element:", element);
+                            return element;
+                        }, SELECTOR);
+            */
 
             console.log("element:", element);
             if (!element) {

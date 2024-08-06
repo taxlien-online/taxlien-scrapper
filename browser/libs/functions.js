@@ -27,6 +27,7 @@ export function savePictures(page, config) {
 }
 
 export function movePictures(page, config, id) {
+    return;
     const sourceDir = config.RESULTS_PATH + "/last";  // Укажите путь к исходной директории
     const destDir = config.RESULTS_PATH + `/${id}`;  // Укажите путь к директории назначения
 
@@ -39,18 +40,17 @@ export function movePictures(page, config, id) {
 }
 
 
-export async function checkAndCreateDir(path) {
+export function checkAndCreateDir(dirPath) {
     try {
         // Проверка существования директории
-        const exists = fs.pathExists(path);//await 
+        const exists = fs.existsSync(dirPath);
 
         if (!exists) {
             // Создание директории, если она не существует
-            //await 
-            fs.ensureDir(path);
-            console.log(`Директория ${path} создана.`);
+            fs.mkdirSync(dirPath, { recursive: true });
+            console.log(`Директория ${dirPath} создана.`);
         } else {
-            console.log(`Директория ${path} уже существует.`);
+            console.log(`Директория ${dirPath} уже существует.`);
         }
     } catch (err) {
         console.error('Ошибка при проверке или создании директории:', err);
