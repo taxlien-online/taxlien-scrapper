@@ -63,7 +63,7 @@ var config_parcel_fl_columbia = {
     START: '112S1500010001', //up
     
     COUNTY:"fl_columbia",
-    RESULTS_PATH: 'res/parcel_fl_columbia/',
+    RESULTS_PATH: '../../taxlien_db/res/parcel_fl_columbia/',
 }
 
 
@@ -75,7 +75,7 @@ var config_parcel_fl_lafayette = {
     //START: '030714MINR000000200', //down
     
     COUNTY:"fl_lafayette",
-    RESULTS_PATH: 'res/parcel_fl_lafayette/',
+    RESULTS_PATH: '../../taxlien_db/res/parcel_fl_lafayette/',
 }
 
 var config_parcel_fl_okeechobee = {
@@ -85,7 +85,7 @@ var config_parcel_fl_okeechobee = {
     //START: '10336350040000000050',//down
     START: '10537350040004800100',//up
     COUNTY:"fl_okeechobee",
-    RESULTS_PATH: 'res/parcel_fl_okeechobee/',
+    RESULTS_PATH: '../../taxlien_db/res/parcel_fl_okeechobee/',
 }
 
 var config_parcel_fl_suwannee = {
@@ -95,7 +95,7 @@ var config_parcel_fl_suwannee = {
     //START: '0401S12E09458020010', //down
     START: '0504S14E02955020210', //up
     COUNTY:"fl_suwannee",
-    RESULTS_PATH: 'res/parcel_fl_suwannee/',
+    RESULTS_PATH: '../../taxlien_db/res/parcel_fl_suwannee/',
 }
 var config_parcel_fl_union = {
     ...config_gis,
@@ -104,7 +104,7 @@ var config_parcel_fl_union = {
     //START: '2604210000003110', //down
     START: '0106250000010750', //up
     COUNTY:"fl_union",
-    RESULTS_PATH: 'res/parcel_fl_union/',
+    RESULTS_PATH: '../../taxlien_db/res/parcel_fl_union/',
 }
 
 

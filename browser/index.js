@@ -13,7 +13,7 @@ const [config_name] = args;
 //}
 
 var config=configs[config_name];
-config.HEADLESS=false;
+config.HEADLESS=true;
 
 console.log(config);
 

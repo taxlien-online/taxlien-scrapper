@@ -1,1 +1,1 @@
-npm start parcels columbia
+npm start config_parcel_fl_columbia
