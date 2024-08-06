@@ -1,0 +1,160 @@
+import scrape from 'website-scraper';
+import PuppeteerPlugin from 'website-scraper-puppeteer';
+
+
+/*
+const generateFilename = (resource) => {
+  const urlParts = new URL(resource.url);
+  let name = urlParts.hostname + urlParts.pathname.replace(/\//g, '_');
+  if (urlParts.search) {
+    // Включаем параметры URL, заменяя небезопасные символы
+    const params = urlParts.search.replace(/[?&=]/g, '_');
+    name += params;
+  }
+  return name + (path.extname(urlParts.pathname) || '.html');
+};
+*/
+
+const generateFilename = (resource) => {
+  const urlParts = new URL(resource.url);
+  let name = urlParts.hostname + urlParts.pathname.replace(/\//g, '_');
+  if (urlParts.search) {
+    // Улучшенная очистка параметров URL для сохранения в имени файла
+    const params = urlParts.search.replace(/[?&=]/g, '_').replace(/[^a-zA-Z0-9_\-\.]/g, '');
+    name += params;
+  }
+  // Используем правильное расширение файла или .html по умолчанию
+  return name + (path.extname(urlParts.pathname) || '.html');
+};
+
+function normalizeFilename(url) {
+    let parsedUrl = new URL(url);
+    let pathname = parsedUrl.pathname.replace(/\/$/, '').replace(/^\//, '').replace(/\//g, '_');
+    let searchParams = parsedUrl.search.slice(1).replace(/&/g, '_').replace(/=/g, '-');
+    return pathname + (searchParams ? '_' + searchParams : '') + '.html';
+}
+
+
+class MyPlugin {
+    apply(registerAction) {
+	registerAction('onResourceSaved', ({resource}) => {
+
+    console.log(resource);
+        // Проверяем, содержит ли URL параметр 'pin'
+        const urlObj = new URL(resource.url);
+        const pin = urlObj.searchParams.get('pin');
+        if (pin) {
+            // Выполнение дополнительного запроса
+            const data = `PARCELID_Buffer=${pin}&PARCEL_Buffer=300&...дополнительные данные...`;
+            axios.post('https://columbia.floridapa.com/gis/gisBuffer/', data, {
+                headers: {
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    // Добавьте остальные необходимые заголовки
+                }
+            }).then(response => {
+                console.log('Данные получены', response.data);
+            }).catch(error => {
+                console.error('Ошибка при выполнении запроса', error);
+            });
+        }
+
+
+	
+	});
+    }
+}
+
+
+await scrape({
+//   urls: ['https://columbia.floridapa.com/gis/'],
+   urls: ['https://columbia.floridapa.com/gis/','https://columbia.floridapa.com/gis/?pin=112S1500010001','https://columbia.floridapa.com/gis/gisBuffer/'],
+//   urls: ['https://columbia.floridapa.com/gis/?pin=112S1500010001'],   
+   directory: 'result/',
+  recursive: true,
+/*
+      urlFilter: (url) => {
+        const parsedUrl = new URL(url);
+        // Включаем все URL с querystring параметрами
+        return parsedUrl.hostname === 'columbia.floridapa.com';
+    },*/
+        urlFilter: function(url) {
+        // Разрешить загрузку если URL содержит query string
+        return url.includes('?');
+    },
+    // Переопределение функции для создания имен файлов
+    filenameGenerator: 'bySiteStructure',
+/*
+    filenameGenerator: function (options, url, isSubdirectory) {
+    console.log(options, url, isSubdirectory);
+        return normalizeFilename(url);
+    },
+  */
+    sources: [
+        {selector: 'iframe', attr: 'src'}  // Добавление селекторов для загрузки iframe
+    ],
+    plugins: [ 
+      new PuppeteerPlugin({
+        launchOptions: { headless: false }, /* optional */
+        gotoOptions: { waitUntil: "networkidle0" }, /* optional */
+        scrollToBottom: { timeout: 10000, viewportN: 10 }, /* optional */
+        blockNavigation: false, /* optional */
+        //filenameGenerator: generateFilename
+        // new QueryStringHandler({ scraper: scrape })
+        }),
+     new  MyPlugin()
+    ]
+});
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+import scrape from 'website-scraper'; // only as ESM, no CommonJS
+const options = {
+  urls: ['https://columbia.floridapa.com/gis/'],
+  directory: 'result/',
+  recursive: true
+};
+
+// with async/await
+const result = await scrape(options);
+
+// with promise
+scrape(options).then((result) => {});
+*/
+
+/*
+
+async handlePage({page}) {
+        await page.waitForTimeout(1000); // Ждем, чтобы все ресурсы загрузились
+
+        // Обработка iframe
+        const iframes = await page.$$('iframe');
+        for (const iframe of iframes) {
+            try {
+                const frame = await iframe.contentFrame();
+                if (frame) {
+                    await this.scraper.scrape({
+                        urls: [frame.url()],
+                        directory: './scraped-site/iframes', // Сохраняем iframe в отдельную директорию
+                        recursive: true,
+                        maxDepth: 5,
+                        plugins: [new IncludeQueryParamsPlugin()]
+                    });
+                }
+            } catch (error) {
+                console.error(`Error handling iframe: ${error}`);
+            }
+        }
+    }
+
+*/
