@@ -19,6 +19,23 @@ export async function browser_start(
     config
 ) {
 
+    config.URL_CUR=config.URL(config.START);
+    config.USER_AGENT=USER_AGENT;
+    config.COOKIES=[];
+    
+
+    if (config.CLOUDFLARE == true) {
+        console.log("CF...")
+        var cf=await scrapeCfClearance(config);
+        //console.log(cf);
+        console.log("CF OK")
+        config.COOKIES=cf.cookies;
+        config.USER_AGENT=cf.agent
+        console.log("cookies:",config.COOKIES)
+    }
+
+
+
     if (config.REALBROWSER == true) {
         connect({
 
@@ -103,20 +120,9 @@ export async function browser_start(
 
         if (config.HEADLESS=='auto') config.HEADLESS=true;
         const browser = await runBrowser(config);
-        const page = await createPage(browser, false);
+        const page = await createPage(browser, false,config);
 
-        var cookies;
-
-        if (config.CLOUDFLARE == true) {
-            console.log("CF...")
-            config.AGENT=USER_AGENT;
-            var cf=await scrapeCfClearance(config);
-            //console.log(cf);
-            console.log("CF OK")
-            cookies=cf.cookies;
-            console.log("cookies:",cookies)
-            await page.setCookie(...cookies);
-        }
+        await page.setCookie(...config.COOKIES);
 
         await scrapper_start(config, browser, page)
     }
@@ -156,7 +162,7 @@ async function runBrowser(config) {
 async function createPage(browser, loadImages, config) {
     const userAgent = randomUseragent.getRandom();
     //const UA = userAgent || USER_AGENT;
-    const UA = USER_AGENT;
+    const UA = config.USER_AGENT;
     console.log(browser);
     const page = await browser.newPage();
     await page.setViewport({

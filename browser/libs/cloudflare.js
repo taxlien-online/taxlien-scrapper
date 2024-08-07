@@ -8,7 +8,8 @@ export async function scrapeCfClearance(config) {
             body: JSON.stringify({
                 // authToken: 'test', // Not mandatory. Checked if the env variable is set.
                 //url: 'https://nopecha.com/demo/cloudflare', // Link to engrave
-                url: 'https://qpublic.schneidercorp.com/Application.aspx?AppID=867&LayerID=16385&PageTypeID=4&PageID=7232&Q=860515812&KeyValue=34-09-13-4496-0000-0050',
+                //url: 'https://qpublic.schneidercorp.com/Application.aspx?AppID=867&LayerID=16385&PageTypeID=4&PageID=7232&Q=860515812&KeyValue=34-09-13-4496-0000-0050',
+                url:config.URL_CUR,
                 mode: "waf", // gets waf or captcha values
                 
                 proxy: config.PROXY,
