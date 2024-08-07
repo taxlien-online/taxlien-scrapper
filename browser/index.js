@@ -13,7 +13,7 @@ const [config_name] = args;
 var config=configs[config_name];
 config.HEADLESS=false;
 //config.REALBROWSER=true;
-config.PROXY= { host: 'socks5://localhost', port: '10809' };
+//PROXY= { host: 'socks5://localhost', port: '10809' };
 
 
 console.log(config);
