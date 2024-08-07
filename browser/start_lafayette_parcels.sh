@@ -1,1 +1,1 @@
-npm start parcels lafayette
+npm start config_parcel_fl_lafayette

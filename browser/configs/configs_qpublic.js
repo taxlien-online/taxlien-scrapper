@@ -7,10 +7,11 @@ const config_qpublic = {
     TYPE: "QP",
     METHOD: "LOOP", I_MIN: 1, I_MAX: 18500,
     
-    URL: 'https://qpublic.schneidercorp.com/Application.aspx?AppID=867&LayerID=16385&PageTypeID=4&PageID=7232&Q=1299906831&KeyValue=34-09-13-4496-0000-0040',
-    NEXT_BUTTON_SELECTOR: "#ToolBar1_btnNextRecord > span",
-    PREV_BUTTON_SELECTOR: "#ToolBar1_btnNextRecord > span",
-    PARCEL_TEXT_SELECTOR: [
+    URL: (id) => `https://qpublic.schneidercorp.com/Application.aspx?AppID=867&LayerID=16385&PageTypeID=4&PageID=7232&Q=1299906831&KeyValue=${id}`,
+    START: '34-09-13-4496-0000-0040',
+    NEXT_BUTTON_SELECTORS: ["#ToolBar1_btnNextRecord > span"],
+    PREV_BUTTON_SELECTORS: ["#ToolBar1_btnNextRecord > span"],
+    PARCEL_TEXT_SELECTORS: [
         "#ctlBodyPane_ctl00_ctl01_lblParcelID", //Dixie
         "#ctlBodyPane_ctl00_ctl01_dynamicSummary_rptrDynamicColumns_ctl00_pnlSingleValue > span" //Clay
     ],
@@ -21,7 +22,6 @@ const config_qpublic = {
     MAP_IMG_SELECTOR: "#ctlBodyPane_ctl02_ctl01_imgMap",
 
     CLOUDFLARE: true,
-    HEADLESS: false,
     DELAY_NEXT: 30000,
     PROXY: { host: 'socks5://localhost', port: '10808' },
 }
@@ -31,7 +31,9 @@ var config_parcel_fl_dixe =
     ...config_qpublic,
     COUNTY: "fl_dixie",
     RESULTS_PATH: 'res/parcel_fl_dixie/',
-    URL: "https://qpublic.schneidercorp.com/Application.aspx?AppID=867&LayerID=16385&PageTypeID=4&PageID=7232&Q=1299906831&KeyValue=34-09-13-4496-0000-0040",
+    URL: (id) => `https://qpublic.schneidercorp.com/Application.aspx?AppID=867&LayerID=16385&PageTypeID=4&PageID=7232&Q=1299906831&KeyValue=${id}`,
+    //START: '34-09-13-4496-0000-0040', //start
+    START: '36-13-11-0000-1295-0000', //up
     //PROXY:{};
     PROXY: { host: 'socks5://localhost', port: '10809' },
 };
@@ -41,7 +43,8 @@ var config_parcel_fl_clay =
     ...config_qpublic,
     COUNTY: "fl_clay",
     RESULTS_PATH: 'res/parcel_fl_clay/',
-    URL: "https://qpublic.schneidercorp.com/Application.aspx?AppID=830&LayerID=15008&PageTypeID=4&PageID=6756&Q=872484422&KeyValue=38-06-26-017620-000-00",
+    URL: (id) => `https://qpublic.schneidercorp.com/Application.aspx?AppID=830&LayerID=15008&PageTypeID=4&PageID=6756&Q=872484422&KeyValue=${id}`,
+    START: '38-06-26-017620-000-00',
     //PROXY:{};
     PROXY: { host: 'socks5://localhost', port: '10810' },
 };

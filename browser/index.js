@@ -1,6 +1,4 @@
-import { scrapper_stealth } from './libs/scrapper_stealth.js';
-
-import { scrapper } from './libs/scrapper_puppeteer.js';
+import { browser_start } from './libs/browser.js';
 
 const args = process.argv.slice(2); // Skipping the first two elements
 
@@ -13,8 +11,8 @@ const [config_name] = args;
 //}
 
 var config=configs[config_name];
-config.HEADLESS=true;
+config.HEADLESS=false;
 
 console.log(config);
 
-await scrapper_stealth(config);
+await browser_start(config);

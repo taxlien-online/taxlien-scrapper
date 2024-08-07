@@ -10,17 +10,17 @@ import { connect } from 'puppeteer-real-browser'
 import randomUseragent from 'random-useragent';
 
 
-import { scrapper_start } from './scrapper_start.js';
+import { scrapper_start } from './iterator.js';
 const USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
 
-export async function scrapper_stealth(
+export async function browser_start(
     config
 ) {
 
     if (config.CLOUDFLARE == true) {
         connect({
 
-            headless: 'auto',
+            headless: config.HEADLESS,
 
             args: ['--disable-ipv6'],
 
@@ -64,7 +64,7 @@ export async function scrapper_stealth(
         const page = await browser.newPage();
         */
 
-
+        if (config.HEADLESS=='auto') config.HEADLESS=true;
         const browser = await runBrowser(config);
         const page = await createPage(browser, false);
 

@@ -34,11 +34,11 @@ var config_gis = {
     
     URL: (id) => `https://union.floridapa.com/gis/?pin=${id}`,
     START: '1805210000005700',
-    PARCEL_TEXT_SELECTOR: ['#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(3) > b'],
-    NEXT_BUTTON_SELECTOR: ['#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(4) > a > input'],//#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(4) > a > input',
-    PREV_BUTTON_SELECTOR: ['#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(2) > a > input'],
+    PARCEL_TEXT_SELECTORS: ['#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(3) > b'],
+    NEXT_BUTTON_SELECTORS: ['#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(4) > a > input'],
+    PREV_BUTTON_SELECTORS: ['#ownerDiv > table:nth-child(1) > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(1) > td:nth-child(2) > a > input'],
     FRAME_NAME: "recordSearchContent_1_iframe",
-    DELAY: 3000,
+    DELAY_NEXT: 3000,
 
     PROXY: { host: 'socks5://localhost', port: '10809' },
 }
@@ -71,9 +71,10 @@ var config_parcel_fl_lafayette = {
     ...config_gis,
     URL: (id) => `https://www.lafayettepa.com/gis/?pin=${id}`,
     //START: '0507140000000000200', //start
-    START: '140714004100B000190', //up
-    //START: '030714MINR000000200', //down
-    
+    //START: '140714004100B000190', //up
+    START: '030714MINR000000200', //down
+    NEXT_BUTTON_SELECTORS:config_gis.PREV_BUTTON_SELECTORS,
+
     COUNTY:"fl_lafayette",
     RESULTS_PATH: '../../taxlien_db/res/parcel_fl_lafayette/',
 }
@@ -101,8 +102,9 @@ var config_parcel_fl_union = {
     ...config_gis,
     URL: (id) => `https://union.floridapa.com/gis/?pin=${id}`,
     //START: '1805210000005700', //start
-    //START: '2604210000003110', //down
-    START: '0106250000010750', //up
+    START: '2604210000003110', //down
+    //START: '0106250000010750', //up
+    NEXT_BUTTON_SELECTORS:config_gis.PREV_BUTTON_SELECTORS,
     COUNTY:"fl_union",
     RESULTS_PATH: '../../taxlien_db/res/parcel_fl_union/',
 }
