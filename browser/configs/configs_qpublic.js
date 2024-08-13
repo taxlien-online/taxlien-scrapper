@@ -32,8 +32,9 @@ var config_parcel_fl_dixe =
     COUNTY: "fl_dixie",
     RESULTS_PATH: '../../taxlien_db/res/parcel_fl_dixie/',
     URL: (id) => `https://qpublic.schneidercorp.com/Application.aspx?AppID=867&LayerID=16385&PageTypeID=4&PageID=7232&Q=1299906831&KeyValue=${id}`,
-    START: '34-09-13-4496-0000-0040', //start
+    //START: '34-09-13-4496-0000-0040', //start
     //START: '36-13-11-0000-1295-0000', //up
+    START: '34-09-13-4495-0000-0320',
     
     NEXT_BUTTON_SELECTORS:config_qpublic.PREV_BUTTON_SELECTORS,
     //PROXY:{};
