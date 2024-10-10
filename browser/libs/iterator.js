@@ -2,7 +2,7 @@ import csv from 'csv-parser';
 import { createReadStream } from 'fs';
 import { parse } from 'csv-parse';
 
-
+import { cfAndNavigate,cfThenNavigate } from './cloudflare.js';
 
 //const fs = require('fs');
 import { waitforpageclick, waitload, pageload, pageclick, waitforframe, waitforiframe, waitforelementbyselector,waitforelementbyselectors, saveresult, fixdebug, sleep } from './process.js';
@@ -24,10 +24,15 @@ export async function scrapper_start(config, browser, page) {
 }
 
 export async function scrapper_loop(config, browser, page) {
-    const url=config.URL(config.START);
 
-    await pageload(page, url);
-    await sleep(1000);
+
+    
+
+
+
+    config.CUR_URL=config.URL(config.START);
+
+    await cfAndNavigate(browser, page, config);
 
     var frame = page;
     if (typeof config.FRAME_NAME !== 'undefined') {
@@ -54,7 +59,7 @@ export async function scrapper_loop(config, browser, page) {
         }
         await waitforpageclick(frame, config.AGREE_BUTTON_SELECTOR, 60000, config.RESULTS_PATH + "agree.png");
         */
-        var agreeButton=await waitforelementbyselectors(page,frame, config.AGREE_BUTTON_SELECTORS, 60000, config.RESULTS_PATH + "agree.png");
+        var agreeButton=await waitforelementbyselectors(page,frame, config.AGREE_BUTTON_SELECTORS, 60000, config.RESULTS_PATH + "agree.png",config);
         console.log("click Agree");
         await agreeButton.click();
     } else {
@@ -71,13 +76,15 @@ export async function scrapper_csv(config, browser, page)
 }
 
 export async function scrapper_iteration(config, browser, page,frame) {
-    var parcelfield = await waitforelementbyselectors(page,frame, config.PARCEL_TEXT_SELECTORS, 60000, config.RESULTS_PATH + "last.png");
+    console.log(config);
+    var parcelfield = await waitforelementbyselectors(page,frame, config.PARCEL_TEXT_SELECTORS, 60000, config.RESULTS_PATH + "last.png",config);
     const content = await frame.evaluate(el => el.textContent, parcelfield);
     console.log("content");
     console.log(content);
 
     var parcelnum = content;
     console.log(parcelnum);
+    config.CUR_URL=config.URL(parcelnum);
 
     await saveresult(frame, config.RESULTS_PATH + `${parcelnum}.html`);
     writeVariableToFile(config.RESULTS_PATH + "/last.id", parcelnum);
@@ -86,7 +93,7 @@ export async function scrapper_iteration(config, browser, page,frame) {
     await sleep(config.DELAY_NEXT);
     console.log("Нажимаю");
 
-    var clickbutton = await waitforelementbyselectors(page,frame, config.NEXT_BUTTON_SELECTORS, 60000, config.RESULTS_PATH + "last.png");
+    var clickbutton = await waitforelementbyselectors(page,frame, config.NEXT_BUTTON_SELECTORS, 60000, config.RESULTS_PATH + "last.png",config);
     var clickres=await clickbutton.click();
 
     /*

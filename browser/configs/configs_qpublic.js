@@ -49,6 +49,17 @@ var config_parcel_fl_alachua =
     URL: (id) => `https://qpublic.schneidercorp.com/Application.aspx?AppID=830&LayerID=15008&PageTypeID=4&PageID=6756&Q=872484422&KeyValue=${id}`,
     START: '38-06-26-017620-000-00',
     //PROXY:{};
+    PROXY: { host: 'socks5://localhost', port: '10810' },
+};
+
+var config_parcel_fl_clay =
+{
+    ...config_qpublic,
+    COUNTY: "fl_clay",
+    RESULTS_PATH: '../../taxlien_db/res/parcel_fl_clay/',
+    URL: (id) => `https://qpublic.schneidercorp.com/Application.aspx?AppID=830&LayerID=15008&PageTypeID=4&PageID=6756&Q=872484422&KeyValue=${id}`,
+    //START: '38-06-26-017620-000-00',
+    //PROXY:{};
     PROXY: { host: 'socks5://localhost', port: '10811' },
 };
 
@@ -58,20 +69,10 @@ var config_parcel_fl_clay =
     COUNTY: "fl_clay",
     RESULTS_PATH: '../../taxlien_db/res/parcel_fl_clay/',
     URL: (id) => `https://qpublic.schneidercorp.com/Application.aspx?AppID=830&LayerID=15008&PageTypeID=4&PageID=6756&Q=872484422&KeyValue=${id}`,
-    START: '38-06-26-017620-000-00',
+    //START: '38-06-26-017620-000-00',
+    START: '38-06-26-017675-000-00',
     //PROXY:{};
-    PROXY: { host: 'socks5://localhost', port: '10810' },
-};
-
-var config_parcel_fl_clay =
-{
-    ...config_qpublic,
-    COUNTY: "fl_clay",
-    RESULTS_PATH: '../../taxlien_db/res/parcel_fl_clay/',
-    URL: (id) => `https://qpublic.schneidercorp.com/Application.aspx?AppID=830&LayerID=15008&PageTypeID=4&PageID=6756&Q=872484422&KeyValue=${id}`,
-    START: '38-06-26-017620-000-00',
-    //PROXY:{};
-    PROXY: { host: 'socks5://localhost', port: '10810' },
+    PROXY: { host: 'socks5://localhost', port: '10812' },
 };
 
 export var configs_qpublic = {

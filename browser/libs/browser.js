@@ -24,15 +24,7 @@ export async function browser_start(
     config.COOKIES=[];
     
 
-    if (config.CLOUDFLARE == true) {
-        console.log("CF...")
-        var cf=await scrapeCfClearance(config);
-        //console.log(cf);
-        console.log("CF OK")
-        config.COOKIES=cf.cookies;
-        config.USER_AGENT=cf.agent
-        console.log("cookies:",config.COOKIES)
-    }
+
 
 
 
@@ -121,8 +113,6 @@ export async function browser_start(
         if (config.HEADLESS=='auto') config.HEADLESS=true;
         const browser = await runBrowser(config);
         const page = await createPage(browser, false,config);
-
-        await page.setCookie(...config.COOKIES);
 
         await scrapper_start(config, browser, page)
     }

@@ -1,1 +1,1 @@
-npm start config_parcel_fl_dixe
+cd .. && npm start config_parcel_fl_dixe
