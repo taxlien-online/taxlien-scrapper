@@ -1,7 +1,5 @@
 import fs from 'fs';
 
-import { cfAndNavigate,cfThenNavigate } from './cloudflare.js';
-
 
 export async function pageload(page, URL) {
     try {
@@ -146,15 +144,9 @@ export async function getselector(frame, SELECTOR) {
 }
 
 
-export async function waitforelementbyselectors(page,frame, SELECTORS, timeout, screen_filename,config) {
+export async function waitforelementbyselectors(page,frame, SELECTORS, timeout, screen_filename) {
     console.log("!!!waitforelementbyselectorS!!!");
-    console.log(config);
-    if (config.SCREENSHOT==true)
-    {
-        await page.screenshot({ path: screen_filename });
-    }
-
-    await cfThenNavigate(null, page, config);
+    await page.screenshot({ path: screen_filename });
 
     console.log("frame:", frame);
     console.log("selectors:", SELECTORS);

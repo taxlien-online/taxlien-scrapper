@@ -10,36 +10,17 @@ import { connect } from 'puppeteer-real-browser'
 import randomUseragent from 'random-useragent';
 
 
-import { scrapeCfClearance } from './cloudflare.js';
-
-import { scrapper_start } from './iterator.js';
+import { scrapper_start } from './scrapper_start.js';
 const USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
 
-export async function browser_start(
+export async function scrapper_stealth(
     config
 ) {
 
-    config.URL_CUR=config.URL(config.START);
-    config.USER_AGENT=USER_AGENT;
-    config.COOKIES=[];
-    
-
     if (config.CLOUDFLARE == true) {
-        console.log("CF...")
-        var cf=await scrapeCfClearance(config);
-        //console.log(cf);
-        console.log("CF OK")
-        config.COOKIES=cf.cookies;
-        config.USER_AGENT=cf.agent
-        console.log("cookies:",config.COOKIES)
-    }
-
-
-
-    if (config.REALBROWSER == true) {
         connect({
 
-            headless: config.HEADLESS,
+            headless: 'auto',
 
             args: ['--disable-ipv6'],
 
@@ -47,7 +28,7 @@ export async function browser_start(
 
             skipTarget: [],
 
-            fingerprint: true,
+            fingerprint: false,
 
             turnstile: true,
 
@@ -60,40 +41,6 @@ export async function browser_start(
             .then(async response => {
                 //(async () => {
                 const { browser, page } = response
-
-/*
-                var mode="captcha";
-
-                page.on('response', async (response) => {
-                    if (response.url().includes('/verify/turnstile') && mode == 'captcha') {
-                        console.log(111);
-                        try {
-                            const responseBody = await response.json();
-                            if (responseBody && responseBody.token) {
-                                var cookies = await page.cookies()
-                                global.browserLength--
-                                try { browser.close() } catch (err) { }
-                                resolve({ code: 200, cookies, agent, proxy, url, headers, turnstile: responseBody })
-                            }
-                        } catch (err) { }
-                    } else if (mode == 'captcha') {
-                        console.log(222);
-                        var checkToken = await page.evaluate(() => {
-                            var cfItem = document.querySelector('[name="cf-turnstile-response"]')
-                            console.log(cfItem);
-                            return cfItem && cfItem.value && cfItem.value.length > 0 ? cfItem.value : false
-                        }).catch(err => { return false })
-                        if (checkToken) {
-                            var cookies = await page.cookies()
-                            global.browserLength--
-                            try { browser.close() } catch (err) { }
-                            return resolve({ code: 200, cookies, agent, proxy, url, headers, turnstile: { token: checkToken } })
-                        }
-                    }
-                });*/
-
-
-
                 await scrapper_start(config, browser, page)
                 console.log('Completed processing');
                 await browser.close();
@@ -118,11 +65,9 @@ export async function browser_start(
         */
 
 
-        if (config.HEADLESS=='auto') config.HEADLESS=true;
         const browser = await runBrowser(config);
-        const page = await createPage(browser, false,config);
+        const page = await createPage(browser, false);
 
-        await page.setCookie(...config.COOKIES);
 
         await scrapper_start(config, browser, page)
     }
@@ -162,7 +107,7 @@ async function runBrowser(config) {
 async function createPage(browser, loadImages, config) {
     const userAgent = randomUseragent.getRandom();
     //const UA = userAgent || USER_AGENT;
-    const UA = config.USER_AGENT;
+    const UA = USER_AGENT;
     console.log(browser);
     const page = await browser.newPage();
     await page.setViewport({

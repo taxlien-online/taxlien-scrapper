@@ -34,8 +34,7 @@ export async function scrapper_loop(config, browser, page) {
         var frame = await waitforframe(page, config.FRAME_NAME, 6000);
     }
 
-    if (typeof config.AGREE_BUTTON_SELECTORS !== 'undefined') {
-        console.log("need Agree");
+    if (typeof config.AGREE_BUTTON_SELECTOR !== 'undefined') {
         /*
         while (true) {
             try {
@@ -52,13 +51,8 @@ export async function scrapper_loop(config, browser, page) {
                 await sleep(10000);
             }
         }
+        console.log("Agree");*/
         await waitforpageclick(frame, config.AGREE_BUTTON_SELECTOR, 60000, config.RESULTS_PATH + "agree.png");
-        */
-        var agreeButton=await waitforelementbyselectors(page,frame, config.AGREE_BUTTON_SELECTORS, 60000, config.RESULTS_PATH + "agree.png");
-        console.log("click Agree");
-        await agreeButton.click();
-    } else {
-        console.log("no need Agree");
     }
 
     for (var i = config.I_MIN; i < config.I_MAX; i++) {
@@ -71,7 +65,7 @@ export async function scrapper_csv(config, browser, page)
 }
 
 export async function scrapper_iteration(config, browser, page,frame) {
-    var parcelfield = await waitforelementbyselectors(page,frame, config.PARCEL_TEXT_SELECTORS, 60000, config.RESULTS_PATH + "last.png");
+    var parcelfield = await waitforelementbyselectors(page,frame, config.PARCEL_TEXT_SELECTOR, 60000, config.RESULTS_PATH + "last.png");
     const content = await frame.evaluate(el => el.textContent, parcelfield);
     console.log("content");
     console.log(content);
@@ -86,7 +80,7 @@ export async function scrapper_iteration(config, browser, page,frame) {
     await sleep(config.DELAY_NEXT);
     console.log("Нажимаю");
 
-    var clickbutton = await waitforelementbyselectors(page,frame, config.NEXT_BUTTON_SELECTORS, 60000, config.RESULTS_PATH + "last.png");
+    var clickbutton = await waitforelementbyselectors(page,frame, config.NEXT_BUTTON_SELECTOR, 60000, config.RESULTS_PATH + "last.png");
     var clickres=await clickbutton.click();
 
     /*

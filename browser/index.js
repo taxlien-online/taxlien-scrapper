@@ -11,15 +11,11 @@ const [config_name] = args;
 //}
 
 var config=configs[config_name];
-//config.HEADLESS=true;
-config.HEADLESS=false;
-config.CLOUDFLARE="auto";
-config.DELAY_NEXT=2000;
+config.HEADLESS=true;
 //config.REALBROWSER=true;
-config.PROXY= { host: 'socks5://localhost', port: '10811' };
+//PROXY= { host: 'socks5://localhost', port: '10809' };
 
 
 console.log(config);
 
 await browser_start(config);
-
