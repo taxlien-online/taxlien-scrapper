@@ -1,0 +1,34 @@
+
+> test@1.0.0 start
+> node index.js tax dixie
+
+Arguments: [ 'tax', 'dixie' ]
+file:///home/anton/proj/browser/index.js:41
+        ISFRAME=FALSE;
+        ^
+
+ReferenceError: FALSE is not defined
+    at file:///home/anton/proj/browser/index.js:41:9
+    at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:336:24)
+    at async loadESM (node:internal/process/esm_loader:34:7)
+    at async handleMainPromise (node:internal/modules/run_main:106:12)
+
+Node.js v18.19.1
+
+> test@1.0.0 start
+> node index.js tax dixie
+
+Arguments: [ 'tax', 'dixie' ]
+file:///home/anton/proj/browser/index.js:41
+        ISFRAME=FALSE;
+        ^
+
+ReferenceError: FALSE is not defined
+    at file:///home/anton/proj/browser/index.js:41:9
+    at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:336:24)
+    at async loadESM (node:internal/process/esm_loader:34:7)
+    at async handleMainPromise (node:internal/modules/run_main:106:12)
+
+Node.js v18.19.1

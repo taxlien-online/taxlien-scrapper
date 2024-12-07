@@ -1,0 +1,77 @@
+Xray 1.8.16 (Xray, Penetrates Everything.) 9432a60 (go1.22.4 linux/amd64)
+A unified platform for anti-censorship.
+2024/08/06 09:30:08 [Info] infra/conf/serial: Reading config: /home/anton/proj/proxy/10810/config.json
+2024/08/06 09:30:08 [Debug] app/log: Logger started
+2024/08/06 09:30:08 [Debug] app/proxyman/inbound: creating stream worker on 0.0.0.0:10810
+2024/08/06 09:30:08 [Info] transport/internet/tcp: listening TCP on 0.0.0.0:10810
+2024/08/06 09:30:08 [Info] transport/internet/udp: listening UDP on 0.0.0.0:10810
+2024/08/06 09:30:08 [Warning] core: Xray 1.8.16 started
+2024/08/06 09:34:27 [Info] [2657668267] proxy/socks: TCP Connect request to tcp:accounts.google.com:443
+2024/08/06 09:34:27 [Info] [2657668267] app/dispatcher: sniffed domain: accounts.google.com
+2024/08/06 09:34:27 [Info] [2657668267] app/dispatcher: default route for tcp:accounts.google.com:443
+2024/08/06 09:34:27 [Info] [2657668267] transport/internet/websocket: creating connection to tcp:18.183.169.157:8080
+2024/08/06 09:34:27 tcp:[::1]:44148 accepted tcp:accounts.google.com:443 [socks-in >> proxy]
+2024/08/06 09:34:27 [Debug] transport/internet: dialing to tcp:18.183.169.157:8080
+2024/08/06 09:34:27 [Info] [2657668267] proxy/vmess/outbound: tunneling request to tcp:accounts.google.com:443 via 18.183.169.157:8080
+2024/08/06 09:34:27 [Info] [1282451381] proxy/socks: TCP Connect request to tcp:qpublic.schneidercorp.com:443
+2024/08/06 09:34:27 [Info] [1282451381] app/dispatcher: sniffed domain: qpublic.schneidercorp.com
+2024/08/06 09:34:27 [Info] [1282451381] app/dispatcher: default route for tcp:qpublic.schneidercorp.com:443
+2024/08/06 09:34:27 [Info] [1282451381] transport/internet/websocket: creating connection to tcp:18.183.169.157:8080
+2024/08/06 09:34:27 tcp:[::1]:44152 accepted tcp:qpublic.schneidercorp.com:443 [socks-in >> proxy]
+2024/08/06 09:34:27 [Debug] transport/internet: dialing to tcp:18.183.169.157:8080
+2024/08/06 09:34:27 [Info] [1573999977] proxy/socks: TCP Connect request to tcp:qpublic.schneidercorp.com:443
+2024/08/06 09:34:27 [Info] [1573999977] app/dispatcher: sniffed domain: qpublic.schneidercorp.com
+2024/08/06 09:34:27 [Info] [1573999977] app/dispatcher: default route for tcp:qpublic.schneidercorp.com:443
+2024/08/06 09:34:27 [Info] [1573999977] transport/internet/websocket: creating connection to tcp:18.183.169.157:8080
+2024/08/06 09:34:27 tcp:[::1]:44158 accepted tcp:qpublic.schneidercorp.com:443 [socks-in >> proxy]
+2024/08/06 09:34:27 [Debug] transport/internet: dialing to tcp:18.183.169.157:8080
+2024/08/06 09:34:27 [Info] [1282451381] proxy/vmess/outbound: tunneling request to tcp:qpublic.schneidercorp.com:443 via 18.183.169.157:8080
+2024/08/06 09:34:27 [Info] [1573999977] proxy/vmess/outbound: tunneling request to tcp:qpublic.schneidercorp.com:443 via 18.183.169.157:8080
+2024/08/06 09:34:28 [Info] [1686039407] proxy/socks: TCP Connect request to tcp:static.cloudflareinsights.com:443
+2024/08/06 09:34:28 [Info] [1686039407] app/dispatcher: sniffed domain: static.cloudflareinsights.com
+2024/08/06 09:34:28 [Info] [1686039407] app/dispatcher: default route for tcp:static.cloudflareinsights.com:443
+2024/08/06 09:34:28 [Info] [1686039407] transport/internet/websocket: creating connection to tcp:18.183.169.157:8080
+2024/08/06 09:34:28 [Debug] transport/internet: dialing to tcp:18.183.169.157:8080
+2024/08/06 09:34:28 tcp:[::1]:44160 accepted tcp:static.cloudflareinsights.com:443 [socks-in >> proxy]
+2024/08/06 09:34:29 [Info] [1686039407] proxy/vmess/outbound: tunneling request to tcp:static.cloudflareinsights.com:443 via 18.183.169.157:8080
+2024/08/06 09:34:29 [Info] [2560199003] proxy/socks: TCP Connect request to tcp:challenges.cloudflare.com:443
+2024/08/06 09:34:29 [Info] [2560199003] app/dispatcher: sniffed domain: challenges.cloudflare.com
+2024/08/06 09:34:29 [Info] [2560199003] app/dispatcher: default route for tcp:challenges.cloudflare.com:443
+2024/08/06 09:34:29 [Info] [2560199003] transport/internet/websocket: creating connection to tcp:18.183.169.157:8080
+2024/08/06 09:34:29 tcp:[::1]:51768 accepted tcp:challenges.cloudflare.com:443 [socks-in >> proxy]
+2024/08/06 09:34:29 [Debug] transport/internet: dialing to tcp:18.183.169.157:8080
+2024/08/06 09:34:29 [Info] [2560199003] proxy/vmess/outbound: tunneling request to tcp:challenges.cloudflare.com:443 via 18.183.169.157:8080
+2024/08/06 09:34:30 [Info] [60964909] proxy/socks: TCP Connect request to tcp:challenges.cloudflare.com:443
+2024/08/06 09:34:30 [Info] [60964909] app/dispatcher: sniffed domain: challenges.cloudflare.com
+2024/08/06 09:34:30 [Info] [60964909] app/dispatcher: default route for tcp:challenges.cloudflare.com:443
+2024/08/06 09:34:30 [Info] [60964909] transport/internet/websocket: creating connection to tcp:18.183.169.157:8080
+2024/08/06 09:34:30 tcp:[::1]:51782 accepted tcp:challenges.cloudflare.com:443 [socks-in >> proxy]
+2024/08/06 09:34:30 [Debug] transport/internet: dialing to tcp:18.183.169.157:8080
+2024/08/06 09:34:30 [Info] [1316757914] proxy/socks: TCP Connect request to tcp:challenges.cloudflare.com:443
+2024/08/06 09:34:30 [Info] [1316757914] app/dispatcher: sniffed domain: challenges.cloudflare.com
+2024/08/06 09:34:30 tcp:[::1]:51792 accepted tcp:challenges.cloudflare.com:443 [socks-in >> proxy]
+2024/08/06 09:34:30 [Info] [1316757914] app/dispatcher: default route for tcp:challenges.cloudflare.com:443
+2024/08/06 09:34:30 [Info] [1316757914] transport/internet/websocket: creating connection to tcp:18.183.169.157:8080
+2024/08/06 09:34:30 [Debug] transport/internet: dialing to tcp:18.183.169.157:8080
+2024/08/06 09:34:30 [Info] [60964909] proxy/vmess/outbound: tunneling request to tcp:challenges.cloudflare.com:443 via 18.183.169.157:8080
+2024/08/06 09:34:30 [Info] [1316757914] proxy/vmess/outbound: tunneling request to tcp:challenges.cloudflare.com:443 via 18.183.169.157:8080
+2024/08/06 09:34:31 [Info] [4002804261] proxy/socks: TCP Connect request to tcp:www.google.com:443
+2024/08/06 09:34:31 [Info] [1937095440] proxy/socks: TCP Connect request to tcp:www.google.com:443
+2024/08/06 09:34:31 [Info] [4002804261] app/dispatcher: sniffed domain: www.google.com
+2024/08/06 09:34:31 [Info] [4002804261] app/dispatcher: default route for tcp:www.google.com:443
+2024/08/06 09:34:31 [Info] [4002804261] transport/internet/websocket: creating connection to tcp:18.183.169.157:8080
+2024/08/06 09:34:31 [Debug] transport/internet: dialing to tcp:18.183.169.157:8080
+2024/08/06 09:34:31 tcp:[::1]:51814 accepted tcp:www.google.com:443 [socks-in >> proxy]
+2024/08/06 09:34:31 [Info] [1937095440] app/dispatcher: sniffed domain: www.google.com
+2024/08/06 09:34:31 [Info] [1937095440] app/dispatcher: default route for tcp:www.google.com:443
+2024/08/06 09:34:31 [Info] [1937095440] transport/internet/websocket: creating connection to tcp:18.183.169.157:8080
+2024/08/06 09:34:31 [Debug] transport/internet: dialing to tcp:18.183.169.157:8080
+2024/08/06 09:34:31 tcp:[::1]:51798 accepted tcp:www.google.com:443 [socks-in >> proxy]
+2024/08/06 09:34:31 [Info] [1937095440] proxy/vmess/outbound: tunneling request to tcp:www.google.com:443 via 18.183.169.157:8080
+2024/08/06 09:34:31 [Info] [4002804261] proxy/vmess/outbound: tunneling request to tcp:www.google.com:443 via 18.183.169.157:8080
+2024/08/06 09:34:42 [Info] [4002804261] app/proxyman/inbound: connection ends > proxy/socks: connection ends > context canceled
+2024/08/06 09:34:43 [Info] [1937095440] app/proxyman/inbound: connection ends > proxy/socks: connection ends > context canceled
+2024/08/06 09:35:08 [Info] [1573999977] app/proxyman/inbound: connection ends > proxy/socks: connection ends > proxy/socks: failed to transport all TCP request > read tcp [::1]:10810->[::1]:44158: read: connection reset by peer
+2024/08/06 09:35:09 [Info] [60964909] app/proxyman/inbound: connection ends > proxy/socks: connection ends > context canceled
+2024/08/06 09:35:09 [Info] [1686039407] app/proxyman/inbound: connection ends > proxy/socks: connection ends > context canceled
+2024/08/06 09:35:09 [Info] [1282451381] app/proxyman/inbound: connection ends > proxy/socks: connection ends > context canceled

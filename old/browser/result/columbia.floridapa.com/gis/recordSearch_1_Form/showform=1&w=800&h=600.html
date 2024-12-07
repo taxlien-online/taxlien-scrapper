@@ -1,0 +1,1577 @@
+<!DOCTYPE html><html lang="en"><head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9;chrome=1;">
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+
+<script type="text/javascript">  
+
+
+	
+	
+var bIE = false;
+var bIE8 = false;
+var bIE10 = false;
+
+var bOpera = false;
+var bChrome = false;
+var bAndroid = false;
+var biPad = false;
+var bMobile = false;
+var bNarrow = false;
+var cW;
+var cH;
+var minScreenWidth
+
+
+if (document.all) {bIE = true;}
+
+var browser = navigator.userAgent;
+var location_pathName = location.pathname
+
+//console.log('location_pathName=' + location_pathName + ' | location_pathName.indexOf=' + location_pathName.indexOf("gisSideMenu_3_Details"));
+
+if (location_pathName.indexOf("gisSideMenu_3_Details") == -1) {
+
+
+if (bIE) {
+cW = document.documentElement.clientWidth;
+cH = document.documentElement.clientHeight;
+} 
+else
+{
+cW = window.innerWidth;
+cH = window.innerHeight;
+} //if (bIE) {
+
+//console.log('SET: cW=' + cW + '| cH=' + cH + ' | location_pathName.indexOf=' + location_pathName.indexOf("gisSideMenu_3_Details"));
+
+} else {
+
+//console.log('SKIPPED: cW=' + cW + '| cH=' + cH + ' | location_pathName.indexOf=' + location_pathName.indexOf("gisSideMenu_3_Details"));
+
+} //if (location_pathName.indexOf("gisSideMenu_3_Details") == 0) {
+
+
+if (browser.indexOf('Opera') != -1) {bOpera = true;}
+if (browser.indexOf('Chrome') != -1) {bChrome = true;}
+
+if (browser.indexOf('MSIE 8.0') != -1) {bIE8 = true;}
+if (browser.indexOf('MSIE 10') != -1 || browser.indexOf('MSIE 7') != -1) {bIE10 = true;}
+
+if (browser.indexOf('Android') != -1) {bAndroid = true; bMobile=true;} 
+
+if (browser.indexOf('iPad') != -1 || browser.indexOf('iPhone') != -1) {biPad = true; bMobile=true;}
+
+
+
+
+
+minScreenWidth = cW;
+if (cH < minScreenWidth) minScreenWidth = cH;
+
+if (minScreenWidth < 500) bNarrow = true;
+
+//alert('cW=' + cW + '| cH=' + cH + ' | minScreenWidth='+minScreenWidth);
+
+//if (cW > 0 &&  cW < 500) bNarrow = true;
+
+
+
+//bNarrow = false;
+</script>
+
+
+
+<script type="text/javascript"> 
+	
+    var serverName = location.hostname;
+    var strCounty = 'ColumbiaPA'
+    var mapPath = '/www/_grizzly.gis/gis.ColumbiaPA.com/';
+    var countyDomain = 'ColumbiaPA.com';
+    var proxyURL = 'https://' + serverName + '/proxy/?'
+    
+    
+    var currentDomainTileServer_URL = 'https://' + serverName +  '/GIS_Server/'
+    var tileServerURL_array = ['https://columbia.floridapa.com/GIS_Server/'];
+    
+    var directMapserverURL = 'https://g4.floridapa.com/mapserver/'
+    
+
+</script>
+
+
+<style type="text/css">
+
+html, body {
+height:100%;
+	-webkit-overflow-scrolling: touch;
+	margin-top: 2px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font-family: arial, sans-serif; 
+    font-size:14pt;
+    background: #D9D9CF;
+    min-height: 100%;
+  	margin:0px;
+    -webkit-backface-visibility: visible;
+    
+   }
+  
+  
+a:link {color:black; font-family:Georgia; font-size:10pt; font-weight:normal; text-decoration:none;}
+a:visited {color:black; font-family:Georgia; font-size:10pt; font-weight:normal; text-decoration:none;}   
+a:hover {color:red; font-family:Georgia; font-size:10pt; font-weight:normal; text-decoration:none;}
+
+.tb8{font-family:arial,sans-serif; font-weight: normal; color:black; font-size: 8pt;}
+.tb8b{font-family:arial,sans-serif; font-weight: bold; color:black; font-size: 8pt;}            
+
+.tb7{
+font-family:arial,sans-serif; font-weight: normal; color:#1a1a1a; font-size: 7pt;
+background-color:#E3E8EB;
+}
+
+.tb6{font-family:arial,sans-serif; font-weight: normal; color:black; font-size: 6pt;}
+
+
+#wrapper{
+top:0px;
+left:0px;
+width:100%;
+height:100%;
+overflow:hidden;
+border-color:#00FF00; 
+border-width:0px; 
+border-style:solid;
+}
+
+
+
+#div_login{
+position:absolute; 
+top:0;
+left:0; 
+width:100%;
+height:100%;
+visibility:hidden; 
+display:none;
+z-index:1;
+background-color:#7a7a7a;
+opacity:0.5;
+filter:alpha(opacity=50);
+}
+
+#div_Alert_OnLoad {
+position:absolute; 
+visibility: hidden;
+font-family: Tahoma;
+font-size: 10pt; 
+top:120px;
+left:150px;
+width:500px; 
+z-index:2;
+background-color: #B9B9AF;
+border-color:#B9B9AF; 
+border-width:3; 
+border-style:solid;
+overflow : auto;
+border-bottom:outset 3px #aeaeae;
+border-right:outset 3px #aeaeae;
+}
+
+.outlineRadius {
+border-radius: 3px;
+margin: 0px; 
+padding: 0px;
+border: 1px solid #7f7f7f;
+background: #E3E8EB;
+}
+
+.shadow {
+border-radius: 3px;
+-moz-box-shadow: 2px 2px 5px #303030;
+-webkit-box-shadow: 2px 2px 5px #303030;
+box-shadow: 2px 2px 5px #303030;
+border-top:outset 1px #7f7f7f;
+border-left:outset 1px #7f7f7f;
+border-bottom:outset 2px #a1a1a1;
+border-right:outset 2px #a1a1a1;
+}
+
+
+.submit:hover {
+    border: none;
+    box-shadow: 0px 0px 1px #777;
+}
+
+.submit {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #050505;
+	padding: 2px 10px;
+	background: -moz-linear-gradient(
+		top,
+		#ffffff 0%,
+		#ebebeb 50%,
+		#dbdbdb 50%,
+		#b5b5b5);
+	background: -webkit-gradient(
+		linear, left top, left bottom,
+		from(#ffffff),
+		color-stop(0.50, #ebebeb),
+		color-stop(0.50, #dbdbdb),
+		to(#b5b5b5));
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #949494;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
+}
+
+
+.submitSmall {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8px;
+	color: #050505;
+	padding: 1px 5px;
+	background: -moz-linear-gradient(
+		top,
+		#ffffff 0%,
+		#ebebeb 50%,
+		#dbdbdb 50%,
+		#b5b5b5);
+	background: -webkit-gradient(
+		linear, left top, left bottom,
+		from(#ffffff),
+		color-stop(0.50, #ebebeb),
+		color-stop(0.50, #dbdbdb),
+		to(#b5b5b5));
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #949494;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
+}
+
+
+
+.recordsearchTable {
+font-family: arial;
+font-size: 10pt; 
+border-radius: 5px;
+background-color:#D9D9CF; //#E3E8EB
+}
+
+.recordsearchInsideTable {
+font-family: arial;
+font-size: 10pt; 
+border-radius: 6px;
+background-color:#E3E8EB; //tab_color_on
+}
+
+.recordsearchFormInput{
+font-family: arial;
+font-size: 10pt; 
+}
+
+.formInput {
+font-family: arial;
+font-size: 12pt;
+}
+
+
+.salesReportTable {
+font-family: arial;
+font-size: 8pt; 
+}
+
+#TaxPAsearchForm {
+      -webkit-user-select: initial;
+      -khtml-user-select: initial;
+      -moz-user-select: initial;
+      -ms-user-select: initial;
+      user-select: initial;
+}
+     
+
+input, input:before, input:after {
+      -webkit-user-select: initial;
+      -khtml-user-select: initial;
+      -moz-user-select: initial;
+      -ms-user-select: initial;
+      user-select: initial;
+     } 
+
+
+
+
+
+
+
+</style>
+
+
+
+<script type="text/javascript" language="javascript">
+
+
+function ClearSearch() {
+
+if(obj = document.TaxPASearch.OwnerName) obj.value = "";
+
+if(obj = document.TaxPASearch.HouseNumber) obj.value = "";
+if (obj = document.TaxPASearch.StreetName) obj.value = "";
+if (obj = document.TaxPASearch.StreetType) obj.selectedIndex = 0;
+
+if (obj = document.TaxPASearch.PIN) obj.value = "";
+if (obj = document.TaxPASearch.Parcel_Key) obj.value = "";
+
+if (obj = document.TaxPASearch.XFOBcode) obj.value = "";
+if (obj = document.TaxPASearch.BldgType) obj.value = "";
+if (obj = document.TaxPASearch.SUBD) obj.value = "";
+if (obj = document.TaxPASearch.LOT) obj.value = "";
+if (obj = document.TaxPASearch.BLOCK) obj.value = "";
+if (obj = document.TaxPASearch.LEGAL) obj.value = "";
+if (obj = document.TaxPASearch.Acre_GT) obj.value = "";
+if (obj = document.TaxPASearch.Acre_GT) obj.value = "";
+
+if (obj = document.TaxPASearch.SaleDateFrom) obj.value = "";
+if (obj = document.TaxPASearch.SaleDateTo) obj.value = "";
+if (obj = document.TaxPASearch.SalePriceFrom) obj.value = "";
+if (obj = document.TaxPASearch.SalePriceTo) obj.value = "";
+if (obj = document.TaxPASearch.SaleBook) obj.value= "";
+if (obj = document.TaxPASearch.SalePage) obj.value = "";
+
+if (obj = document.TaxPASearch.Sale_Vimp) obj.selectedIndex = 0;
+if (obj = document.TaxPASearch.Sale_Qual) obj.checked = false;
+if (obj = document.TaxPASearch.LastSaleOnly) obj.checked = false;
+
+if (obj = document.TaxPASearch.Section) obj.selectedIndex = 0;
+if (obj = document.TaxPASearch.Township) obj.selectedIndex = 0;
+if (obj = document.TaxPASearch.Range) obj.selectedIndex = 0;
+if (obj = document.TaxPASearch.Use_Code) obj.selectedIndex = 0;
+
+if (obj = document.TaxPASearch.HeatedSF_From) obj.value = "";
+if (obj = document.TaxPASearch.HeatedSF_To) obj.value = "";
+if (obj = document.TaxPASearch.YearBuilt_From) obj.value = "";
+if (obj = document.TaxPASearch.YearBuilt_To) obj.value = "";
+
+//document.TaxPASearch.OwnerName.focus();
+if (obj=document.TaxPASearch.OwnerName) obj.focus();
+return false;
+}
+
+function ReloadSearchMenu_Tab1(inMenu) {
+	if (top.S_Top.document.S_TopForm.S_TopMenu.value != inMenu) {
+	top.S_Top.document.S_TopForm.S_TopMenu.value = inMenu;
+	top.S_Top.document.images['tab2'].src = "./images/SearchMenu_2_off.gif"
+	top.S_Top.document.images['tab3'].src = "./images/SearchMenu_3_off.gif"
+	top.S_Top.document.images['tab4'].src = "./images/SearchMenu_4_off.gif"
+	top.S_Top.document.images['tab1'].src = "./images/SearchMenu_1_on.gif"
+	}
+}
+
+
+function CheckSaleYear() {
+
+if (document.TaxPASearch.SaleReport_Year[5].checked) {
+document.TaxPASearch.SaleReport_Year[5].value = document.TaxPASearch.SaleReport_Year_text.value
+}
+} //function CheckSaleYear() {
+
+
+function AlertOnLoad() {
+
+document.getElementById('div_login').style.display = 'block'
+window.setTimeout("document.getElementById('div_login').style.visibility = 'visible'", 100);
+document.getElementById("div_Alert_OnLoad").style.visibility = 'visible';
+
+}
+
+function close_AlertOnLoad() {
+document.getElementById("div_Alert_OnLoad").style.visibility = 'hidden';
+
+document.getElementById('div_login').style.display = 'none'
+document.getElementById("div_login").style.visibility = 'hidden';
+
+}
+
+
+
+function OpenSubdWindow() {
+var Win1 = window.open("./showSubdCodes/?sortBy=2", "", "menubar=0,toolbar=0,scrollbars=1,resizable=1,width=400,height=500");
+}
+
+function OpenBldgTypeWindow() {
+var Win1 = window.open("./showBuildingCodes/?sortBy=1", "", "menubar=0,toolbar=0,scrollbars=1,resizable=1,width=350,height=500");
+}
+
+
+function OpenXFOBWindow() {
+var Win1 = window.open("./showXFOBCodes/?sortBy=1", "", "menubar=0,toolbar=0,scrollbars=1,resizable=1,width=350,height=500");
+}
+
+
+
+
+function hideSideBarMenu() {
+document.getElementById("sbMenu").style.display = 'none';
+}
+
+
+
+
+
+function submitRecordSearch(inForm) {
+document.activeElement.blur();
+parent.showDivLoading(true);
+}
+
+
+
+function submitForm(){
+
+alert('submit')
+
+document.getElementById("TaxPAsearchForm").submit();
+
+} //funct
+
+
+function SetWindowWidth(inW, inH) {
+
+	if (inW == '' || inH == '') {
+
+		if (document.all) {
+		inW = document.body.clientWidth;
+		inH = document.body.clientHeight;
+		}
+		else {
+		inW=window.innerWidth;
+		inH=window.innerHeight;
+		}
+	} //if
+document.TaxPASearch.clientWidth.value	= inW
+document.TaxPASearch.clientHeight.value = inH
+
+} //func
+
+
+var timerVar;
+
+function iFrameHeightDelay() {
+clearTimeout(timerVar);
+timerVar = setTimeout("iFrameHeight()", 50); 
+}
+
+
+
+function iFrameHeight() {
+
+if (bIE) {
+cW = document.documentElement.clientWidth;
+cH = document.documentElement.clientHeight;
+} 
+else
+{
+cW = window.innerWidth;
+cH = window.innerHeight;
+} //if (bIE) {
+
+
+
+
+
+//-------------------------------------------------------
+screenOrientation = window.orientation
+
+if (cW > 0 && cH > 0) {
+
+		if (typeof screenOrientation !== 'undefined') {
+
+			if (screenOrientation == 0 || screenOrientation == 180) {
+
+				if (cW > cH) {
+				
+					w=cH;
+					h=cW-52;
+				
+				} else {
+				
+					w = cW
+					h = cH-52  //make up for the Record Search TABs
+				}
+				
+			} else {
+
+			w = cW
+			h = cH-52  //make up for the Record Search TABs
+
+			} //if (screenOrientation == 0 || screenOrientation == 180) {
+			
+		} else {
+
+		w = cW
+		h = cH-52  //make up for the Record Search TABs
+			
+		} //if (typeof screenOrientation != 'undefined') {
+
+
+		if (w < 400) bNarrow=true; //gisMainMenu
+
+
+SetWindowWidth(w,h);
+
+
+	
+	if (obj=document.getElementById("wrapper")) {
+
+
+		if (w < 900 || bMobile) {
+		obj.style.width = "100%"
+		} else {
+		obj.style.width = "910px"
+		}
+		
+		//obj.style.height = h+"px"
+		
+	} //if (obj=document.getElementById("wrapper")) {
+	
+	
+	
+} //if cW > 0 {	
+	
+} //funct
+
+
+function ExpandAdvOptions(inObject, inMode) {
+
+    if (typeof (inMode) == 'undefined') {
+
+
+        if (document.images[inObject + 'Img'].src.indexOf('layer_plus_triangle4.gif') != -1) {
+            inMode = true;
+        } else {
+            inMode = false;
+        }
+    } //if
+
+
+
+    if (inMode) {
+
+
+        if (obj = document.getElementById(inObject)) {
+            obj.style.display = 'block';
+            obj.style.visibility = 'visible';
+            document.images[inObject + 'Img'].src = 'https://columbia.floridapa.com/gis/_images/layer_minus_triangle4.gif'
+        }
+
+    } else {
+
+
+        if (obj = document.getElementById(inObject)) {
+            obj.style.display = 'none';
+            obj.style.visibility = 'hidden';
+            document.images[inObject + 'Img'].src = 'https://columbia.floridapa.com/gis/_images/layer_plus_triangle4.gif'
+        }
+    } //if
+
+}//func
+
+
+
+function showAdvanced_click(inObj) {
+
+
+
+if (inObj.checked) {
+inValue = "1"
+ExpandAdvOptions('AdvSearchOptions',true);
+} else {
+inValue = "0"
+ExpandAdvOptions('AdvSearchOptions',false);
+}//if
+
+parent.setCookie('ColumbiaPA_recordSearch_form_showAdvanced_chk', inValue, 365)	
+
+} //function
+
+
+
+
+
+
+function onLoad() {
+
+iFrameHeight();
+
+var tmpVal = parent.getCookie('ColumbiaPA_recordSearch_form_showAdvanced_chk')
+if (tmpVal.length > 0 ) {
+
+
+
+	if (tmpVal == '1') {
+		tmpVal = true;
+		
+		if (obj=document.getElementById('showAdvanced_chk')) obj.checked=tmpVal;
+		
+		ExpandAdvOptions('AdvSearchOptions', true);
+	
+	} else {
+	
+	tmpVal = false;
+	
+		ExpandAdvOptions('AdvSearchOptions', false);
+	
+	} //if
+
+
+if (obj=document.getElementById('showAdvanced_chk')) obj.checked=tmpVal;
+	
+} //if
+
+
+
+
+
+if (obj=document.TaxPASearch.OwnerName) obj.focus();
+
+
+		
+} // function onLoad
+
+
+</script>
+
+</head>
+
+
+
+
+<body onload="onLoad();" onresize="iFrameHeight();">
+<a name="Page_Top"></a>
+
+<form name="TaxPASearch" id="TaxPAsearchForm" action="https://columbia.floridapa.com/gis/recordSearch_2_Results/" method="POST" onsubmit="return submitRecordSearch(this);">
+
+<div id="wrapper" style="width: 100%;">		
+
+
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tbody><tr>
+<td width="100" valign="top" bgcolor="#B0AB8D">
+
+
+
+		<table width="100%" id="sbMenu" cellpadding="0" cellspacing="0" border="0">
+		<tbody><tr>
+		<td valign="top">
+			<img src="https://columbia.floridapa.com/images/pixel.gif" width="1" height="40">
+			<br>
+
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tbody><tr>
+				<td>
+
+						<table border="0" cellspacing="0" cellpadding="4" width="100%">
+						<tbody><tr>
+						<td height="16" align="center" bgcolor="#D9D9CF"><a href="showForm%3D1.html" class="sbmenu" style="font-family:Georgia; font-size:10pt; color:#705D3E;">Real Property</a></td>
+						</tr>
+
+						<tr>
+						<td height="16"><a href="showForm%3D2.html" class="sbmenu">Sales Report</a></td>
+						</tr>
+																			
+						<tr>
+						<td height="16"><a href="javascript:parent.ClickTab(4,true)" class="sbmenu">GIS Map</a></td>
+						</tr>
+						</tbody></table>
+				</td>	
+				</tr>
+				</tbody></table>
+		</td>
+		</tr>
+		</tbody></table>
+		
+		
+</td><td bgcolor="#D9D9CF">
+<img src="https://columbia.floridapa.com/images/pixel.gif" width="2" height="1">
+</td>
+		
+
+<td valign="top">
+
+
+
+
+<table width="100%" border="0" cellpadding="8" cellspacing="0">
+<tbody><tr>
+<td>
+
+		<table width="100%" border="0" cellpadding="2" cellspacing="0">
+		<tbody><tr>
+		<td valign="top" align="left">	
+ 
+
+		<div class="outlineRadius">
+							
+<!-- here -->
+		<table class="recordsearchTable" width="100%" cellspacing="0" cellpadding="1" border="0">
+		
+			<tbody><tr bgcolor="#B0AB8D">
+			<td colspan="2">
+					
+			<table border="0" cellpadding="6" cellspacing="0" class="gisDetails_Headings" width="100%" bgcolor="#B0AB8D">
+			<tbody><tr>		
+				
+				<td><font style="font-family:Georgia;font-size:12pt;color:#705D3E;font-weight:bold;">Real Property Record Search</font></td>
+				
+			</tr>
+			</tbody></table>
+							
+		</td></tr>
+					
+		<tr>
+		<td align="top">
+
+
+
+		
+			<input type="hidden" name="button_RecordSearch" value="1">
+
+		
+		
+		 
+						
+					<table width="100%" class="recordsearchTable" border="0" cellspacing="2" cellpadding="2" bg-color="#9a9a9a">
+													
+						
+							
+							<tbody><tr>
+							<td width="90" bgcolor="#B0AB8D">Owner's Name</td>
+							<td colspan="3" bgcolor="#E3E8EB"><input type="text" size="32" maxlength="45" value="" id="OwnerName" name="OwnerName" placeholder="LastName  FirstName"></td>
+							</tr>
+	
+							
+						
+						
+							<tr>
+							<td bgcolor="#B0AB8D">Street Address</td>
+							<td colspan="3" bgcolor="#E3E8EB"><input type="text" size="32" maxlength="45" value="" name="StreetName" autocomplete="on" placeholder="*HouseNumber  StreetName"> <span style="font-family:arial;font-size:7pt;">*optional</span></td>
+							</tr>
+							
+							
+							
+							<tr>
+							<td bgcolor="#B0AB8D">Parcel Number</td>
+							
+							<td bgcolor="#E3E8EB"><input type="text" id="PIN" class="recordsearchFormInput" size="32" maxlength="30" value="" name="PIN" autocomplete="on" place-holder="##-##-##-#####-###"></td>
+							<td width="90" align="center" bgcolor="#B0AB8D">Parcel Key&nbsp;&nbsp;</td>
+							<td bgcolor="#E3E8EB"><input type="text" size="8" maxlength="9" value="" name="Parcel_Key" autocomplete="on" placeholder="######"></td>
+							
+							</tr>
+						
+							
+						
+						
+			</tbody></table> <!-- new -->	
+	
+<!-- here -->
+
+</td>
+</tr>	
+			
+	<tr>
+	<td colspan="2">
+
+			
+
+		<table border="0" cellpadding="2" cellspacing="2" class="gisDetails_Headings" width="100%" bgcolor="#B0AB8D">
+			<tbody><tr>
+			<td valign="bottom" onclick="ExpandAdvOptions('AdvSearchOptions');" style="cursor: pointer;">&nbsp;<img name="AdvSearchOptionsImg" src="https://columbia.floridapa.com/gis/_images/layer_plus_triangle4.gif" width="16" height="12">&nbsp;
+			<font style="font-family:Georgia; font-size:10pt; color:#FFFFFF;">Advanced Search options <font style="font-family:arial; font-size:8pt; color:#FFFFFF;"> (click to expand)</font></font> </td>
+			<td>&nbsp;&nbsp;<label class="tb8"><input type="checkbox" class="checkboxSmall" name="showAdvanced_chk" value="click" id="showAdvanced_chk" onclick="showAdvanced_click(this);"><font color="#505050">Always show Advanced Search options</font></label></td>
+			</tr>
+			</tbody></table>
+
+						
+	</td>
+	</tr>
+			
+
+<tr>
+<td>
+
+	
+
+<div id="AdvSearchOptions" style="display:none;">	
+			
+			<table width="100%" class="recordsearchTable" border="0" cellspacing="2" cellpadding="2">
+			<tbody><tr>
+			
+			
+			
+			<td width="90" bgcolor="#B0AB8D">Geographic</td>
+			<td colspan="3" bgcolor="#E3E8EB" align="left">
+					
+			
+			
+					
+		
+		
+	
+	
+		
+			<table width="100%" border="0" cellspacing="2" cellpadding="0">
+			<tbody><tr>
+			<td>
+				
+					<table width="100%" class="recordsearchInsideTable" border="0" cellspacing="0" cellpadding="0">
+					<tbody><tr>
+					<td>
+						<table class="recordsearchFormInput" border="0" cellspacing="0" cellpadding="2">
+						<tbody><tr>
+						<td><table class="recordsearchFormInput" border="0" cellspacing="0" cellpadding="2">
+				<tbody><tr>
+				<td>
+				Section
+				<br>
+					<select class="recordsearchFormInput" size="1" name="Section">
+					<option value="">ANY&nbsp;&nbsp;
+					</option><option value="1">1
+					</option><option value="2">2
+					</option><option value="3">3
+					</option><option value="4">4
+					</option><option value="5">5
+					</option><option value="6">6
+					</option><option value="7">7
+					</option><option value="8">8
+					</option><option value="9">9
+					</option><option value="10">10
+					</option><option value="11">11
+					</option><option value="12">12
+					</option><option value="13">13
+					</option><option value="14">14
+					</option><option value="15">15
+					</option><option value="16">16
+					</option><option value="17">17
+					</option><option value="18">18
+					</option><option value="19">19
+					</option><option value="20">20
+					</option><option value="21">21
+					</option><option value="22">22
+					</option><option value="23">23
+					</option><option value="24">24
+					</option><option value="25">25
+					</option><option value="26">26
+					</option><option value="27">27
+					</option><option value="28">28
+					</option><option value="29">29
+					</option><option value="30">30
+					</option><option value="31">31
+					</option><option value="32">32
+					</option><option value="33">33
+					</option><option value="34">34
+					</option><option value="35">35
+					</option><option value="36">36
+					</option></select>
+				</td>
+
+
+				
+				<td>
+				Township
+				<br>
+					<select class="recordsearchFormInput" size="1" name="Township">
+					<option value="">ANY&nbsp;&nbsp;
+					</option><option value="1">1
+					</option><option value="2">2
+					</option><option value="3">3
+					</option><option value="4">4
+					</option><option value="5">5
+					</option><option value="6">6
+					</option><option value="7">7
+					</option><option value="8">8
+					</option></select>
+				</td>
+				
+				<td>
+				Range
+				<br>
+				<select class="recordsearchFormInput" size="1" name="Range">
+					<option value="">ANY&nbsp;&nbsp;
+					</option><option value="3">3
+					</option><option value="6">6
+					</option><option value="15">15
+					</option><option value="16">16
+					</option><option value="17">17
+					</option><option value="18">18
+					</option><option value="19">19
+				</option></select>
+				</td>
+
+
+		
+
+
+
+
+
+				
+				</tr>
+				</tbody></table>
+				
+				</td>
+						</tr>
+						</tbody></table>
+					</td>
+					</tr>
+					</tbody></table>
+			
+			</td>
+			</tr>
+			<tr>
+			<td>
+				
+				
+			
+					<table width="100%" class="recordsearchInsideTable" border="0" cellspacing="0" cellpadding="0">
+					<tbody><tr>
+					<td>
+						<table class="recordsearchFormInput" border="0" cellspacing="0" cellpadding="2">
+						<tbody><tr>
+						<td>Acreage <font size="1">&gt;=</font><br><input class="recordsearchFormInput" size="6" maxlength="6" name="Acre_GT" placeholder="gt or eq"><font size="1">AC</font></td>
+				
+						<td>Acreage <font size="1">&lt;=</font><br><input class="recordsearchFormInput" size="6" maxlength="6" name="Acre_LT" placeholder="lt or eq"><font size="1">AC</font></td>
+						
+						<td><img src="https://columbia.floridapa.com/images/pixel.gif" width="2" height="1"></td>
+						
+						<td>	Subdivision<!-- <a href="javascript:OpenSubdWindow();"><font style="font-family:arial; font-size:7pt; color:blue;">Show Codes</font></a>-->
+						<br>	<input class="recordsearchFormInput" size="20" maxlength="25" value="" name="Subd">
+						</td>
+						</tr>
+						</tbody></table>
+					</td>
+					</tr>
+					</tbody></table>
+				
+				
+			</td>
+			</tr>
+			<tr>
+			<td>
+
+				<table width="100%" class="recordsearchInsideTable" border="0" cellspacing="0" cellpadding="0">
+				<tbody><tr>
+				<td>	
+		
+					<table class="recordsearchFormInput" border="0" cellspacing="0" cellpadding="2">
+					<tbody><tr>
+					<td colspan="1">Property Use:
+					<br>
+					<select size="1" name="Use_Code" class="recordsearchFormInput" style="width:170px;">
+<option value="">ANY
+</option><option value="000000">VACANT
+</option><option value="000100">SINGLE FAMILY
+</option><option value="000200">MOBILE HOME
+</option><option value="000300">MULTI-FAM 
+</option><option value="000400">CONDOMINIA
+</option><option value="000500">COOPERATIVES
+</option><option value="000600">RETIREMENT HOMES
+</option><option value="000700">MISC IMPROVED
+</option><option value="001000">VACANT COMMERCIAL
+</option><option value="001100">STORES/1 STORY
+</option><option value="001126">CONV STORE/GAS
+</option><option value="001200">MXD RES/OFF/STO
+</option><option value="001300">DEPARTMNT STORE
+</option><option value="001400">SUPERMARKET
+</option><option value="001500">REGIONAL SHOPPING
+</option><option value="001600">COMMUNITY SHOPPING
+</option><option value="001700">OFFICE BLD 1STY
+</option><option value="001800">OFFCE BLD M/STY
+</option><option value="001900">PROFESS OFF/BLD
+</option><option value="002000">TRANSIT TERMINL
+</option><option value="002100">RESTAURANT/CAFE
+</option><option value="002200">DRIVE-IN REST.
+</option><option value="002300">FINANCIAL BLDG
+</option><option value="002400">INSURANCE COMP
+</option><option value="002500">REPAIR SERVICE
+</option><option value="002525">BEAUTY PARLOR
+</option><option value="002600">SERVICE STATION
+</option><option value="002700">VEH SALE/REPAIR
+</option><option value="002800">RV &amp; MH PARKS
+</option><option value="002900">WHOLESALE OUTLET
+</option><option value="003000">FLORIST/GREENHOUSE
+</option><option value="003100">DRIVE-IN/OPEN STAD
+</option><option value="003200">THEATER/AUDITORIUM
+</option><option value="003300">NIGHTCLUB/BARS
+</option><option value="003400">BOWL,RINKS,POOL
+</option><option value="003500">TOURIST ATTRACTION
+</option><option value="003600">CAMPS
+</option><option value="003700">RACE TRACKS,ALL
+</option><option value="003800">GOLF COURSES
+</option><option value="003900">HOTELS/MOTELS
+</option><option value="004000">VACANT INDUSTRIAL
+</option><option value="004100">LIGHT MANUFACTURE
+</option><option value="004200">HEAVY INDUSTRL
+</option><option value="004300">LUMBER YARD
+</option><option value="004400">PACKING PLANTS
+</option><option value="004500">CANNERIES/BOTTLERS
+</option><option value="004600">OTHER FOOD PROCESS
+</option><option value="004700">MINERAL PROCESSING
+</option><option value="004800">WAREHOSE/DISTRB
+</option><option value="004900">OPEN STORAGE
+</option><option value="005000">IMPROVED AG
+</option><option value="005100">CROPLAND 
+</option><option value="005400">TIMBERLAND
+</option><option value="006180">IMP PASTURE
+</option><option value="006240">S/IMP PASTURE
+</option><option value="006310">NAT PASTURE
+</option><option value="006400">LOW PASTURE
+</option><option value="006500">PASTURE CLS6
+</option><option value="006600">GROVES,ORCHRD
+</option><option value="006700">POULT,BEES,FISH, ETC
+</option><option value="006800">DAIRIES,FEEDLOTS
+</option><option value="006900">MISC AG
+</option><option value="007000">VAC INSTITUTIONAL
+</option><option value="007100">CHURCHES
+</option><option value="007200">PRVT SCHL/DAY CARE
+</option><option value="007300">PRIVATE HOSPITALS
+</option><option value="007400">HOMES FOR THE AGED
+</option><option value="007500">NON-PROFIT / ORPHANA
+</option><option value="007600">MORTUARY/CEMETARY
+</option><option value="007700">CLUBS/LODGES/HALLS
+</option><option value="007800">REST HOMES
+</option><option value="007900">CULTERAL GROUPS
+</option><option value="008100">MILITARY
+</option><option value="008200">FOREST, PARKS, REC
+</option><option value="008300">PUBLIC SCHOOLS
+</option><option value="008400">COLLEGES
+</option><option value="008500">HOSPITALS
+</option><option value="008600">COUNTY
+</option><option value="008628">COUNTY RV PARK
+</option><option value="008700">STATE
+</option><option value="008701">WATER MG DIST
+</option><option value="008702">SPECIAL TAXING
+</option><option value="008703">O U A
+</option><option value="008704">TIITF%/SFWMD%
+</option><option value="008800">FEDERAL
+</option><option value="008900">MUNICIPAL
+</option><option value="009000">LEASEHOLD INTEREST
+</option><option value="009100">UTILITIES
+</option><option value="009200">MINING
+</option><option value="009300">SUBSURFACE RGHT
+</option><option value="009400">RIGHTS-OF-WAY
+</option><option value="009500">RIVERS AND LAKES
+</option><option value="009600">WASTELAND/DUMPS
+</option><option value="009700">REC AND PARK LAND
+</option><option value="009800">CENTRALLY ASSED
+</option><option value="009900">NON AG ACREAGE
+</option></select></td>
+					<td><img src="https://columbia.floridapa.com/images/pixel.gif" width="5" height="1"></td>
+					<td>Brief Description:<br><input class="recordsearchFormInput" size="22" maxlength="25" value="" name="LEGAL"></td>
+					</tr>
+					</tbody></table>
+				</td>
+				</tr>
+				</tbody></table>
+				
+				
+			</td>
+			</tr>
+			</tbody></table>
+				
+		</td>
+		</tr>		
+		
+	
+			
+
+			<tr>
+			<td bgcolor="#B0AB8D">Structure</td>
+			<td colspan="3" bgcolor="#E3E8EB">
+		
+				
+				
+			<table width="100%" border="0" cellspacing="2" cellpadding="0">
+			<tbody><tr>
+			<td>
+					<table width="100%" class="recordsearchInsideTable" border="0" cellspacing="0" cellpadding="0">
+					<tbody><tr>
+					<td>
+						<table class="recordsearchFormInput" border="0" cellspacing="0" cellpadding="2">
+						<tbody><tr>
+						<td bgcolor="#E3E8EB">Base Area <font size="1">&gt;=</font><br>
+						<input class="recordsearchFormInput" size="8" maxlength="12" value="" name="HeatedSF_From" placeholder="gt or eq"><font size="1">SF</font>
+						</td>
+						
+						<td><img src="https://columbia.floridapa.com/images/pixel.gif" width="5" height="1"></td>
+						
+						<td bgcolor="#E3E8EB">Base Area <font size="1">&lt;=</font><br>
+						<input class="recordsearchFormInput" size="8" maxlength="12" value="" name="HeatedSF_To" placeholder="lt or eq"><font size="1">SF</font>
+						</td>
+						</tr>
+						</tbody></table>
+					</td>
+					</tr>
+					</tbody></table>
+		
+			</td>
+			</tr>
+			<tr>
+			<td>
+		
+				<table width="100%" class="recordsearchInsideTable" border="0" cellspacing="0" cellpadding="0">
+				<tbody><tr>
+				<td>
+						<table class="recordsearchFormInput" border="0" cellspacing="0" cellpadding="2">
+						<tbody><tr>
+						<td bgcolor="#E3E8EB">Year Built <font size="1">&gt;=</font><br>
+						<input class="recordsearchFormInput" size="6" maxlength="12" value="" name="YearBuilt_From" placeholder="gt or eq">
+						</td>
+						
+						<td><img src="https://columbia.floridapa.com/images/pixel.gif" width="5" height="1"></td>
+
+						<td bgcolor="#E3E8EB">Year Built <font size="1">&lt;=</font><br>
+						<input class="recordsearchFormInput" size="6" maxlength="12" value="" name="YearBuilt_To" placeholder="lt or eq">
+						</td>
+						
+						<td><font size="1">(4 digit: yyyy)</font></td>
+						
+						</tr>
+						</tbody></table>
+				</td>
+				</tr>
+				</tbody></table>
+				
+			</td>
+			</tr>
+			
+			<tr>
+			<td>
+				<table class="recordsearchFormInput" border="0" cellspacing="0" cellpadding="2">
+				<tbody><tr>
+				
+				<td bgcolor="#E3E8EB">Building Type: <a href="javascript:OpenBldgTypeWindow();"><font face="arial" size="1" color="blue"><b>(codes)</b></font></a><br>
+				<input class="recordsearchFormInput" maxlength="80" value="" name="BldgType" style="font-size:8pt;height:14px;width:125px;">&nbsp;&nbsp;
+				</td>
+				
+				<td bgcolor="#E3E8EB">Extra Features:   <a href="javascript:OpenXFOBWindow();"><font face="arial" size="1" color="blue"><b>(codes)</b></font></a><br>
+				<input class="recordsearchFormInput" maxlength="80" value="" name="XFOBcode" style="font-size:8pt;height:14px;width:125px">
+				</td>
+				
+				</tr>
+				</tbody></table>
+			
+			</td>
+			</tr>
+			</tbody></table>
+			
+	</td>
+	</tr>
+			
+				
+			
+	
+			<tr>
+			<td bgcolor="#B0AB8D">Sales History</td>
+			<td colspan="3" bgcolor="#E3E8EB">
+		
+				
+				
+			<table width="100%" border="0" cellspacing="2" cellpadding="0">
+			<tbody><tr>
+			<td>
+				
+					<table width="100%" class="recordsearchInsideTable" border="0" cellspacing="0" cellpadding="0">
+					<tbody><tr>
+					<td>
+							<table class="recordsearchFormInput" border="0" cellspacing="0" cellpadding="2">
+							<tbody><tr>
+							<td>Sale Date&nbsp;<font size="1">&gt;=</font><br>
+							<input class="recordsearchFormInput" size="8" maxlength="10" value="" name="SaleDateFrom" id="SaleDateFrom" placeholder="gt or eq">
+							</td>
+							<td bgcolor="#E3E8EB">Sale Date&nbsp;<font size="1">&lt;=</font><br>
+							<input class="recordsearchFormInput" size="8" maxlength="10" value="" name="SaleDateTo" id="SaleDateTo" placeholder="lt or eq" on-click="this.scrollIntoView();">
+							</td>
+							
+							<td><font size="1">(mm/dd/yyyy)</font></td>
+							
+							</tr>
+							</tbody></table>
+							
+							<table class="recordsearchFormInput" border="0" cellspacing="0" cellpadding="2">			
+							<tbody><tr>
+							<td>Sale Price <font size="1">&gt;=</font>&nbsp;<br>
+							<input class="recordsearchFormInput" size="8" maxlength="12" value="" name="SalePriceFrom" placeholder="gt or eq">
+							</td>
+							<td align="right" bgcolor="#E3E8EB">Sale Price&nbsp;<font size="1">&lt;=&nbsp;</font><br>
+							<input class="recordsearchFormInput" size="8" maxlength="12" value="" name="SalePriceTo" placeholder="lt or eq">
+							</td>
+							</tr>
+							</tbody></table>
+							
+						</td>
+						</tr>
+						</tbody></table>
+				
+			</td>
+			</tr>
+			<tr>
+			<td>	
+				
+				
+				<table width="100%" class="recordsearchInsideTable" border="0" cellspacing="0" cellpadding="0">
+					<tbody><tr>
+					<td>
+						<table class="recordsearchFormInput" border="0" cellspacing="0" cellpadding="2">
+						<tbody><tr>
+						<td>
+						<select class="recordsearchFormInput" size="1" name="Sale_Vimp">
+							   <option value="" selected="">Vacant or Improved
+							  </option><option value="V">V - Vacant only</option>
+							  <option value="I">I - Improved only</option>
+							  </select>
+						</td>
+						<td>
+								<table class="recordsearchFormInput" border="0" cellspacing="0" cellpadding="0">
+								<tbody><tr>			
+								<td valign="middle" nowrap=""><input class="recordsearchFormInput" type="checkbox" name="Sale_Qual" value="Q">Qualified Sales</td>
+								</tr>
+								<tr>
+								<td valign="middle" nowrap=""><input class="recordsearchFormInput" type="checkbox" name="LastSaleOnly" value="1">Last Sale only</td>
+								</tr>
+								</tbody></table>
+						</td>
+						</tr>
+						</tbody></table>
+					</td>
+					</tr>
+					</tbody></table>
+					
+			</td>
+			</tr>
+			<tr>
+			<td>	
+				
+				
+						
+				<table width="100%" class="recordsearchInsideTable" border="0" cellspacing="0" cellpadding="0">
+				<tbody><tr>
+				<td>			
+						<table class="recordsearchFormInput" border="0" cellspacing="0" cellpadding="2">				
+						<tbody><tr>
+						<td>Offical Record Book/Page<br>
+						<input class="recordsearchFormInput" size="10" maxlength="15" value="" name="SaleBook"> / <input class="recordsearchFormInput" size="6" maxlength="6" value="" name="SalePage">
+						</td>
+						</tr>
+						</tbody></table>
+				</td>
+				</tr>
+				</tbody></table>
+			
+			</td>
+			</tr>
+			</tbody></table>
+			
+			
+			
+			</td>
+			</tr>
+		</tbody></table> <!-- new -->
+
+</div> <!-- AdvSearchOptions -->
+
+<!-- here -->
+
+</td>
+</tr>
+<tr>
+<td>		
+		
+
+		
+			<table width="100%" class="recordsearchTable" border="0" cellspacing="4" cellpadding="0" bg-color="#9a9a9a">	
+			<tbody><tr>
+			<td align="center" bgcolor="#E3E8EB" colspan="4">
+			
+			
+				<table cellspacing="0" cellpadding="4" border="0" bgcolor="#E3E8EB">
+				<tbody><tr>	<td colspan="2"><font face="Verdana" size="1">By clicking "Run Search", I agree to the <a href="#disclaimer"><font color="red">disclaimer</font></a> below:</font></td></tr>				
+				
+				<tr>
+				<td valign="bottom"><input class="submit" type="reset" value="Clear Form ^^" id="reset1" name="RESET" onclick="return ClearSearch()"> </td>
+							
+				
+				<td valign="bottom" align="right"><input type="submit" class="submit" value="Run Search >>" name="submit_RecordSearch" id="submit_RecordSearch"></td>
+				</tr>
+				
+				<tr>
+				<td colspan="2" align="center"><font face="arial" size="1" color="#000000">NOTE: More input above will narrow the search results</font><br>
+				<font face="verdana" size="1">updated: 7/4/2024</font>
+				</td>
+				</tr>
+				</tbody></table>
+	
+	
+			</td>
+			</tr>
+		</tbody></table>
+
+	
+
+
+
+				 
+
+
+		</td>
+		</tr>
+		</tbody></table>
+
+		</div>
+		 <!--shadow-->
+
+
+	</td>
+	</tr>
+	</tbody></table>
+	
+</td> <!-- new -->
+</tr>
+<tr>
+<td>
+
+
+
+				<a name="SearchHelp"></a>
+
+				<p>
+				
+				
+			</p><table width="100%" border="0" cellpadding="5">
+			<tbody><tr>
+			<td>
+				<table width="100%" cellpadding="10" bgcolor="#FFFFFF" style="font-family:arial;font-size:8pt;" class="shadow">
+				<tbody><tr>
+				<td colspan="2"><b>Search Tips:</b>
+				<hr>
+				<b>The above form will create a custom search based on ALL the input that you enter.</b>  If you search on more than one field, your results will be limited to only those matching records. 
+				For example; Entering "SMITH" in the Name field, and selecting "VACANT" as the Land Use type will retrieve all VACANT parcels owned by somebody named SMITH.
+				<p>
+				</p></td>
+				</tr>
+
+				<tr bgcolor="#E3E8EB">
+				<td><b>Owner's Name Search:</b></td>
+				<td><i>format:  (LastName FirstName)</i> ... For best results, enter only first part of name.
+				<br>
+				- "Smith J" will return all SMITH's with the first name starting with J
+				</td>
+				</tr>
+
+			
+				<tr>
+				<td><b>Address Search:</b></td>
+				<td>Enter as much or as little of the address as you wish.  Leave off the Street Number &amp; Street Type if you're not sure.</td>
+				</tr>
+			
+				<tr bgcolor="#E3E8EB">
+				<td><b>Parcel ID Search:</b></td>
+				<td> <i>(Parcel Identification Number)</i> Enter as much of the PIN as you know. (you can add dashes "-" on your input for easy reading!)</td>
+				</tr>
+
+
+				<tr>
+				<td><b>Geographic Search:</b></td>
+				<td>
+				<b>Section/Township/Range: </b> Use these to narrow the search results to particular geographic location.
+				<br>
+				<b>Land Use, Acreage (min/max): </b> Select a Land Use type to limit the amount of records retrieved.  Entering a Min. and Max. Acreage value will narrow results even further.
+				</td>
+				</tr>
+
+				<tr bgcolor="#E3E8EB">
+				<td><b>Structure Search:</b></td>
+				<td>
+				<b>Heated Square Footage: </b> Heated Square Footage is also known as Base Area.
+				<br>
+				<b>Year Built:</b> Enter a 4 digit year.
+				<br>
+				</td>
+				</tr>
+
+				<tr>
+				<td><b>Sales History Search:</b></td>
+				<td>
+				 <b>Sale Date (min/max): </b> <i>format: (Month / Day / Year , Month / Year)</i> Specify a Date Range to find parcels that have been sold between the dates entered.
+				<br>
+				<b>Sale Price (min/max):</b> Enter a Sale Price Range.  (TIP: Enter a Sale Price GT &gt;= $101 to ignore all Trust or non arm length sale transactions)
+
+				<br>
+				<b>Vacant or Improved: </b> Select to filter Sales hits on Vacant or Improved Sales
+				<br>
+				<b>Qualified Sales: </b> Select to filter Sales hits on Qualified Only Sales
+				<br>
+				<b>Last Sales only: </b> Select this option to only Search the Last Sale for each property. (unchecked will search all recorded sales)
+				<br>
+				<b>Sale Book/Page:</b> Enter the Official Records Book and Page number of the recorded Deed to find the associated parcel.
+				</td>
+
+				</tr>
+				</tbody></table>
+			</td>
+			</tr>
+			</tbody></table>
+				
+</td>
+</tr>
+<tr>
+<td>
+<!-- Start Bottom -->
+
+</td>
+</tr>
+</tbody></table>
+
+
+</td>
+</tr>
+</tbody></table>
+
+
+
+<a name="disclaimer"></a>
+
+
+<table width="100%" border="0" cellpadding="5">
+<tbody><tr>
+
+<td width="5">&nbsp;</td>
+
+
+<td align="left">
+
+<table border="0" width="100%" cellpadding="0" cellspacing="0">
+<tbody><tr><td align="left" style="font-family:arial; font-size:8pt;">DISCLAIMER</td></tr>
+<tr><td align="left" style="font-family:arial; font-size:8pt;">
+The information on this website was derived from data which was compiled by the Columbia County Property Appraiser Office solely for the governmental purpose of property assessment.  This information should not be relied upon by anyone as a determination of the ownership of property or market value. No warranties, expressed or implied, are provided for the accuracy of the data herein, it's use, or it's interpretation.  Although it is periodically updated, this information may not reflect the data currently on file in the Property Appraiser's office.
+</td></tr>
+</tbody></table>
+
+</td>
+</tr>
+</tbody></table>
+
+
+
+
+
+
+
+
+
+	<table border="0" width="98%" cellpadding="4" cellspacing="0">
+		<tbody><tr>
+		<td align="left"><font style="font-family:arial;font-size:8pt;">© Columbia County Property Appraiser | Jeff Hampton | Lake City, Florida | 386-758-1083</font></td>
+        <td align="right" style="font-family:arial;font-size:8pt;">by <a href="http://www.GrizzlyLogic.com/" style="font-family:arial;font-size:8pt;color:blue;" target="_blank">GrizzlyLogic.com</a>&nbsp;<font color="#aeaeae" size="1">(g4)</font></td>
+		</tr>
+		</tbody></table>
+
+
+
+
+
+
+
+</div>
+<p><br>		
+</p><p><br>
+
+
+	
+
+
+
+	<!--		 Gray Outline -->
+
+
+
+
+
+
+
+
+
+
+<input type="hidden" name="GoToPage">
+<input type="hidden" name="SearchMenu">
+<input type="hidden" name="backCheck" value="1">
+
+<input type="hidden" name="clientWidth" value="800">
+<input type="hidden" name="clientHeight" value="548">
+
+
+</p></form>
+
+
+
+
+<p><br>
+								
+ <!-- wrapper -->											
+
+
+<script type="text/javascript" language="javascript">
+<!-- Start javascript
+parent.showDivLoading(false);
+
+//if (bMobile) 
+
+
+
+
+
+
+// end javascript -->
+</script>
+
+
+
+
+
+
+
+
+</p></body></html>

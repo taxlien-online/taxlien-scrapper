@@ -1,0 +1,3183 @@
+<!DOCTYPE html><html lang="en-us"><head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9;chrome=1;">
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+
+<script type="text/javascript">  
+
+
+	
+	
+var bIE = false;
+var bIE8 = false;
+var bIE10 = false;
+
+var bOpera = false;
+var bChrome = false;
+var bAndroid = false;
+var biPad = false;
+var bMobile = false;
+var bNarrow = false;
+var cW;
+var cH;
+var minScreenWidth
+
+
+if (document.all) {bIE = true;}
+
+var browser = navigator.userAgent;
+var location_pathName = location.pathname
+
+//console.log('location_pathName=' + location_pathName + ' | location_pathName.indexOf=' + location_pathName.indexOf("gisSideMenu_3_Details"));
+
+if (location_pathName.indexOf("gisSideMenu_3_Details") == -1) {
+
+
+if (bIE) {
+cW = document.documentElement.clientWidth;
+cH = document.documentElement.clientHeight;
+} 
+else
+{
+cW = window.innerWidth;
+cH = window.innerHeight;
+} //if (bIE) {
+
+//console.log('SET: cW=' + cW + '| cH=' + cH + ' | location_pathName.indexOf=' + location_pathName.indexOf("gisSideMenu_3_Details"));
+
+} else {
+
+//console.log('SKIPPED: cW=' + cW + '| cH=' + cH + ' | location_pathName.indexOf=' + location_pathName.indexOf("gisSideMenu_3_Details"));
+
+} //if (location_pathName.indexOf("gisSideMenu_3_Details") == 0) {
+
+
+if (browser.indexOf('Opera') != -1) {bOpera = true;}
+if (browser.indexOf('Chrome') != -1) {bChrome = true;}
+
+if (browser.indexOf('MSIE 8.0') != -1) {bIE8 = true;}
+if (browser.indexOf('MSIE 10') != -1 || browser.indexOf('MSIE 7') != -1) {bIE10 = true;}
+
+if (browser.indexOf('Android') != -1) {bAndroid = true; bMobile=true;} 
+
+if (browser.indexOf('iPad') != -1 || browser.indexOf('iPhone') != -1) {biPad = true; bMobile=true;}
+
+
+
+
+
+minScreenWidth = cW;
+if (cH < minScreenWidth) minScreenWidth = cH;
+
+if (minScreenWidth < 500) bNarrow = true;
+
+//alert('cW=' + cW + '| cH=' + cH + ' | minScreenWidth='+minScreenWidth);
+
+//if (cW > 0 &&  cW < 500) bNarrow = true;
+
+
+
+//bNarrow = false;
+</script>
+
+
+
+<script type="text/javascript"> 
+	
+    var serverName = location.hostname;
+    var strCounty = 'ColumbiaPA'
+    var mapPath = '/www/_grizzly.gis/gis.ColumbiaPA.com/';
+    var countyDomain = 'ColumbiaPA.com';
+    var proxyURL = 'https://' + serverName + '/proxy/?'
+    
+    
+    var currentDomainTileServer_URL = 'https://' + serverName +  '/GIS_Server/'
+    var tileServerURL_array = ['https://columbia.floridapa.com/GIS_Server/'];
+    
+    var directMapserverURL = 'https://g4.floridapa.com/mapserver/'
+    
+
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+ <title>Columbia County Property Appraiser</title>
+  
+
+<script type="text/javascript" src="/OpenLayers2/OpenLayers.js"></script>
+<script type="text/javascript" src="/OpenLayers2/proj4js-compressed.js"></script>
+<script type="text/javascript" src="/js/dom-drag.js"></script>
+
+
+<script type="text/javascript">  
+    var tmpArray = []; 
+    var inClickTab = 1;
+    var showForm = 1;
+
+    var default_mapCenter = '2561139, 445367';
+    tmpArray = default_mapCenter.split(',');
+    var default_mapCenter_x =  tmpArray[0].trim();
+    var default_mapCenter_y = tmpArray[1].trim();
+
+    var OpenLayers_Bounds = '2501165,299754,2621112,590979';
+    tmpArray = OpenLayers_Bounds.split(',');
+    var OpenLayers_Bounds_lx =  tmpArray[0].trim();
+    var OpenLayers_Bounds_ly = tmpArray[1].trim();
+    var OpenLayers_Bounds_ux =  tmpArray[2].trim();
+    var OpenLayers_Bounds_uy = tmpArray[3].trim();
+
+    var strProjection_label = 'FL North, NAD83';
+    var strCounty = 'ColumbiaPA';
+    var domain_URL = 'https://columbia.floridapa.com';
+    var GISimage_URL = 'https://columbia.floridapa.com/gis/_images';
+    var strProjectionSource = 'EPSG:2238';
+    var PageTitle = 'Columbia County Property Appraiser - Jeff Hampton | Lake City, Florida | 386-758-1083';
+  
+
+    var gisMainMenu_width = '400';
+    var gisRightMenu_width = '325';
+    var layerdiv_right = gisRightMenu_width-1;
+
+    var defaultLayers = 'parcel+allroadtext+FloridaBackground';
+    var defaultImageLayers = '1ft2023';
+    var strProjectionSource = 'EPSG:2238';
+
+    var onColor = "#D9D9CF";
+    var offColor = "#dfdfdf";
+    var sepColor = "#F1F1EE"
+    var currentTab = 1
+
+   
+    </script>  
+
+
+
+<script type="text/javascript" src="gisMain.js"></script>
+<script type="text/javascript" src="/_CountySpecific/gisMain_Features.js"></script>
+
+<script type="text/javascript">  
+  
+    //----------------------------------------------------------------------------------------------
+    //
+    //----------------------------------------------------------------------------------------------
+
+
+    function AlertOnLoad() {
+
+        document.getElementById('div_login').style.display = 'block'
+        window.setTimeout("document.getElementById('div_login').style.visibility = 'visible'", 500);
+        window.setTimeout("document.getElementById('div_Alert_OnLoad').style.visibility = 'visible'", 1000);
+        
+        var t = setTimeout(function(){
+            alert('N O T I C E !\n\nInformation on this website is for INFORMATIONAL PURPOSES ONLY. \n\nThis information is a work in progress and is compiled and used for\n                -  ASSESSMENT PURPOSES ONLY  -\nand the duties within the County Assessors Office.\n\nInformation contained herein, which include parcel numbers, \nuse codes, descriptions, etc., are subject to change at anytime.\n\n\nNEVER USE THIS INFORMATION IN ANY OFFICIAL CAPACITY!\n\n');
+        },800);
+        
+        }
+
+    function close_AlertOnLoad() {
+        document.getElementById('div_login').style.display = 'none'
+        document.getElementById("div_Alert_OnLoad").style.visibility = 'hidden';
+        document.getElementById("div_login").style.visibility = 'hidden';
+    }
+
+    //----------------------------------------------------------------------------------------------
+    //
+    //----------------------------------------------------------------------------------------------
+
+</script>
+
+
+<style>
+
+
+html, body {
+	height: 100%;
+	min-height: 100%;
+	overflow:hidden; 
+	margin: 0px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+     }
+
+  
+
+a:link		{color: #000000; font-family: arial,sans-serif; font-size: 9pt; font-weight: bold; text-decoration:none;}
+a:visited	{color: #000000; font-family: arial,sans-serif; font-size: 9pt; font-weight: bold; text-decoration:none;}
+a:hover		{color: #0000FF; font-family: arial,sans-serif; font-size: 9pt; font-weight: bold; text-decoration:none;}
+
+.tb14{font-family:arial,sans-serif; font-weight: normal; color:black; font-size: 14pt;}
+.tb12{font-family:arial,sans-serif; font-weight: normal; color:black; font-size: 12pt;}
+.tb10{font-family:arial,sans-serif; font-weight: normal; color:black; font-size: 10pt;}
+.tb9{font-family:arial,sans-serif; font-weight: normal; color:black; font-size: 9pt;}
+.tb9b{font-family:arial,sans-serif; font-weight: bold; color:black; font-size: 9pt;}
+.tb8{font-family:arial,sans-serif; font-weight: normal; color:black; font-size: 8pt;}
+.tb8b{font-family:arial,sans-serif; font-weight: bold; color:black; font-size: 8pt;}            
+.tb7{font-family:arial,sans-serif; font-weight: normal; color:#1a1a1a; font-size: 7pt;}
+.tb6{font-family:arial,sans-serif; font-weight: normal; color:#1a1a1a; font-size: 6pt;}
+
+a.pdmenu:link {font-size:8pt; color:#7a7a7a; font-family:Georgia; font-weight:normal;}
+a.pdmenu:visited {font-size:8pt; color:#7a7a7a; font-family:Georgia; font-weight:normal;}
+a.pdmenu:hover {font-size:8pt; color:blue; font-family:Georgia; font-weight:normal;}
+
+/* avoid pink tiles */
+.olImageLoadError {
+background-color: transparent !important;
+}
+
+#wrapper{
+top:0px;
+left:0px;
+overflow:hidden;
+}
+
+
+.mainTitle {
+font-family: Georgia; 
+font-size:13pt; 
+color:#000088;
+font-weight: bold;
+vertical-align: text-top;
+}
+
+.mainTitleAppraiser {
+font-family: Georgia; 
+font-size:8pt; 
+color: #5a5a5a;
+font-weight: bold;
+vertical-align: text-top;
+}
+
+
+.dbEffDate {
+font-family:arial; 
+font-size:7pt; 
+vertical-align: text-top;
+}
+
+
+
+div.Loading {
+position:absolute;
+display:none;
+visibility:hidden; 
+left:0; 
+top:0; 
+width:100%; 
+height:100%;
+overflow: hidden;
+border-width: 0px; 
+background-color:#D9D9CF;  
+border-color:#DCDCDC; 
+border-style:solid;
+z-index: 4; 
+}
+
+ #mapdiv {
+position:absolute; 
+visibility: visible;
+display:block;
+left:0px; 
+top: 48px;
+bottom: 0px;
+right: 0px;
+border: 0px;
+border-top: 4px;
+border-style: solid;
+border-color: #D9D9CF;
+z-index: 0;
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+#gisPrint_div {
+	position: absolute;
+	display:none;
+	visibility:hidden;
+	top: 0px;
+    left: 0px;
+    width: 10px;
+    height:10px;
+    text-align: center;
+	vertical-align: middle;
+	line-height: 10px; 
+	font-family: arial;
+	font-size: 30pt;
+	color: #FF0000;
+	border-color: #FF0000;
+	border-width: 4px;
+	border-style:dashed;
+	z-index:1003 !important;
+	pointer-events:none;
+}
+
+
+#pdMenu_hideButton_div{
+position:absolute; 
+visibility:hidden;  
+display:none;
+left:-2px;
+top:-2px; 
+height:21px;
+width:40px;
+z-index: 1000;
+background:#D9D9CF;
+border-radius: 4px;
+box-shadow: 2px 2px 3px #888, -2px 2px 3px #888;
+}
+
+#pdMenu_showButton_div{
+position:absolute; 
+visibility:hidden;  
+display:none;
+left:-2px;
+top:-2px; 
+height:21px;
+width:40px;
+z-index: 1000;
+background:#D9D9CF;
+border-radius: 4px;
+box-shadow: 2px 2px 3px #888, -2px 2px 3px #888;
+}
+
+#gisMainMenu_showButton_div {
+position:absolute; 
+visibility:hidden;  
+display:none;
+left:-2px;
+top:52px; 
+height:40px;
+width:23px;
+z-index: 1000;
+background:#D9D9CF;
+border-radius: 4px;
+padding: 1px;
+cursor: grab; cursor: hand;
+border-width:0px;
+border-top:0px;
+border-color:#FFFFFF;
+border-style:solid;
+box-shadow: 2px 2px 3px #888, -2px 2px 3px #888;
+}
+
+
+ /* --------------  gisMainMenu */
+#gisMainMenu { 
+position:absolute; 
+position:absolute; 
+visibility:hidden;  
+top: 51px;
+left: -2px;
+width: 400px;
+height: 40px;
+border-width:1px;
+border-top:0px;
+border-color:#aeaeae;
+border-style:solid;
+z-index: 1;
+font-family:arial;
+font-size: 0pt;
+text-align:left;
+}
+
+
+.gisButtontable_shadow {
+border-radius: 3px;
+background:#D9D9CF;
+}
+
+
+.gisButton_background_shadow {
+background:#D9D9CF;
+border-radius: 3px;
+padding: 2px;
+}
+
+
+
+.gisMenu_scale_table {
+position:relative;
+vertical-align: bottom;
+height:40px;
+background:#F1F2ED;
+border: 1px solid #F1F2ED;
+border-top: 1px solid #FFFFFF;
+border-style: solid; 
+}
+
+
+.gisButtontable {
+padding:0px;
+border-spacing: 0;
+border-collapse: collapse;
+font-family:arial;
+font-weight: normal; 
+color:black; 
+font-size: 0pt;
+}
+
+.gisMenu_buttons {
+cursor:pointer;cursor:hand;
+}
+
+
+#mapScaleBarRotate_Div{
+position:absolute; 
+visibility:hidden;  
+display:none;
+left:362px;
+top:2px; 
+height:20px;
+width:20px;
+z-index: 1001;
+cursor: grab; cursor: hand;
+}
+
+#mapScaleBar_Div{
+position: fixed; 
+visibility:hidden;  
+display:none;
+left:0px;
+bottom: 0px; 
+height:24px;
+width:384px;
+z-index: 1000;
+cursor: move; 
+cursor: hand;
+ opacity: 0.80;
+  filter: alpha(opacity = 80);
+  -moz-box-shadow: 3px 3px 4px #000; 
+-webkit-box-shadow: 3px 3px 4px #000; 
+box-shadow: 3px 3px 4px #000; 
+/* For IE 8 */ 
+-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')"; 
+/* For IE 5.5 - 7 */ 
+filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}  
+
+
+#coordReadout_div{
+position: fixed; 
+visibility:visible;  
+display:block;
+left: 0px;
+right:0px;
+bottom: 0px; 
+height:14px;
+background-color: #F1F1EE;
+font-family:arial;
+font-size:9pt;
+opacity: 0.90;
+filter: alpha(opacity = 90);
+border-top:1px solid #aaaaaa;
+}
+
+
+  #recordSearch_background {
+    position: fixed;
+    visibility:visible;  
+    display:block;  
+    left: 0px;
+    top: 50px;
+    right: 0px;
+    bottom: 0px;
+    border: 0px;
+	border-style: solid;
+	border-color: #00FF00;
+    z-index: 2000;
+    padding: 0px 0px 0px 0px;
+    margin: 0;
+    background-color: #D9D9CF;
+    
+    }
+
+
+
+  #recordSearch_tabs_background {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    height:50px;
+    overflow:hidden; 
+    border: 0px;
+	border-style: solid;
+	border-color: #00FF00;
+	z-index: 10;
+    padding: 0px 0px 0px 0px;
+    margin: 0;
+    background-image: url(https://columbia.floridapa.com/gis/_images/Search_Header_background2.jpg);
+    }
+    
+  #recordSearch_tabs {
+    position: absolute;
+    left: 100px; 
+    bottom: 0px;
+    width: 400px;
+    height:28px; /* 24px */
+    overflow:hidden; 
+    border: 0px;
+	border-style: solid;
+	border-color: #00FF00;
+	z-index: 80;
+    padding: 0px 0px 0px 0px;
+    margin: 0;
+ 
+    }
+
+
+#recordSearch_tabs_PDmenu {
+  margin-right: 0px;
+  position: absolute;
+  top: 0px;
+  left: 5px;
+  font: bold 10pt arial, tahoma, sans-serif;
+  color: black;
+  text-align: left;
+  z-index: 50;
+ }
+ 
+ 
+ #recordSearch_tabs_title {
+  position: absolute;
+  top: 1px;
+  right: 2px; /* 333px; */
+ text-align: right;
+ vertical-align: text-top;
+  z-index: 50;
+}
+
+
+div.recordSearchContent_divs{
+position:absolute; 
+left:0px;
+top:2px;
+right: 0px;
+bottom: 0px; 
+width:100%;
+height:100%;
+overflow: hidden;
+font-family: arial;
+font-size: 10pt;
+white-space: nowrap;
+border: 0px;
+border-style: solid;
+border-color: #0000FF;  
+background-color: #FFFFFF;
+z-index: 1005;
+
+}
+
+#recordSearchContent_1_iframe{
+width:100%;
+height:100%;
+}
+
+
+
+.TopMainMenu{
+text-align: center; 
+ font: bold 10pt Georgia;
+color:blue;
+}
+
+
+.GISTopBarHeaderText {
+text-align: center; 
+font: bold 9pt arial;
+color: #504B24;
+text-shadow: 0px -1px 0px rgba(000,000,000,0.2),0px 1px 0px rgba(255,255,255,1);
+}
+
+.rsTabmenu {
+font-family: Arial, Helvetica, Tahoma;
+font-size: 8pt;
+font-color: #000000;
+background: #dfdfdf;
+text-align: center;
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
+/*
+ -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;
+*/
+}
+
+ .rsTabmenu_off tr {
+    cursor: pointer;
+}   
+  
+  .rsTabmenu:hover tr td {
+ color:blue;
+ background: #D9D9CF;
+  cursor: pointer;
+}
+
+
+.TabRowHover:hover {
+ /* color:blue !important; */
+ background: red;
+}
+
+
+
+#gisSideMenu_WrapperDiv {
+    visibility:visible;  
+    display:block; 
+}
+
+  #gisSideMenuDiv_1 {
+  position: absolute;
+   top: 98px;
+  right: 325px;
+  margin: 0px;
+  cursor: pointer; cursor: hand;
+   z-index: 1005;
+     }
+
+  #gisSideMenuDiv_2 {
+  position: absolute;
+  top:  166px;
+  right: 319px;
+   	margin: 0px;
+   	 cursor: pointer; cursor: hand;
+   	 z-index: 1000;
+   }
+   
+  #gisSideMenuDiv_3 {
+  margin-right: 0px;
+  position: absolute;
+  top:  234px;
+  right: 319px;
+   	margin: 0px;
+   	 cursor: pointer; 
+   	 cursor: hand;
+   	 z-index: 1000;
+   }
+   
+   #gisSideMenuDiv_4 {
+  margin-right: 0px;
+  position: absolute; 
+    top:  302px;
+  right: 319px;
+   	margin: 0px;
+ 	 cursor: pointer; cursor: hand;
+   	 z-index: 1000;
+   }   
+  
+
+
+  
+#gisSideMenuContentWrapperDiv {
+    position: absolute;
+	width: 325px;
+	top: 52px;
+	right: 0px;
+	bottom: 18px;
+	margin: 0px;
+	border: 1px;
+	border-style: solid;
+	border-color: #9D9D92;
+	background-color: #F1F1EE;
+	z-index: 1001;
+	box-shadow: 0 4px 2px -2px gray;
+	-moz-box-shadow: 0 4px 2px -2px gray;
+	-webkit-box-shadow: 0 4px 2px -2px gray;
+
+}
+
+#gisSideMenuHeader_Div{
+position:absolute; 
+left:0px; 
+top:0px; 
+width:  100%;
+height: 34px; /* 24px */
+overflow-y: hidden;
+overflow-x: hidden;
+white-space: nowrap;
+border-width: 0px; 
+z-index: 1002;
+cursor: pointer; cursor: hand;
+}  
+  
+div.gisSideMenuContent_Divs{
+position:absolute; 
+left:1px; 
+top:33px;
+right: 1px;
+bottom: 0px;
+overflow-y: auto;
+overflow-x: hidden;
+font-family: arial;
+font-size: 10pt;
+border: 0px;
+border-style: solid;
+border-color: #0000FF;  
+background-color: #F1F1EE;
+z-index: 1005;
+}
+
+input.gisSideMenuContent_chkBox {
+    width: 13px;
+    height: 13px;
+    margin:2px;
+    padding:4px;
+    vertical-align: middle;
+}
+
+
+
+.gisSideMenuContent_AerialPixel_labelText {
+	font-family: arial;
+	font-size: 9pt;
+}
+
+
+.gisSideMenuContent_labelText {
+	font-family: arial;
+	font-size: 11pt;
+}
+
+input.gisSideMenu_autoHide_chkBox {
+    width: 10px;
+    height: 10px;
+    margin:1px;
+    padding:1px;
+    vertical-align: middle;
+}
+
+
+input.gisSalesTheme_chkBox {
+    width: 14px;
+    height: 14px;
+    margin:1px;
+    padding:1px;
+    vertical-align: middle;
+}
+
+
+
+
+/* ------OpenLayers---------   */
+
+
+#parcelPopup_click_FrameDecorationDiv_0 {
+cursor: pointer; cursor: hand;
+}
+
+
+
+.olFramedCloudPopupContent {
+	background-color: #ffffff !important;
+	padding: 0px !important;
+    padding-left: 1px !important;
+	margin: 0px !important;
+    overflow : hidden;
+	font-size: 8pt;
+	font-family:arial;
+}
+
+#popUp_Link:hover a{
+	font-size: 8pt;
+	font-family:arial;
+	color:red;
+	text-decoration: underline;
+    background-color: #ffffff !important;
+}
+
+
+.olPopup .olPopupContent
+{
+	min-width:200px;
+	background-color: #ffffff !important;
+	padding: 1px !important;
+	margin: 0px !important;
+	font-size: 8pt;
+	font-family:arial;
+}
+
+
+#zoomControlBak {
+  position: absolute;
+  display:none;
+  visibility:hidden; 
+   top: 100px !important;
+   left: 4px;
+   width:38px;
+   height: 76px;
+   border: 1px solid #7a7a7a;
+   border-radius: 4px;
+   background:#D9D9CF; /* #F2F2ED; */
+   z-index:1000;
+   opacity:0.9;
+   -moz-box-shadow: 2px 2px 5px #5a5a5a;
+-webkit-box-shadow: 2px 2px 5px #5a5a5a;
+box-shadow: 2px 2px 5px #5a5a5a;
+}
+ 
+#customZoom {
+                z-index: 1001;
+                position: relative;
+                top: 2px;
+                left: 2px;
+            }
+#customZoom a {
+                text-decoration: none;
+                position: absolute;
+                display: block;
+                width: 36px;
+                height: 36px;
+              
+            }
+#custom_Zoom a:hover {
+                background: #FF0000;
+            }
+            
+#customZoomIn {
+               top: 0px;
+             
+      }
+ #customZoomOut {
+                top: 37px;
+                 
+           }
+
+
+
+
+
+
+#div_login{
+position:absolute; 
+top:46;
+left:0; 
+width:100%;
+height:100%;
+visibility:hidden; 
+display:none;
+z-index:9;
+background-color:#7a7a7a;
+opacity:0.5;
+filter:alpha(opacity=50);
+}
+
+#div_Alert_OnLoad {
+position:absolute; 
+left: 47%;
+top: 50%;
+transform: translate(-50%, -50%);
+width: 75%;
+max-width: 350px;
+height: auto;
+max-height:475px;
+visibility: hidden;
+z-index: 1500;
+font-family: Tahoma;
+font-size: 9pt; 
+background-color: #B9B9AF;
+border-color:#B9B9AF; 
+border-width:3; 
+border-style:solid;
+overflow : auto;
+border-bottom:outset 3px #aeaeae;
+border-right:outset 3px #aeaeae;
+}
+  </style>
+  
+<link rel="stylesheet" type="text/css" href="/OpenLayers2/theme/default/style.css"></head>
+
+
+<body onload="init();" onresize="iFrameHeightDelay();"> 
+<!--div id=wrapper-->	
+
+
+ <div id="div_login">&nbsp;</div>
+
+
+   <div id="mapdiv" class="olMap" style="width: 800px; height: 548px; display: none; visibility: hidden;"><div id="OpenLayers.Map_3_OpenLayers_ViewPort" class="olMapViewport olControlDragPanActive olControlZoomBoxActive olControlPinchZoomActive olControlNavigationActive olControlWMSGetFeatureInfoActive" style="position: relative; overflow: hidden; width: 100%; height: 100%;"><div id="OpenLayers.Map_3_OpenLayers_Container" style="position: absolute; width: 100px; height: 100px; z-index: 749; left: 0px; top: 0px;"><div id="OpenLayers.Layer.WMS_17" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 375; display: none;"></div><div id="OpenLayers.Layer.WMS_19" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 420; display: none;"></div><div id="OpenLayers.Layer.WMS_21" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 500;"><img class="olTileImage" src="https://g4.floridapa.com/mapserver/?LAYERS=FloridaBackground&amp;MAP=%2Fwww%2F_grizzly.gis%2Fgis.ColumbiaPA.com%2Fol_FloridaBackground.map&amp;SRS=EPSG%3A2238&amp;FORMAT=image%2Fpng&amp;TRANSPARENT=TRUE&amp;CNTY=ColumbiaPA&amp;UPD=19909&amp;SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetMap&amp;STYLES=&amp;BBOX=2367539,312751,2754739,577983&amp;WIDTH=880&amp;HEIGHT=602" style="visibility: hidden; opacity: 0; position: absolute; left: -40%; top: -27%; width: 880%; height: 602%;"></div><div id="OpenLayers.Layer.WMS_23" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 425; display: none;"></div><div id="OpenLayers.Layer.WMS_25" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 380; display: none;"></div><div id="OpenLayers.Layer.WMS_27" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 385; display: none;"></div><div id="OpenLayers.Layer.WMS_29" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 390; display: none;"></div><div id="OpenLayers.Layer.WMS_31" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 395; display: none;"></div><div id="OpenLayers.Layer.WMS_33" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 400; display: none;"></div><div id="OpenLayers.Layer.WMS_35" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 410; display: none;"></div><div id="OpenLayers.Layer.WMS_37" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 405; display: none;"></div><div id="OpenLayers.Layer.WMS_39" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 415; display: none;"></div><div id="OpenLayers.Layer.WMS_41" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 430; display: none;"></div><div id="OpenLayers.Layer.WMS_43" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 435; display: none;"></div><div id="OpenLayers.Layer.WMS_45" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 440; display: none;"></div><div id="OpenLayers.Layer.WMS_47" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 445; display: none;"></div><div id="OpenLayers.Layer.WMS_49" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 450; display: none;"></div><div id="OpenLayers.Layer.WMS_51" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 455; display: none;"></div><div id="OpenLayers.Layer.WMS_53" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 460; display: none;"></div><div id="OpenLayers.Layer.WMS_55" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 465; display: none;"></div><div id="OpenLayers.Layer.WMS_57" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 470; display: none;"></div><div id="OpenLayers.Layer.WMS_59" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 475; display: none;"></div><div id="OpenLayers.Layer.WMS_61" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 490; display: none;"></div><div id="OpenLayers.Layer.WMS_63" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 370; left: 0%; top: 0%;"><div id="OpenLayers.Layer.WMS_63_bb" class="olBackBuffer" style="position: absolute; width: 200%; height: 200%; left: -1784%; top: -1443%;"></div><div style="position: absolute; overflow: hidden; left: 264%; top: 93%; width: 512%; height: 512%;"><img class="olTileImage" src="https://columbia.floridapa.com/GIS_Server/?LAYERS=1ft2023&amp;MAP=%2Fwww%2F_grizzly.gis%2Fgis.ColumbiaPA.com%2Fol_image.map&amp;SRS=EPSG%3A2238&amp;FORMAT=image%2Fjpeg&amp;TRANSPARENT=FALSE&amp;CNTY=ColumbiaPA&amp;SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetMap&amp;STYLES=&amp;BBOX=2500285,298874,2727325,525914&amp;WIDTH=516&amp;HEIGHT=516" style="left: -0.390625%; top: -0.390625%; width: 100.781%; height: 100.781%; visibility: hidden; opacity: 0; position: absolute;"></div><div style="position: absolute; overflow: hidden; left: 264%; top: -419%; width: 512%; height: 512%;"><img class="olTileImage" src="https://columbia.floridapa.com/GIS_Server/?LAYERS=1ft2023&amp;MAP=%2Fwww%2F_grizzly.gis%2Fgis.ColumbiaPA.com%2Fol_image.map&amp;SRS=EPSG%3A2238&amp;FORMAT=image%2Fjpeg&amp;TRANSPARENT=FALSE&amp;CNTY=ColumbiaPA&amp;SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetMap&amp;STYLES=&amp;BBOX=2500285,524154,2727325,751194&amp;WIDTH=516&amp;HEIGHT=516" style="left: -0.390625%; top: -0.390625%; width: 100.781%; height: 100.781%; visibility: hidden; opacity: 0; position: absolute;"></div></div><div id="OpenLayers.Layer.WMS_65" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 365; display: none;"></div><div id="OpenLayers.Layer.WMS_67" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 360; display: none;"></div><div id="OpenLayers.Layer.WMS_69" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 355; display: none;"></div><div id="OpenLayers.Layer.WMS_71" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 350; display: none;"></div><div id="OpenLayers.Layer.WMS_73" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 345; display: none;"></div><div id="OpenLayers.Layer.WMS_75" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 340; display: none;"></div><div id="OpenLayers.Layer.WMS_77" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 335; display: none;"></div><div id="OpenLayers.Layer.WMS_79" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 330; display: none;"></div><div id="OpenLayers.Layer.WMS_81" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 325; display: none;"></div><div id="OpenLayers.Layer.WMS_83" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 485; display: none;"></div><div id="OpenLayers.Layer.WMS_85" dir="ltr" class="olLayerDiv olLayerGridSingleTile" style="position: absolute; width: 100%; height: 100%; z-index: 480; display: none;"></div><div id="OpenLayers.Layer.WMS_87" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 495; display: none;"></div><div id="OpenLayers.Layer.Vector_108" dir="ltr" class="olLayerDiv" style="position: absolute; width: 100%; height: 100%; z-index: 505; left: 0px; top: 0px;"><svg id="OpenLayers.Layer.Vector_108_svgRoot" width="800" height="548" viewBox="0 0 800 548" style="display: block;"><g id="OpenLayers.Layer.Vector_108_root" transform="" style="visibility: visible;"><g id="OpenLayers.Layer.Vector_108_vroot"></g><g id="OpenLayers.Layer.Vector_108_troot"></g></g></svg></div></div><div id="OpenLayers.Control.Zoom_15" class="olControlZoom olControlNoSelect" unselectable="on" style="position: absolute; z-index: 1002; visibility: visible; display: block;"></div><div id="OpenLayers.Control.Measure_98" class="olControlMeasure olControlNoSelect" unselectable="on" style="position: absolute; z-index: 1004;"></div><div id="OpenLayers.Control.Measure_100" class="olControlMeasure olControlNoSelect" unselectable="on" style="position: absolute; z-index: 1005;"></div><div id="OpenLayers.Control.DrawFeature_110" class="olControlDrawFeature olControlNoSelect" unselectable="on" style="position: absolute; z-index: 1006;"></div><div id="OpenLayers.Control.DrawFeature_116" class="olControlDrawFeature olControlNoSelect" unselectable="on" style="position: absolute; z-index: 1007;"></div><div id="OpenLayers.Control.WMSGetFeatureInfo_122" class="olControlWMSGetFeatureInfo olControlNoSelect" unselectable="on" style="position: absolute; z-index: 1008;"></div><div id="OpenLayers.Control.WMSGetFeatureInfo_124" class="olControlWMSGetFeatureInfo olControlNoSelect" unselectable="on" style="position: absolute; z-index: 1009;"></div></div></div> 
+		<div id="zoomControlBak" style="visibility: hidden; display: none;">
+			<div id="customZoom">
+                <a href="#customZoomIn;" id="customZoomIn" class="olButton"><img onmouseup="gisMainMenuMouseUp(this);" onmousedown="gisMainMenuMouseDown(this);" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" src="https://columbia.floridapa.com/gis/_images/gisMainMenu/ZoomIn_off.gif" width="34" height="34" border="0"></a>
+                <a href="#customZoomOut" id="customZoomOut" class="olButton"><img onmouseup="gisMainMenuMouseUp(this);" onmousedown="gisMainMenuMouseDown(this);" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" src="https://columbia.floridapa.com/gis/_images/gisMainMenu/ZoomOUT_off.gif" width="34" height="34" border="0"></a>
+            </div>
+            </div>
+         <div id="gisPrint_div">+</div>
+   
+	
+	
+
+	
+	<div id="mapScaleBar_Div" onmouseover="gisScalebarMouseOver(this);" onmouseout="gisScalebarMouseOut(this);" style="left: 10px; top: 520px; display: block; visibility: visible;"><img id="mapScaleBar_image" src="https://columbia.floridapa.com/gis/_images/gisScalebar_1.gif" width="384" height="24">
+		<div id="mapScaleBarRotate_Div" style="display: block;"><img id="mapScaleBarRotate_image" src="https://columbia.floridapa.com/gis/_images/gisScalebar_rotate.gif" width="20" height="20" onclick="gisScalebar_rotate();"></div> 
+	</div>  <!-- mapScaleBar_Div -->
+  
+
+<div id="gisMainMenu_showButton_div" style="visibility: hidden; display: none;">
+<img onclick="gisMainMenu_show(this)" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" name="zSHOW" id="zSHOW" src="https://columbia.floridapa.com/gis/_images/gisMainMenu/leftSide_show_off.gif" width="23" height="40" title="Show GIS Menu">
+</div>
+
+<div id="pdMenu_hideButton_div">
+<img onclick="pdMenu_hide(this)" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" name="pdHIDE" id="pdHIDE" src="https://columbia.floridapa.com/gis/_images/pdMenu_close_off.gif" width="40" height="21" title="Minimize Main Menu">
+</div>
+
+<div id="pdMenu_showButton_div">
+<img onclick="pdMenu_show(this)" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" name="pdSHOW" id="pdSHOW" src="https://columbia.floridapa.com/gis/_images/pdMenu_show_off.gif" width="40" height="21" title="Restore Main Menu">
+</div>
+
+
+ <div id="coordReadout_div"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tbody><tr><td><span id="coordReadout_left"></span></td><td align="right"><span id="coordReadout_right"><font style="font-family:arial;font-size:8pt;color:#7a7a7a;">by: </font><a href="http://www.GrizzlyLogic.com" target="_blank" style="font-family:arial;font-size:8pt;color:blue;">GrizzlyLogic.com</a></span></td></tr></tbody></table></div> 
+
+
+<!-- gisMainMenu -->
+
+
+<div class="gisButton_background_shadow" name="gisMainMenu" id="gisMainMenu" style="visibility: visible; display: block;">
+
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#D9D9CF">
+<tbody><tr>
+<td>
+
+			<table class="gisButtontable" border="0" cellpadding="0" cellspacing="0" bgcolor="#D9D9CF">
+
+			<tbody><tr>
+			
+			<td><img src="https://columbia.floridapa.com/gis/_images/pixel.gif" width="1" height="40"></td>
+			
+			<td>
+
+						<table class="gisButtontable_shadow" border="0" cellpadding="0" cellspacing="0" bgcolor="#9a9a9a">
+						<tbody><tr>
+						<td>
+
+										<table class="gisButtontable" border="0" cellpadding="0" cellspacing="0" bgcolor="#F1F2ED">
+										<tbody><tr>
+									
+																			
+										
+										<td><img onclick="gisMainMenu_hide(this)" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" name="zCLOSE" id="zCLOSE" src="https://columbia.floridapa.com/gis/_images/gisMainMenu/leftSide_close_off.gif" width="23" height="40" title="Hide GIS Menu"></td>
+										
+										
+										<td><img src="https://columbia.floridapa.com/gis/_images/gisMainMenu/menu_spacer.gif" width="4" height="40"></td>
+											
+									
+										<td valign="bottom" bgcolor="#F1F2ED">
+										
+											<table cellpadding="0" cellspacing="0" border="0" class="gisMenu_scale_table">
+											<tbody><tr>
+											<td valign="bottom"><select onchange="gisZoomToScale(this)" onkeyup="this.blur();this.focus();" style="font-family: arial; font-size:8pt; width: 74px;" size="1" id="zSCALE" name="zSCALE"><option value="18">1"=10'</option><option value="17">1"=20'</option><option value="16">1"=40'</option><option value="15">1"=60'</option><option value="14">1"=80'</option><option value="13">1"=100'</option><option value="12">1"=150'</option><option value="11">1"=200'</option><option value="10">1"=400'</option><option value="9">1"=600'</option><option value="8">1"=800'</option><option value="7">1"=1000'</option><option value="6">1"=1/4mi</option><option value="5">1"=1/2mi</option><option value="4">1"=1mi</option><option value="3">1"=2mi</option><option value="2">1"=4mi</option><option value="1">1"=8mi</option><option value="0">1"=16mi</option></select></td>
+											</tr>
+											<tr>
+											<td align="center" valign="bottom"><img src="https://columbia.floridapa.com/gis/_images/Scale2.gif" width="68" height="13" border="0"></td>
+											</tr>
+											</tbody></table>
+										
+										
+										</td>
+										
+										
+											
+										<td><img src="https://columbia.floridapa.com/gis/_images/Menu_Separator.gif" width="8" height="40"></td>
+											
+													
+											<td class="gisMenu_buttons"><img onclick="gisMainMenuClick(this)" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" name="zPAN" id="zPAN" src="https://columbia.floridapa.com/gis/_images/gisMainMenu/PAN_on.gif" width="34" height="40" title="PAN mode ON/OFF" border="0"></td>
+											
+											<td class="gisMenu_buttons"><img onclick="gisMainMenuClick(this)" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" name="zBOX" id="zBOX" src="https://columbia.floridapa.com/gis/_images/gisMainMenu/ZoomBOX_off.gif" width="34" height="40" title="Zoom Window (box)" border="0"></td>
+											
+											<td class="gisMenu_buttons"><img onclick="gisMainMenuClick(this)" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" name="zEXTENT" id="zEXTENT" src="https://columbia.floridapa.com/gis/_images/gisMainMenu/ZoomEXTENT_off.gif" width="34" height="40" title="Zoom to Full Map Extent" border="0"></td>
+											
+										<td><img src="https://columbia.floridapa.com/gis/_images/Menu_Separator.gif" width="8" height="40"></td>
+											
+											<td class="gisMenu_buttons"><img onclick="gisMainMenuClick(this)" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" name="zINFO" id="zINFO" src="https://columbia.floridapa.com/gis/_images/gisMainMenu/INFO_on.gif" width="34" height="40" title="Identify mode ON/OFF  (click parcel)" border="0"></td>
+											
+											<td class="gisMenu_buttons"><img onclick="gisMainMenuClick(this)" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" name="zHOVER" id="zHOVER" src="https://columbia.floridapa.com/gis/_images/gisMainMenu/INFOhover_off.gif" width="34" height="40" title="Quick Info mode ON/OFF (Hover over parcel)" border="0"></td>
+											<td><img src="https://columbia.floridapa.com/gis/_images/Menu_Separator.gif" width="8" height="40"></td>
+									
+											<td class="gisMenu_buttons"><img onclick="gisMainMenuClick(this)" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" name="zMEASURE" id="zMEASURE" src="https://columbia.floridapa.com/gis/_images/gisMainMenu/MEASURE_off.gif" width="34" height="40" title="Measure Distance &amp; Area" border="0"></td>
+											<td class="gisMenu_buttons"><img onclick="gisMainMenuClick(this)" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" name="zSAVEGIS" id="zSAVEGIS" src="https://columbia.floridapa.com/gis/_images/gisMainMenu/SaveGIS_off.gif" width="34" height="40" title="Save GIS Map as image (.jpg)" border="0"></td>
+											<td class="gisMenu_buttons"><img onclick="gisMainMenuClick(this)" onmouseover="gisMainMenuMouseOver(this);" onmouseout="gisMainMenuMouseOut(this);" name="zPRINT" id="zPRINT" src="https://columbia.floridapa.com/gis/_images/gisMainMenu/PRINT_off.gif" width="34" height="40" title="Print GIS Map" border="0"></td>
+											</tr>
+											</tbody></table>
+						</td>
+						</tr>
+						</tbody></table>
+
+			</td>
+			</tr>
+			</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+
+
+<!-- gisMainMenu -->
+
+   
+  
+
+
+<div id="recordSearch_tabs_background">
+
+	<div id="recordSearch_tabs_PDmenu">
+		<table border="0" cellspacing="0" cellpadding="1" class="TopMainMenu">
+			<tbody><tr height="18">
+			<td width="100"><a href="https://columbia.floridapa.com/" class="pdmenu" style="color:#000064;"><b>H O M E</b></a></td>
+		
+		<td width="80"><a href="https://columbia.floridapa.com/General_Info/" class="pdmenu">General Info</a></td>
+		<td width="120"><a href="https://columbia.floridapa.com/Property_Tax_Exemptions/" class="pdmenu">Tax &amp; Exemptions</a></td>
+		<td width="100"><a href="https://columbia.floridapa.com/Download_Forms/" class="pdmenu">Forms</a></td>
+		<td width="80"><a href="https://columbia.floridapa.com/Web_Links/" class="pdmenu">Web Links</a></td>
+		<td width="80"><a href="https://columbia.floridapa.com/Contact_Us/" class="pdmenu">Contact Us</a></td>
+		
+		</tr>
+		</tbody></table>
+
+	</div> <!-- recordSearch_tabs_PDmenu -->
+
+		<div id="recordSearch_tabs_title">
+		
+		<table cellpadding="0" cellspacing="0"><tbody><tr><td class="mainTitle">Columbia County Property Appraiser</td></tr><tr><td class="mainTitleAppraiser">Jeff Hampton</td></tr><tr><td class="dbEffDate">updated: 7/4/2024</td></tr></tbody></table>
+		
+		</div>
+
+
+
+		<div id="recordSearch_tabs">
+
+			<table cellpadding="0" cellspacing="0" class="tb9" border="0" style="white-space: nowrap">
+							<tbody><tr>
+							<td>
+
+										<table cellpadding="0" cellspacing="2" border="0">
+										<tbody><tr>
+										
+										<td valign="top">
+										<div id="divspace_tab1" style="position: relative; top: 0px;">
+											<table class="rsTabmenu" cellpadding="0" cellspacing="0" border="0">
+											<tbody><tr id="tab1" style="background-color: rgb(217, 217, 207); font-weight: bold;">
+											<td align="right"><img src="https://columbia.floridapa.com/gis/_images/tab_grey_left_trans.gif" height="20" width="5"></td>
+											<td onclick="ClickTab(1,false);">&nbsp;Record Search&nbsp;</td>
+											<td align="left"><img src="https://columbia.floridapa.com/gis/_images/tab_grey_right_trans.gif" height="20" width="5"></td>
+											</tr>
+											<tr>
+											<td id="tab1b" colspan="3" style="background-color: rgb(217, 217, 207);"><img src="https://columbia.floridapa.com/images/pixel.gif" width="1" height="2"></td>
+											</tr>
+											</tbody></table>
+										</div>
+										</td>
+
+
+										<td valign="top">
+										<div id="divspace_tab2" style="position:relative; top:3px">
+											<table class="rsTabmenu" cellpadding="0" cellspacing="0" border="0">
+											<tbody><tr id="tab2" style="background-color: rgb(223, 223, 223); font-weight: normal;">
+											<td align="right"><img src="https://columbia.floridapa.com/gis/_images/tab_grey_left_trans.gif" height="20" width="5"></td>
+											<td onclick="ClickTab(2,false);"><span>&nbsp;Search Results&nbsp;</span></td>
+											<td align="left"><img src="https://columbia.floridapa.com/gis/_images/tab_grey_right_trans.gif" height="20" width="5"></td>
+											</tr>
+											<tr>
+											<td id="tab2b" colspan="3" style="background-color: rgb(241, 241, 238);"><img src="https://columbia.floridapa.com/images/pixel.gif" width="1" height="2"></td>
+											</tr>
+											</tbody></table>
+										</div>
+										</td>
+		 
+		 
+										<td valign="top">
+										<div id="divspace_tab3" style="position:relative; top:3px">
+											<table class="rsTabmenu" cellpadding="0" cellspacing="0" border="0">
+											<tbody><tr id="tab3" style="background-color: rgb(223, 223, 223); font-weight: normal;">
+											<td align="right"><img src="https://columbia.floridapa.com/gis/_images/tab_grey_left_trans.gif" height="20" width="5"></td>
+											<td onclick="ClickTab(3,false);">&nbsp;Parcel Details&nbsp;</td>
+											<td align="left"><img src="https://columbia.floridapa.com/gis/_images/tab_grey_right_trans.gif" height="20" width="5"></td>
+											</tr>
+											<tr>
+											<td id="tab3b" colspan="3" style="background-color: rgb(241, 241, 238);"><img src="https://columbia.floridapa.com/images/pixel.gif" width="1" height="2"></td>
+											</tr>
+											</tbody></table>
+										</div>
+										</td>
+		  
+										
+										<td valign="top">
+										<div id="divspace_tab4" style="position:relative; top:3px">
+											<table class="rsTabmenu" cellpadding="0" cellspacing="0" border="0">
+											<tbody><tr id="tab4" style="background-color: rgb(223, 223, 223); font-weight: normal;">
+											<td align="right"><img src="https://columbia.floridapa.com/gis/_images/tab_grey_left_trans.gif" height="20" width="5"></td>
+											<td onclick="ClickTab(4,false);">&nbsp;&nbsp;&nbsp;GIS Map&nbsp;&nbsp;&nbsp;</td>
+											<td align="left"><img src="https://columbia.floridapa.com/gis/_images/tab_grey_right_trans.gif" height="20" width="5"></td>
+											</tr>
+											<tr>
+											<td id="tab4b" colspan="3" style="background-color: rgb(241, 241, 238);"><img src="https://columbia.floridapa.com/images/pixel.gif" width="1" height="2"></td>
+											</tr>
+											</tbody></table>
+										</div> 
+										</td>
+																									
+										</tr>
+										</tbody></table>
+		   
+								</td>
+		   						</tr>
+			</tbody></table>
+		</div> <!-- recordSearch_tabs -->
+</div> <!-- recordSearch_tabs_background -->
+
+
+<div id="recordSearch_background" style="display: block; visibility: visible;">
+
+
+		<div id="recordSearchContent_1" class="recordSearchContent_divs">
+			<div id="divLoading" class="Loading" onclick="showDivLoading(false);" style="visibility: visible; display: block;">&nbsp;</div>
+			<iframe id="recordSearchContent_1_iframe" name="recordSearchContent_1_iframe" src="recordSearch_1_Form/showform%3D1%26w%3D800%26h%3D600.html" width="100%" height="100%" scroll="yes" scrolling="yes" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+		</div>
+
+		
+  
+  </div> <!-- recordSearch_background -->
+
+   
+
+
+
+ <div id="gisSideMenu_WrapperDiv" onmouseover="gisSideMenu_autoDim_mouseOver('0');" onmouseout="gisSideMenu_autoDim_mouseOver('1');"> 
+		
+	<div id="gisSideMenuDiv_1" style="right: -8px;"><img id="gisSideMenuButton_1" src="https://columbia.floridapa.com/gis/_images/gisSideMenu_1_layers_on.gif" width="52" height="68" onclick="gisSideMenuClick(this);" onmouseover="gisSideMenuMouseOver(this);" onmouseout="gisSideMenuMouseOut(this);"></div>
+	<div id="gisSideMenuDiv_2" style="right: -8px;"><img id="gisSideMenuButton_2" src="https://columbia.floridapa.com/gis/_images/gisSideMenu_2_search_off.gif" width="52" height="68" onclick="gisSideMenuClick(this);" onmouseover="gisSideMenuMouseOver(this);" onmouseout="gisSideMenuMouseOut(this);"></div>
+	<div id="gisSideMenuDiv_3" style="right: -8px;"><img id="gisSideMenuButton_3" src="https://columbia.floridapa.com/gis/_images/gisSideMenu_3_report_off.gif" width="52" height="68" onclick="gisSideMenuClick(this);" onmouseover="gisSideMenuMouseOver(this);" onmouseout="gisSideMenuMouseOut(this);"></div>
+	<div id="gisSideMenuDiv_4" style="right: -8px;"><img id="gisSideMenuButton_4" src="https://columbia.floridapa.com/gis/_images/gisSideMenu_4_tools_off.gif" width="52" height="68" onclick="gisSideMenuClick(this);" onmouseover="gisSideMenuMouseOver(this);" onmouseout="gisSideMenuMouseOut(this);"></div>
+
+
+
+
+
+ <div id="gisSideMenuContentWrapperDiv" style="display: none; visibility: hidden;" onmouseover="gisSideMenu_autoDim_mouseOver('0');" onmouseout="gisSideMenu_autoDim_mouseOver('1');"> 
+ 
+
+ 		<div id="gisSideMenuHeader_Div">
+			
+					<table border="0" cellpadding="0" cellspacing="0" width="100%">
+					<tbody><tr>
+					<td align="left" valign="bottom" width="60" onclick="gisSideMenu_setVisibilty(0);" onmouseover="gisSideMenu_slideClose_Button_mouseOver();" onmouseout="gisSideMenu_slideClose_Button_mouseOut();" background="https://columbia.floridapa.com/gis/_images/gisSideMenu_HeaderBackground31px.gif"><img id="gisSideMenu_slideClose_Button" src="https://columbia.floridapa.com/gis/_images/gisSideMenu_slideClose_Button_hov.gif" width="50" height="31" border="0"></td>
+					<td align="center" valign="middle" onclick="gisSideMenu_setVisibilty(0);" onmouseover="gisSideMenu_slideClose_Button_mouseOver();" onmouseout="gisSideMenu_slideClose_Button_mouseOut();" background="https://columbia.floridapa.com/gis/_images/gisSideMenu_HeaderBackground31px.gif"><span id="gisSideMenuHeaderText" class="GISTopBarHeaderText">GIS LAYERS</span></td>
+					<td align="right" valign="middle" width="60" background="https://columbia.floridapa.com/gis/_images/gisSideMenu_HeaderBackground31px.gif">&nbsp;&nbsp;</td>
+					</tr>	
+					</tbody></table>
+		
+		</div> <!-- gisSideMenuHeader_Div -->
+		
+		
+
+		<div id="gisSideMenuContentDiv_1" class="gisSideMenuContent_Divs" sty-le="display:block; visibility:visible;">
+			
+<!-- gisSideMenu_1_Layers\ -->
+
+<style>	
+table.gisLayers {
+width:100%;
+padding:2;
+border:0px;
+border-style: solid;
+font-family: arial;
+font-size: 10pt; 
+line-height: 17px;
+z-index:1010;
+}
+
+
+table.layerHeadings tr {
+width:100%;
+padding:2;
+border:0px;
+border-style: solid;
+font-family: arial;
+font-size: 10pt; 
+color: #7a5a5a;
+}
+
+</style>
+
+
+
+
+<div id="layers'" style="width: 100%; postition: relative;">
+	
+<form action="" name="gisLayer_form" id="gisLayer_form">
+		
+	<table cellpadding="4" cellspacing="0" width="100%" border="0" bgcolor="#F1F1EE">
+	<tbody><tr>
+	<td valign="top">
+		
+		
+
+
+		
+	<!-- -->
+	
+<script type="text/javascript">  
+
+function ShowLegendImage(inObj, inID) {
+
+
+if (objDiv=document.getElementById(inID)) {
+
+	if (inObj.checked) {
+		objDiv.style.display = "block"
+		objDiv.style.visibility = 'visible';
+	} else {
+		objDiv.style.display = "none"
+		objDiv.style.visibility = 'hidden';
+	} //if
+} //if
+
+
+
+} //function
+
+
+
+function ExpandSalesTheme() {	
+
+if (document.getElementById('THEME_SALES').checked) {
+document.getElementById('SalesTheme').style.display = 'block';
+} else {
+document.getElementById('SalesTheme').style.display = 'none';
+if (obj=document.getElementById('THEME_SALES_1')) {obj.checked = false; toggleLayer(obj);}
+if (obj=document.getElementById('THEME_SALES_2')) {obj.checked = false; toggleLayer(obj);}
+if (obj=document.getElementById('THEME_SALES_3')) {obj.checked = false; toggleLayer(obj);}
+if (obj=document.getElementById('THEME_SALES_4')) {obj.checked = false; toggleLayer(obj);}
+if (obj=document.getElementById('THEME_SALES_5')) {obj.checked = false; toggleLayer(obj);}
+if (obj=document.getElementById('THEME_SALES_6')) {obj.checked = false; toggleLayer(obj);}
+if (obj=document.getElementById('salevi')) {obj.checked = false; toggleLayer(obj);}
+} //if
+
+}  //function
+//scales = [760320,380160,190080,95040,47520,23760,11880,9000,7200,5400,3600,1800,1350,900,720,540,360,180,90];
+</script>
+
+
+			
+				<input type="hidden" name="ol_parcel|direct|90|190080|gif|2" value="parcel_fill" id="parcel_fill">		
+				<input type="hidden" name="ol_parcel|direct|90|360|png8|11" value="parcel_scale" id="parcel_scale">	
+				<input type="hidden" name="ol_FloridaBackground|direct|47520|760320|png|30" value="FloridaBackground" id="FloridaBackground" checked="">
+				
+				
+				
+
+
+				
+				
+		<table class="gisLayers">
+			
+		<tbody><tr>
+		<td>
+					<table border="0" cellpadding="1" cellspacing="0" class="layerHeadings" width="100%" bgcolor="#DCDAD1">
+					<tbody><tr>
+					<td valign="bottom"><span onclick="ExpandLayer('Vector');"><img name="VectorImg" src="https://columbia.floridapa.com/gis/_images/layer_minus_triangle4.gif" width="16" height="12">
+					&nbsp;<b>VECTOR FEATURES</b></span></td>
+					</tr>
+					</tbody></table>
+		</td>
+		</tr>
+					
+		<tr>
+		<td>
+			
+					<table id="Vector" style="display:block" cellpadding="4" cellspacing="0">
+		
+	
+					<tbody><tr>
+					<td>
+					<label id="SecTwpRngLabel" class="gisSideMenuContent_labelText" style="color: rgb(0, 0, 0);"><input type="checkbox" class="gisSideMenuContent_chkBox" name="ol_SecTwpRng|direct|180|760320|gif|11" value="SecTwpRng" id="SecTwpRng" onclick="toggleLayer(this);" autocomplete="off">
+							S/T/R Grid</label>
+					 </td>
+					</tr>
+							
+					<tr>
+					<td>
+					<label id="parcelLabel" class="gisSideMenuContent_labelText" style="color: rgb(122, 122, 122);"><input type="checkbox" class="gisSideMenuContent_chkBox" name="ol_parcel|cache|90|190080|png8|1" value="parcel" id="parcel" onclick="toggleLayer(this);" checked="" autocomplete="off">
+							Parcels</label>
+					 </td>
+					</tr>
+					
+									 
+					<tr><td><label id="allroadlinesLabel" class="gisSideMenuContent_labelText" style="color: rgb(122, 122, 122);">
+					<input type="checkbox" class="gisSideMenuContent_chkBox" name="ol_allroadtext|direct|180|95040|gif|2" value="allroadlines" id="allroadlines" onclick="toggleLayer(this);" autocomplete="off">
+						Street Centerlines</label>
+				</td></tr>	
+				
+				
+									 
+					<tr><td><label id="lotlinesLabel" class="gisSideMenuContent_labelText" style="color: rgb(122, 122, 122);">
+					<input type="checkbox" class="gisSideMenuContent_chkBox" name="ol_labels|direct|180|5400|gif|2" value="lotlines" id="lotlines" onclick="toggleLayer(this);" autocomplete="off">
+						Lot Lines</label>
+				</td></tr>	
+				
+				
+					 
+					</tbody></table>
+		</td>
+		</tr>
+		</tbody></table>
+		
+	<!-- -->
+		
+	
+		<!-- -->
+
+			
+		<table class="gisLayers">
+			<tbody><tr>
+			<td>
+					<table border="0" cellpadding="1" cellspacing="0" class="layerHeadings" width="100%" bgcolor="#DCDAD1">
+					<tbody><tr>
+					<td valign="bottom"><span onclick="ExpandLayer('Labels');"><img name="LabelsImg" src="https://columbia.floridapa.com/gis/_images/layer_minus_triangle4.gif" width="16" height="12">&nbsp;<b>LABELS</b></span></td>
+					</tr>
+					</tbody></table>
+			</td>
+			</tr>
+					
+			
+			<tr>
+			<td>
+			
+				<table id="Labels" style="display:block" cellpadding="4" cellspacing="0">
+				
+				
+				
+				<tbody><tr><td><label id="allroadtextLabel" class="gisSideMenuContent_labelText" style="color: rgb(122, 122, 122);">
+				<input type="checkbox" class="gisSideMenuContent_chkBox" name="ol_allroadtext|direct|180|23760|png|2" value="allroadtext" id="allroadtext" onclick="toggleLayer(this);" checked="" autocomplete="off">
+						Street Names</label>
+				</td></tr>	 
+		 
+				<tr><td><label id="SiteAddressPointsLabel" class="gisSideMenuContent_labelText" style="color: rgb(122, 122, 122);">
+				<input type="checkbox" class="gisSideMenuContent_chkBox" name="ol_labels|direct|180|9000|png|3" value="SiteAddressPoints" id="SiteAddressPoints" onclick="toggleLayer(this);" autocomplete="off">
+						Site Address Points</label>
+				</td></tr>
+			 
+			
+				<tr><td><label id="ParcelDimensionsLabel" class="gisSideMenuContent_labelText" style="color: rgb(122, 122, 122);">
+				<input type="checkbox" class="gisSideMenuContent_chkBox" name="ol_labels|direct|180|5400|png|3" value="ParcelDimensions" id="ParcelDimensions" onclick="toggleLayer(this);" autocomplete="off">
+						Parcel Dimensions</label>
+				</td></tr>
+					 
+					 					 
+				<tr><td><label id="pintextLabel" class="gisSideMenuContent_labelText" style="color: rgb(122, 122, 122);">
+				<input type="checkbox" class="gisSideMenuContent_chkBox" name="ol_labels|direct|180|5400|png|2" value="pintext" id="pintext" onclick="toggleLayer(this);" autocomplete="off">
+						Parcel IDs</label>
+				</td></tr>
+								 				
+	
+				
+				<tr><td><label id="subdivisionnamesLabel" class="gisSideMenuContent_labelText" style="color: rgb(122, 122, 122);">
+				<input type="checkbox" class="gisSideMenuContent_chkBox" name="ol_labels|direct|360|23760|png|2" value="subdivisionnames" id="subdivisionnames" onclick="toggleLayer(this);" autocomplete="off">
+						Subdivision Names</label>
+				</td></tr>	 
+					
+				
+			 			 
+				
+				</tbody></table>
+		</td>
+		</tr>
+		</tbody></table>
+		
+	<!-- -->
+	
+	<!-- -->
+
+			
+		<table class="gisLayers">
+			
+			<tbody><tr>
+			<td>
+					<table border="0" cellpadding="1" cellspacing="0" class="layerHeadings" width="100%" bgcolor="#DCDAD1">
+					<tbody><tr>
+					<td valign="bottom"><span onclick="ExpandLayer('Themes');"><img name="ThemesImg" src="https://columbia.floridapa.com/gis/_images/layer_minus_triangle4.gif" width="16" height="12">
+					&nbsp;<b>THEMES</b></span></td>
+					</tr>
+					</tbody></table>
+			</td>
+			</tr>
+					
+			
+			<tr>
+			<td>
+			
+			
+		
+			
+				<table id="Themes" style="display:block" cellpadding="4" cellspacing="0" border="0">
+				<tbody><tr>
+				<td>
+					
+					
+			        
+	<label id="THEME_SALESLabel" class="gisSideMenuContent_labelText" style="color: rgb(122, 122, 122);"><input onclick="ExpandSalesTheme()" type="checkbox" class="gisSideMenuContent_chkBox" name="" value="THEME_SALES" id="THEME_SALES" autocomplete="off">
+	Sales by Year</label>
+					 
+									 
+					<table id="SalesTheme" class="tb8" style="display:none" cellpadding="2" cellspacing="0" border="0">
+								
+					<tbody><tr>
+					
+					<td width="5">&nbsp;</td>
+									
+					<td>
+
+						<table cellpadding="0" cellspacing="2" border="0" style="white-space: nowrap; padding: 0px;">
+						<tbody><tr><td bgcolor="#CE0F0A" width="15">&nbsp;</td>
+						<td><label class="gisSideMenuContent_labelText"><input onclick="toggleLayer(this);" class="gisSalesTheme_chkBox" type="checkbox" name="ol_sales|direct|180|190080|png|10" value="sales2024" id="THEME_SALES_1"> 2024</label>
+						</td></tr>
+
+						<tr><td bgcolor="#009A1C" width="15">&nbsp;</td>
+						<td><label class="gisSideMenuContent_labelText"><input onclick="toggleLayer(this);" class="gisSalesTheme_chkBox" type="checkbox" name="ol_sales|direct|180|190080|png|10" value="sales2023" id="THEME_SALES_2"> 2023</label>
+						</td></tr>
+
+						<tr><td bgcolor="#005A89" width="15">&nbsp;</td>
+						<td><label class="gisSideMenuContent_labelText"><input onclick="toggleLayer(this);" class="gisSalesTheme_chkBox" type="checkbox" name="ol_sales|direct|180|190080|png|10" value="sales2022" id="THEME_SALES_3"> 2022</label>
+						</td></tr>
+						</tbody></table>
+					</td>
+
+					<td width="5">&nbsp;</td>
+
+					<td>
+						<table cellpadding="0" cellspacing="2" style="white-space: nowrap; padding: 0px;">
+						<tbody><tr><td>
+						</td></tr><tr><td bgcolor="#E79B11" width="15">&nbsp;</td>
+						<td><label class="gisSideMenuContent_labelText"><input onclick="toggleLayer(this);" class="gisSalesTheme_chkBox" type="checkbox" name="ol_sales|direct|180|190080|png|10" value="sales2021" id="THEME_SALES_4"> 2021</label>
+						</td></tr>
+
+						<tr><td bgcolor="#CE3BB1" width="15">&nbsp;</td>
+						<td><label class="gisSideMenuContent_labelText"><input onclick="toggleLayer(this);" class="gisSalesTheme_chkBox" type="checkbox" name="ol_sales|direct|180|190080|png|10" value="sales2020" id="THEME_SALES_5"> 2020</label>
+						</td></tr>
+
+						<tr><td bgcolor="#E6ED12" width="15">&nbsp;</td>
+						<td><label class="gisSideMenuContent_labelText"><input onclick="toggleLayer(this);" class="gisSalesTheme_chkBox" type="checkbox" name="ol_sales|direct|180|190080|png|10" value="sales2019" id="THEME_SALES_6"> 2019</label>
+						</td>
+						</tr>
+						</tbody></table>
+					</td>
+					</tr>
+					
+					<tr>
+					<td colspan="4">
+					&nbsp;<label class="gisSideMenuContent_labelText"><input onchange="toggleLayer(this);" type="checkbox" name="ol_sales|direct|180|190080|png|10" value="salevi" id="salevi">Hatch Vacant Sales</label>
+					</td>
+					</tr>
+					</tbody></table>
+
+	 
+							
+				
+				</td>
+				</tr>
+				
+				
+						
+						
+			<tr>
+				<td>
+				<label id="zoningcityLabel" class="gisSideMenuContent_labelText" style="color: rgb(122, 122, 122);"><input type="checkbox" class="gisSideMenuContent_chkBox" name="ol_Themes|direct|180|95040|png|10" value="zoningcity" id="zoningcity" onclick="toggleLayer(this);ShowLegendImage(this, 'Legend_ZoningCity');" autocomplete="off">
+						City Zoning</label>
+				<div id="Legend_ZoningCity" style="display:none;">&nbsp;&nbsp;<img src="https://columbia.floridapa.com/gis/_images/Legend_ZoningCity.gif" name="Legend_ZoningCity" width="150" height="430"></div>
+				</td>
+				</tr>
+		
+		
+				<tr>
+				<td>
+				<label id="zoningcountyLabel" class="gisSideMenuContent_labelText" style="color: rgb(0, 0, 0);"><input type="checkbox" class="gisSideMenuContent_chkBox" name="ol_Themes|direct|180|380160|png|10" value="zoningcounty" id="zoningcounty" onclick="toggleLayer(this);ShowLegendImage(this, 'Legend_ZoningCounty');" autocomplete="off">
+						County Zoning</label>
+				<div id="Legend_ZoningCounty" style="display:none;">&nbsp;&nbsp;<img src="https://columbia.floridapa.com/gis/_images/Legend_ZoningCounty.gif" name="Legend_ZoningCounty" width="150" height="413"></div>
+				</td>
+				</tr>
+		
+				<tr>
+				<td>
+				<label id="FloodZoneLabel" class="gisSideMenuContent_labelText" style="color: rgb(0, 0, 0);"><input type="checkbox" class="gisSideMenuContent_chkBox" name="ol_Themes|direct|180|380160|png|10" value="FloodZone" id="FloodZone" onclick="toggleLayer(this);ShowLegendImage(this, 'Legend_FloodZone');" autocomplete="off">
+						Flood Zone</label>
+				<div id="Legend_FloodZone" style="display:none;">&nbsp;&nbsp;<img src="https://columbia.floridapa.com/gis/_images/Legend_FloodZone.gif" name="Legend_FloodZone" width="160" height="73"></div>
+				</td>
+				</tr>
+		
+		
+				<tr>
+				<td>
+				<label id="futurelanduseLabel" class="gisSideMenuContent_labelText" style="color: rgb(0, 0, 0);"><input type="checkbox" class="gisSideMenuContent_chkBox" name="ol_Themes|direct|180|380160|png|10" value="futurelanduse" id="futurelanduse" onclick="toggleLayer(this);ShowLegendImage(this, 'Legend_Flu');" autocomplete="off">
+						Future Land Use</label>
+				<div id="Legend_Flu" style="display:none;">&nbsp;&nbsp;<img src="https://columbia.floridapa.com/gis/_images/Legend_FutureLandUse.gif" name="Legend_Flu" width="162" height="345"></div>
+				</td>
+				</tr>
+				
+				
+			</tbody></table>
+		
+		</td>
+		</tr>
+		</tbody></table>
+		
+	<!-- -->
+	
+	
+		<!-- -->
+
+			
+		<table class="gisLayers">
+			
+			<tbody><tr>
+			<td>
+					<table border="0" cellpadding="1" cellspacing="0" class="layerHeadings" width="100%" bgcolor="#DCDAD1">
+					<tbody><tr>
+					<td valign="bottom"><span onclick="ExpandLayer('BackgroundAerials');"><img name="BackgroundAerialsImg" src="https://columbia.floridapa.com/gis/_images/layer_minus_triangle4.gif" width="16" height="12">&nbsp;<b>BACKGROUND AERIALS</b></span></td>
+					</tr>
+					</tbody></table>
+			</td>
+			</tr>
+					
+			
+			<tr>
+			<td>
+			
+				<table id="BackgroundAerials" style="display:block" cellpadding="0" cellspacing="0">
+				
+				<tbody><tr>
+				<td>
+				<label class="gisSideMenuContent_labelText"><input type="radio" name="ol_image|cache|90|760320|jpeg|0" id="image_none" value="" onchange="toggleImageLayer(this);" autocomplete="off"> None</label>
+				</td>
+				</tr>
+				
+                <tr>
+				<td>
+				<label class="gisSideMenuContent_labelText"><input type="radio" name="ol_image|cache|90|760320|jpeg|0" id="1ft2023" value="1ft2023" onchange="toggleImageLayer(this);" checked="" autocomplete="off"> 2023 <span class="gisSideMenuContent_AerialPixel_labelText">(6-inch)</span></label>
+				 </td>
+				</tr>
+
+				<tr>
+				<td>
+				<label class="gisSideMenuContent_labelText"><input type="radio" name="ol_image|cache|90|760320|jpeg|0" id="1ft2022" value="1ft2022" onchange="toggleImageLayer(this);" autocomplete="off"> 2022 <span class="gisSideMenuContent_AerialPixel_labelText">(6-inch)</span></label>
+				 </td>
+				</tr>
+				   
+				<tr>
+				<td>
+				<label class="gisSideMenuContent_labelText"><input type="radio" name="ol_image|cache|90|760320|jpeg|0" id="1ft2019" value="1ft2019" onchange="toggleImageLayer(this);" autocomplete="off"> 2019 <span class="gisSideMenuContent_AerialPixel_labelText">(6-inch)</span></label>
+				 </td>
+				</tr>
+				     
+				<tr>
+				<td>
+				<label class="gisSideMenuContent_labelText"><input type="radio" name="ol_image|cache|90|760320|jpeg|0" id="1ft2016" value="1ft2016" onchange="toggleImageLayer(this);" autocomplete="off"> 2016 <span class="gisSideMenuContent_AerialPixel_labelText">(9-inch)</span></label>
+				 </td>
+				</tr>
+		
+				<tr>
+				<td>
+				<label class="gisSideMenuContent_labelText"><input type="radio" name="ol_image|cache|90|760320|jpeg|0" id="1ft2013" value="1ft2013" onchange="toggleImageLayer(this);" autocomplete="off"> 2013 <span class="gisSideMenuContent_AerialPixel_labelText">(9-inch)</span></label>
+				 </td>
+				</tr>
+			
+			<tr>
+				<td>
+				<label class="gisSideMenuContent_labelText"><input type="radio" name="ol_image|cache|90|760320|jpeg|0" id="1ft2010" value="1ft2010" onchange="toggleImageLayer(this);" autocomplete="off"> 2010 <span class="gisSideMenuContent_AerialPixel_labelText">(1-foot)</span></label>
+				 </td>
+				</tr>
+				
+				<tr>
+				<td>
+				<label class="gisSideMenuContent_labelText"><input type="radio" name="ol_image|cache|90|760320|jpeg|0" id="1ft2007" value="1ft2007" onchange="toggleImageLayer(this);" autocomplete="off"> 2007 <span class="gisSideMenuContent_AerialPixel_labelText">(1-foot)</span></label>
+				 </td>
+				</tr>
+				 
+				<tr>
+				<td>
+				<label class="gisSideMenuContent_labelText"><input type="radio" name="ol_image|cache|90|760320|jpeg|0" id="1ft2005" value="1ft2005" onchange="toggleImageLayer(this);" autocomplete="off"> 2005 <span class="gisSideMenuContent_AerialPixel_labelText">(1-foot)</span></label>
+				</td>
+				</tr>
+				
+				<tr>
+				<td>
+				<label class="gisSideMenuContent_labelText"><input type="radio" name="ol_image|cache|90|760320|jpeg|0" id="DOQ2004" value="DOQ2004" onchange="toggleImageLayer(this);" autocomplete="off"> 2004 <span class="gisSideMenuContent_AerialPixel_labelText">(1-meter DOQ)</span></label>
+				</td>
+				</tr>
+				
+				<tr>
+				<td>
+				<label class="gisSideMenuContent_labelText"><input type="radio" name="ol_image|cache|90|760320|jpeg|0" id="DOQ1999" value="DOQ1999" onchange="toggleImageLayer(this);" autocomplete="off"> 1999 <span class="gisSideMenuContent_AerialPixel_labelText">(1-meter DOQ)</span></label>
+				</td>
+				</tr>
+				
+				
+				
+				</tbody></table>
+		</td>
+		</tr>
+		</tbody></table>
+
+	
+
+	
+	
+
+		
+		
+
+
+	<p><br>
+	</p><p><br>
+	</p><p><br>
+
+
+					
+	    
+	</p></td>
+	</tr>
+	</tbody></table>
+    
+    
+</form>
+</div>
+    
+
+<!-- END - gisSideMenu_1_Layers\ -->
+
+
+		</div>
+		
+		<div id="gisSideMenuContentDiv_2" class="gisSideMenuContent_Divs" style="display:none;visibility:hidden;"> <!-- Record Search -->
+			
+<!-- gisSideMenu_2_Search\ -->
+
+
+<script language="javascript">
+
+    function submitRecordSearch(inForm) {
+        document.activeElement.blur();
+    }
+
+    var timerVar;
+
+    function quickSearchTimer() {
+        clearTimeout(timerVar);
+        timerVar = setTimeout("quickSearch()", 150);
+    }
+
+
+    function quickSearch_PA() {
+
+        clearTimeout(timerVar);
+
+        if (searchInput.value.length > 2) {
+
+            for (var i = 0; i < searchBy.length; i++) {
+
+                if (searchBy[i].checked) {
+
+                    var searchBy_value = searchBy[i].value;
+                    // break;
+                }
+            }
+
+            quickSearch_div.style.visibility = "visible"
+            quickSearch_div.style.display = 'block';
+            document.getElementById("quickSearchResults_iframe").style.visibility = "visible"
+            document.getElementById("quickSearchResults_iframe").style.display = 'block';
+            var tmpval = rootdomain + '/gis/gisSideMenu_2_Search/quickSearch/?search=' + encodeURIComponent(searchInput.value) + '&searchBy=' + searchBy_value
+            document.getElementById("quickSearchResults_iframe").src = tmpval;
+            //document.getElementById("QuickSearch_form").submit();
+        } //if
+
+    } //function quickSearch() {
+
+
+
+    function quickSearch() {
+
+        clearTimeout(timerVar);
+
+        if (searchInput.value.length > 2) {
+
+            for (var i = 0; i < searchBy.length; i++) {
+
+                if (searchBy[i].checked) {
+
+                    var searchBy_value = searchBy[i].value;
+                    // break;
+                }
+            }
+
+            quickSearch_div.style.visibility = "visible"
+            quickSearch_div.style.display = 'block';
+            document.getElementById("quickSearchResults_iframe").style.visibility = "visible"
+            document.getElementById("quickSearchResults_iframe").style.display = 'block';
+            document.getElementById("QuickSearch_form").submit();
+
+        } //if
+
+    } //function quickSearch() {
+
+
+    function gisShowParcelDetail_showTab() {  //quickSearch select for Details
+
+        if (gisSideMenuVisibilty) {
+            gisSideMenu_ShowContent(); // Show content
+            gisSideMenuClick(document.getElementById('gisSideMenuButton_3'), 1); //turn on tab_3 Details, set inMode=1 (on)
+        }
+
+    }
+
+
+
+
+    function gisShowParcelDetail(inShowRec, inSQL, inPIN) {  //quickSearch select for Details
+
+
+        if (inShowRec && inSQL && !inPIN) {
+
+            if (obj = parent.document.parentForm.SearchResults_File) obj.value = ""; //clear current Search results so new one can be created
+        }
+
+        if (obj = document.parentForm.tempPIN) obj.value = inPIN;
+        if (obj = document.parentForm.save) obj.value = inSQL;
+
+        if (inShowRec) {
+            if (obj = document.parentForm.Show_Rec) obj.value = inShowRec;
+        }
+
+        document.parentForm.action = "https://columbia.floridapa.com/gis/gisSideMenu_3_Details/showDetails/"
+        document.parentForm.target = "quickSearchDetails_iframe" //document.getElementById("quickSearchDetails_iframe")
+        //parent.showDivLoading(true);
+        document.parentForm.submit();
+
+
+
+    } //function sel() {
+    //----------------------------------------------------------------------------------
+
+
+
+
+    function shift_quickSearchResultsDiv() {
+        var div = document.getElementById('quickSearchResults_div')
+        var top = div.style.top
+
+        if (top == '20px') {
+            div.style.top = '92px';
+        } else {
+            div.style.top = '20px';
+        }
+
+    } //funtion
+
+</script>
+
+<style>
+
+html, body {
+	height: 100%;
+	min-height: 100%;
+	overflow:hidden; 
+	margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+   }
+  
+  #container {
+   padding: 0px;
+   height: 100%;
+   width: 100%;
+   border: 0px;
+	border-style: solid;
+	border-color: #FF00FF;
+
+   }
+  
+.searchOutput_table {
+ font-family: arial; 
+ font-size:10ptpt;
+ background-color:#aeaeae;
+}
+
+td#rowcnt_font {
+ font-family:arial; 
+ font-size:6pt;
+ color: #7a7a7a;
+ text-align: center;
+ white-space: nowrap;
+}
+
+.narrow_font {
+ font-family: Arial; 
+ font-size:10ptpt;
+ color: #7a7a7a;
+ }
+
+ #searchInput {
+ font-size:10pt;
+ }
+ 
+ 
+
+tr#hv:hover {
+ background-color:#ccddee !important;
+ cursor: pointer;
+ background: transparent;
+}
+
+tr#hv2:hover {
+ background-color:#ccddee !important;
+ cursor: pointer;
+ background: transparent;
+}
+
+tr#hv {
+ background-color:#FFFFFF !important;
+  background: transparent;
+}
+
+tr#hv2 {
+ background-color:#F1F1EE !important;
+  background: transparent;
+}
+
+
+
+ 
+ #quickSearch_div {
+	margin-right: 0px;
+	position: absolute
+	top: 0px;
+	right: 4px;
+	left: 4px;
+	height: 92px;
+overflow-y: hidden;
+overflow-x: hidden;
+	background-color: #F1F1EE;
+	z-index: 1000;
+
+}    
+     
+#quickSearchResults_div {
+	position: absolute;
+	top: 92px;
+	right: 0px; /* 0 */
+	left: 1px;
+    bottom: 1px /* 1 */;
+overflow-y: hidden;
+overflow-x: hidden;
+	border: 1px;
+	border-style: solid;
+	border-color: #9D9D92;
+	background-color: #FFFFFF;
+	z-index: 1000;
+}
+
+
+table.gisQuickSearch_Headings tr {
+width:100%;
+padding:0px;
+border:0px;
+border-style: solid;
+font-family: arial;
+font-size: 10ptpt; 
+color:#5D5741;
+background-color:#B0AB8D;
+}
+
+
+.submit:hover {
+    border: none;
+    box-shadow: 0px 0px 1px #777;
+}
+
+.submit {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #050505;
+	padding: 2px 10px;
+	background: -moz-linear-gradient(
+		top,
+		#ffffff 0%,
+		#ebebeb 50%,
+		#dbdbdb 50%,
+		#b5b5b5);
+	background: -webkit-gradient(
+		linear, left top, left bottom,
+		from(#ffffff),
+		color-stop(0.50, #ebebeb),
+		color-stop(0.50, #dbdbdb),
+		to(#b5b5b5));
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #949494;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
+}
+
+
+
+.submitSmall:hover {
+    border: none;
+    box-shadow: 0px 0px 1px #777;
+}
+
+
+.submitSmall {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #050505;
+	padding: 1px 3px;
+	background: -moz-linear-gradient(
+		top,
+		#ffffff 0%,
+		#ebebeb 50%,
+		#dbdbdb 50%,
+		#b5b5b5);
+	background: -webkit-gradient(
+		linear, left top, left bottom,
+		from(#ffffff),
+		color-stop(0.50, #ebebeb),
+		color-stop(0.50, #dbdbdb),
+		to(#b5b5b5));
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #949494;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
+}
+
+
+
+
+</style>
+
+
+<div id="container">
+<form name="QuickSearch_form" id="QuickSearch_form" action="gisSideMenu_2_Search/quickSearch/" method="POST" target="quickSearchResults_iframe" onsubmit="return submitRecordSearch(this);">
+		
+			<div id="quickSearch_div">
+			
+		
+				<table width="100%" cellpadding="0" cellspacing="2" border="0">
+				
+				
+				<tbody><tr>
+				<td>
+
+					<table border="0" cellpadding="0" cellspacing="0" class="gisQuickSearch_Headings" width="100%">
+					<tbody><tr>
+					<td valign="bottom" span="" onclick="ExpandLayer('gisQuickSearch');shift_quickSearchResultsDiv();">
+					<img name="gisQuickSearchImg" src="https://columbia.floridapa.com/gis/_images/layer_minus_triangle4.gif" width="16" height="12">&nbsp;<b>Search By...</b>
+					</td>
+					</tr>
+					</tbody></table>	
+
+						<table id="gisQuickSearch" width="323" cellpadding="0" cellspacing="0" border="0">
+						<tbody><tr>
+						<td width="45%"><input name="SearchBy" type="radio" value="NAME" onchange="quickSearchTimer();">Name</td>
+						<td width="35%"><input name="SearchBy" type="radio" value="STREET" onchange="quickSearchTimer();">Street</td>
+						<td>&nbsp;</td>
+						</tr>
+						<tr>
+						<td><input name="SearchBy" type="radio" value="PIN" onchange="quickSearchTimer();">Parcel ID</td>
+						<td><input name="SearchBy" type="radio" value="ALL" onchange="quickSearchTimer();" checked="">ALL</td>
+						<td>&nbsp;</td>
+						</tr>
+			
+			
+			
+						<tr>	
+						<td colspan="2" valign="bottom"><input type="text" style="width:245px;" id="searchInput" name="searchInput" onkeydown="quickSearchTimer();return true;" autocomplete="off"></td>
+						<td valign="top"><input type="submit" class="submit" name="butSearch" value="GO"></td>
+						</tr>
+									
+						</tbody></table>
+						
+				
+				</td>
+				</tr>
+				</tbody></table>
+				
+			
+			</div>
+			
+			<div id="quickSearchResults_div" name="quickSearchResults_div">
+			<iframe id="quickSearchResults_iframe" src="https://columbia.floridapa.com/gis/ablank" name="quickSearchResults_iframe" scroll="no" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border:0px solid;position:relative;left:0px;top:0px;right:0px;bottom:0px;width:100%;height:100%;display:block;"></iframe>
+			</div>
+
+	
+</form></div>
+	
+
+<script>
+var quickSearch_div =  document.getElementById("quickSearch_div")
+var searchInput = document.getElementById("searchInput")
+var searchBy = document.getElementsByName("SearchBy");
+</script>
+
+
+			
+<!-- END - gisSideMenu_2_Search\ -->
+
+
+
+		</div>
+		
+		<div id="gisSideMenuContentDiv_3" class="gisSideMenuContent_Divs" style="display:none;visibility:hidden;">
+			
+<!-- gisSideMenu_2_Details\ -->
+
+<script language="javascript" type="text/javascript">  
+ <!-- 
+ 
+
+
+ 
+//function call_zoomParcel() {
+
+/////var coords = document.getElementById("SHPmidpoint")
+//var coords = document.gisDetails.SHPmidpoint.value
+////alert(coords)
+
+//zoomParcel(coords,10);
+
+//highlightFeaturesKML('parcelKML','pin', pin) 
+//}
+ 
+
+// -->
+</script>
+
+<style>
+
+   
+#quickSearchDetails_div {
+	position: absolute;
+	top: 2px;
+	right: 1px;
+	left: 2px;
+    bottom: 2px;
+overflow-y: hidden;
+overflow-x: hidden;
+	border: 0px;
+	border-style: solid;
+	border-color: #9D9D92;
+	background-color: #FAFAFA;
+	z-index: 1000;
+
+}
+
+
+    
+</style>
+
+
+
+<div id="quickSearchDetails_div" name="quickSearchDetails_div">
+<iframe id="quickSearchDetails_iframe" src="https://columbia.floridapa.com/gis/ablank" name="quickSearchDetails_iframe" scroll="no" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border:0px solid;position:relative;width:100%;height:100%"></iframe>
+</div>
+
+<!-- END gisSideMenu_2_Details\ -->
+		</div>
+		
+		<div id="gisSideMenuContentDiv_4" class="gisSideMenuContent_Divs" style="display:none;visibility:hidden;">
+		
+
+<!-- gisSideMenu_4_Tools\ -->
+
+<style>	
+
+#gisToolsWrapper{
+width:100%;
+}
+
+#gisTools_Measure_div{
+position:relative; 
+visibility:visible;  
+display:block;
+/*left:0px;
+top:0px; 
+height:100%;*/
+width:100%;
+font-family: arial;
+font-size: 10pt; 
+background:#D9D9CF;
+border:0px;
+border-style: solid;
+border-color: red;
+z-index: 1000;
+overflow:auto;
+}
+
+#gisTools_Measure{
+visibility:hidden;  
+display:none;
+}
+
+
+#gisTools_saveGIS_div{
+position:relative; 
+visibility:visible;  
+display:block;
+/*left:0px;
+top:0px; 
+height:100%;*/
+width:100%;
+font-family: arial;
+font-size: 10pt; 
+z-index: 1000;
+}
+
+#gisTools_saveGIS{
+visibility:hidden;  
+display:none;
+}
+
+
+
+#gisTools_Print_div{
+position:relative; 
+visibility:visible;  
+display:block;
+/*left:0px;
+top:0px; 
+height:100%;*/
+width:100%;
+font-family: arial;
+font-size: 10pt; 
+/*
+background:#D9D9CF;
+border:0px;
+border-style: solid;
+border-radius: 4px;
+box-shadow: 2px 2px 3px #888, -2px 2px 3px #888;
+*/
+z-index: 1000;
+}
+
+#gisTools_Print{
+visibility:hidden;  
+display:none;
+}
+
+#gisTools_Options{
+visibility:visible;  
+display:block;
+width:100%;
+white-space: wrap;
+padding:2;
+border:0px;
+border-style: solid;
+font-family: arial;
+font-size: 10pt; 
+line-height: 17px;
+z-index:1020;
+}
+
+
+
+#gisTools_Options_div{
+position:relative; 
+visibility:visible;  
+display:block;
+/*left:0px;
+top:0px; 
+height:100%;*/
+width:100%;
+font-family: arial;
+font-size: 10pt; 
+z-index: 1000;
+}
+
+
+
+
+table.gisTools_output {
+width:100%;
+padding:2;
+border:0px;
+border-style: solid;
+font-family: arial;
+font-size: 10pt; 
+line-height: 17px;
+z-index:1010;
+}
+
+.gisTool_table {
+table-layout:fixed;
+white-space: wrap;
+}
+    
+
+
+
+
+.parcelDetailsTable {
+font-family: arial;
+font-size: 10pt; 
+border-radius: 5px;
+background-color:#B0AB8D;
+}
+
+
+.submit:hover {
+    border: none;
+    box-shadow: 0px 0px 1px #777;
+}
+
+.submit {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #050505;
+	padding: 2px 10px;
+	background: -moz-linear-gradient(
+		top,
+		#ffffff 0%,
+		#ebebeb 50%,
+		#dbdbdb 50%,
+		#b5b5b5);
+	background: -webkit-gradient(
+		linear, left top, left bottom,
+		from(#ffffff),
+		color-stop(0.50, #ebebeb),
+		color-stop(0.50, #dbdbdb),
+		to(#b5b5b5));
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #949494;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
+}
+
+
+
+.submitSmall:hover {
+    border: none;
+    box-shadow: 0px 0px 1px #777;
+}
+
+
+.submitSmall {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #050505;
+	padding: 1px 3px;
+	background: -moz-linear-gradient(
+		top,
+		#ffffff 0%,
+		#ebebeb 50%,
+		#dbdbdb 50%,
+		#b5b5b5);
+	background: -webkit-gradient(
+		linear, left top, left bottom,
+		from(#ffffff),
+		color-stop(0.50, #ebebeb),
+		color-stop(0.50, #dbdbdb),
+		to(#b5b5b5));
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #949494;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
+}
+
+
+.chkbox {
+width: 20px;
+height: 20px;
+}
+
+input[type=radio] {
+    border: 0px;
+    width: 15px;
+    height:15px;
+}
+
+
+table.gisLayers {
+width:100%;
+padding:1;
+border:0px;
+border-style: solid;
+font-family: arial;
+font-size: 10pt; 
+line-height: 17px;
+z-index:1010;
+}
+
+
+
+#gisTools_autoDim_div { 
+display:block;
+visibility: visible;
+font-family: arial;
+font-size: 8pt; 
+border:0px;
+border-style: solid;
+border-color:red;
+z-index: 2000;
+}
+
+#gisTools_autoDim_div2 { 
+position:absolute; 
+display:block;
+visibility: visible;
+font-family: arial;
+font-size: 8pt; 
+right:2px;
+top:25px; 
+text-align:right;
+height:22px;
+border:0px;
+border-style: solid;
+border-color:red;
+z-index: 2000;
+}
+</style>
+
+<script type="text/javascript">
+	<!-- 
+    function ShowTraverse(inMode) {
+
+        if (inMode == 'DMS') {
+            document.getElementById("TraverseDD").style.display = 'none';
+            document.getElementById("TraverseDMS").style.display = 'block';
+            document.getElementById("TraverseKML").style.display = 'none';
+            measureTraverseDMS.scrollTop = measureTraverseDMS.scrollHeight;
+        } else if (inMode == 'DD') {
+            document.getElementById("TraverseDD").style.display = 'block';
+            document.getElementById("TraverseDMS").style.display = 'none';
+            document.getElementById("TraverseKML").style.display = 'none';
+            measureTraverseDD.scrollTop = measureTraverseDD.scrollHeight;
+        } else {
+            document.getElementById("TraverseDD").style.display = 'none';
+            document.getElementById("TraverseDMS").style.display = 'none';
+            document.getElementById("TraverseKML").style.display = 'block';
+            measureTraverseKML.scrollTop = measureTraverseKML.scrollHeight;
+        } //if
+
+
+        saveGISimage_showTraverseOnPrintOut_click(true); // dont fire toggleGISMenu_MEASUREmode
+
+
+    } //function
+
+    // -->
+	</script>
+			
+<div id="gisToolsWrapper">
+
+
+
+	
+
+
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+<div id="gisTools_Measure_div">
+
+<table cellpadding="0" cellspacing="0" width="100%" border="0" bgcolor="#F1F1EE">
+<tbody><tr>
+<td valign="top">
+	
+	
+	<table class="gisLayers" cellpadding="0" cellspacing="1">
+			
+	<tbody><tr>
+	<td>
+				<table border="0" cellpadding="1" cellspacing="0" class="layerHeadings" width="100%" bgcolor="#DCDAD1">
+				<tbody><tr>
+				<td valign="bottom"><span onclick="ExpandLayer('gisTools_Measure');">
+				<img name="gisTools_MeasureImg" src="https://columbia.floridapa.com/gis/_images/layer_plus_triangle4.gif" width="16" height="12">&nbsp;<b>Measure Output</b></span></td>
+				</tr>
+				</tbody></table>
+	</td>
+	</tr>
+					
+	<tr>
+	<td>
+		<!-- here -->
+			
+				
+	
+		<table id="gisTools_Measure" border="0" cellpadding="2" cellspacing="0" style="width:100%;white-space: wrap;">
+		<tbody><tr>
+		<td>
+									
+						
+						
+									
+						<table class="gisTool_table" border="0" cellpadding="1" cellspacing="0">
+						<tbody><tr>
+						<td style="font-family:Arial; font-size:7pt;">dbl-click or &lt;shift&gt;click to auto-close polygon</td>
+						</tr>
+						<tr>
+						<td>
+			<form id="form2" name="form2">
+				
+									
+									
+									
+									
+						
+							<font style="font-family:Arial; font-size:8pt;"><b>Current Segment</b>:</font><br>
+							<input style="width:102px;" size="9" type="input" name="measureCurrentFeet" id="measureCurrentFeet"><input style="width:68px;" size="6" type="input" name="measureCurrentDecDeg" id="measureCurrentDecDeg">
+							<br>
+							<input style="width:68px;" size="5" type="input" name="measureCurrentMile" id="measureCurrentMile"><input style="width:102px;" size="10" type="input" name="measureCurrentBearing" id="measureCurrentBearing">
+							
+						
+							<br><font style="font-family:Arial; font-size:8pt;"><b>Running Length</b>:</font><br>
+							<input style="width:90px;" size="8" type="input" name="measureTotalFeet" id="measureTotalFeet"><input style="width:80px;" size="7" type="input" name="measureTotalMiles" id="measureTotalMiles">
+						
+							<br><font style="font-family:Arial; font-size:8pt;"><b>Estimated Perimeter</b>:</font><br>
+							<input style="width:90px;" size="8" type="input" name="measureCurrentPerimeterFeet" id="measureCurrentPerimeterFeet"><input style="width:80px;" size="7" type="input" name="measureCurrentPerimeterMiles" id="measureCurrentPerimeterMiles">
+						
+							<br><font style="font-family:Arial; font-size:8pt;"><b>Estimated Area</b>:</font><br>
+							<input style="width:176px;" size="20" type="input" name="measureTotalSqFt" id="measureTotalSqFt">
+							<br>
+							<input style="width:90px;" size="8" type="input" name="measureTotalSqMiles" id="measureTotalSqMiles"><input style="width:80px;" size="7" type="input" name="measureTotalAcres" id="measureTotalAcres">
+						
+						
+						
+						
+									<table id="TraverseDD" class="gisTool_table" style="display:none;" border="0" cellpadding="0" cellspacing="0">
+									<tbody><tr><td style="font-family:Arial; font-size:8pt;"><b>Traverse Report</b>:  (show: <a style="font-family:arial; color:blue; font-size:9px" href="javascript:ShowTraverse('DMS');">DMS</a>&nbsp;|&nbsp;<a style="font-family:arial; color:blue; font-size:9px" href="javascript:ShowTraverse('KML');">KML</a>)
+									
+									</td></tr>
+
+									<tr><td>
+									<textarea onclick="this.focus();this.select()" readonly="readonly" name="Mtext" id="measureTraverseDD" rows="12" cols="30" style="font-family:Arial; font-size:8pt;width:176px;"></textarea>
+									</td>
+									</tr>
+									</tbody></table>
+						
+									<table id="TraverseDMS" class="gisTool_table" style="display:block;" border="0" cellpadding="0" cellspacing="0">
+									<tbody><tr><td style="font-family:Arial; font-size:8pt;"><b>Traverse Report</b>: (show: <a style="font-family:arial; color:blue; font-size:9px" href="javascript:ShowTraverse('DD');">DD</a>&nbsp;|&nbsp;<a style="font-family:arial; color:blue; font-size:9px" href="javascript:ShowTraverse('KML');">KML</a>)
+									
+									</td></tr>
+									<tr><td>
+									<textarea onclick="this.focus();this.select()" readonly="readonly" name="Mtext2" id="measureTraverseDMS" rows="12" cols="30" style="font-family:Arial; font-size:8pt;width:176px;"></textarea>
+									</td>
+									</tr>
+									</tbody></table>
+
+									<table id="TraverseKML" class="gisTool_table" style="display:none;" border="0" cellpadding="0" cellspacing="0">
+									<tbody><tr><td style="font-family:Arial; font-size:8pt;"><b>KML Export</b>: (show: <a style="font-family:arial; color:blue; font-size:9px" href="javascript:ShowTraverse('DD');">DD</a>&nbsp;|&nbsp;<a style="font-family:arial; color:blue; font-size:9px" href="javascript:ShowTraverse('DMS');">DMS</a>)
+									
+									</td></tr>
+									<tr><td>
+									<textarea onclick="this.focus();this.select()" readonly="readonly" name="Mtext3" id="measureTraverseKML" rows="12" cols="30" style="font-family:Arial; font-size:8pt;width:176px;"></textarea>
+									</td>
+									</tr>
+									</tbody></table>
+									
+				<!-- here -->
+							</form></td>
+							</tr>
+						
+						
+						                <tr><td></td></tr>
+						
+						
+						
+							<tr>
+							<td align="left"><input onclick="resetMeasureTool(); return false" type="button" name="ResetMeasure" value="<< Reset Measure Tool" class="submit"></td>
+							</tr>
+						
+							<tr><td bgcolor="white"></td></tr>
+						
+							<tr>
+							<td bgcolor="white" style="font-family:Arial; font-size:8pt; color:#7a0000">
+							DISCLAIMER: All measurements and calculations are approximations and shall not be used in any legal documents. 
+							<br>
+							- For Certified maps and dimensions please contact the Property Appraiser's office. 
+							<br>
+							</td>
+							</tr>
+							</tbody></table>
+	
+					
+					</td>
+					</tr>
+					</tbody></table>
+		
+		</td>
+		</tr>
+		</tbody></table>
+		
+
+<!-- here -->
+</td>
+</tr>
+</tbody></table>
+		
+
+
+
+
+
+
+</div> <!-- Measure -->
+
+
+
+
+
+
+<!-- saveGIS -->
+
+
+	
+<div id="gisTools_saveGIS_div">
+
+<table cellpadding="0" cellspacing="0" width="100%" border="0" bgcolor="#F1F1EE">
+<tbody><tr>
+<td valign="top">
+	
+	
+	<table class="gisLayers" cellpadding="0" cellspacing="1">
+			
+	<tbody><tr>
+	<td>
+				<table border="0" cellpadding="1" cellspacing="0" class="layerHeadings" width="100%" bgcolor="#DCDAD1">
+				<tbody><tr>
+				<td valign="bottom"><span onclick="ExpandLayer('gisTools_saveGIS');">
+				<img name="gisTools_saveGISImg" src="https://columbia.floridapa.com/gis/_images/layer_plus_triangle4.gif" width="16" height="12">&nbsp;<b>Save Map Image</b></span></td>
+				</tr>
+				</tbody></table>
+	</td>
+	</tr>
+					
+	<tr>
+	<td>
+		<!-- here -->
+			
+				
+	
+		<table id="gisTools_saveGIS" border="0" cellpadding="2" cellspacing="0" style="width:100%;white-space: wrap;">
+		<tbody><tr>
+		<td>
+									
+				
+						<table class="gisTool_table" border="0" cellpadding="2" cellspacing="0">
+								
+				
+						
+						<tbody><tr>
+						<td>
+			
+			<form id="form3" name="form3">
+				
+						<label style="font-size:8pt;"><input class="gisSideMenuContent_chkBox" type="checkbox" onclick="saveGISimage_showOutline_click()" id="saveGISimage_showOutline" name="saveGISimage_showOutline" value="1" checked="">Show map center outline</label>
+				<br>
+						<b style="font-size:8pt;">Image Size (in pixels):</b>
+										
+								<table border="0" cellpadding="0" cellspacing="0" style="font-size:7pt;">
+								<tbody><tr>
+								<td width="50">Width<br>
+								<input onkeyup="update_gisPrint_div();" onblur="update_gisPrint_div();" onchange="update_gisPrint_div();" size="4" maxlength="4" id="saveGISimageWidth" name="saveGISimageWidth" value="800" style="width:40px;">
+								</td>
+								<td width="25" align="center"><br>x</td>
+								<td>Height<br>
+								<input onkeyup="update_gisPrint_div();" onblur="update_gisPrint_div();" onchange="update_gisPrint_div();" size="4" maxlength="4" id="saveGISimageHeight" name="saveGISimageHeight" value="600" style="width:40px;">
+								
+								</td>
+								
+								</tr>
+								<tr><td colspan="3"><i>min:100px - max:2,000px | 72 pixels = 1 inch</i></td></tr>
+								</tbody></table>
+					
+							</form></td>
+							</tr>
+						
+						
+								<tr>
+								<td>
+								<b style="font-size:8pt;">Image file type:</b>
+								<br>
+								<label><input type="radio" onclick="gisSideMenu_saveGISimage_imageType(this);" id="saveGISimage_imageType.gif" name="saveGISimage_imageType" value="gif">gif <i style="font-size:7pt;"></i></label>
+								&nbsp;
+								<input type="radio" onclick="gisSideMenu_saveGISimage_imageType(this);" id="saveGISimage_imageType.jpg" name="saveGISimage_imageType" value="jpeg" checked="">jpg
+								&nbsp;
+								<input type="radio" onclick="gisSideMenu_saveGISimage_imageType(this);" id="saveGISimage_imageType.png" name="saveGISimage_imageType" value="png">png
+								</td>
+								</tr>
+								
+								
+								<tr>
+								<td>
+								<b style="font-size:8pt;">Highlight Current Parcel:</b> <i style="font-size:7pt;">(if any)</i>
+								<br>
+								<label style="font-size:8pt;"><input class="gisSideMenuContent_chkBox" type="checkbox" id="saveGISimage_outlineParcel" name="saveGISimage_outlineParcel" value="1" checked="">Outline</label>
+								&nbsp;
+								<label style="font-size:8pt;"><input class="gisSideMenuContent_chkBox" type="checkbox" id="saveGISimage_fillParcel" name="saveGISimage_fillParcel" value="1">Color Fill</label>
+								&nbsp;
+								<label style="font-size:8pt;"><input class="gisSideMenuContent_chkBox" type="checkbox" id="saveGISimage_labelParcel" name="saveGISimage_labelParcel" value="1">Label</label>
+								</td>
+								</tr>
+				
+                                <tr><td>
+                                 <label style="font-family:Arial; font-size:8pt;"><input class="gisSideMenuContent_chkBox" type="checkbox" onclick="saveGISimage_showTraverseOnPrintOut2_click()" id="saveGISimage_showTraverseOnPrintOut2" name="saveGISimage_showTraverseOnPrintOut2" value="1" checked=""><b>Show Traverse on printout</b></label>
+                                 </td></tr>
+						
+								<tr>
+								<td height="22px">
+								<input class="submit" type="button" onclick="gisSideMenu_saveGISimage_submit('1');" value="<< Download Map Image" name="button_SAVEGIS">
+								</td>
+								</tr>
+				
+						
+							<tr><td>&nbsp;</td></tr>
+							
+							
+												
+						
+							<tr>
+							<td bgcolor="white" style="font-family:Arial; font-size:8pt; color:#7a0000">
+							NOTE:  
+						<li>Zoom/pan map to center image into red box outline.
+						</li><li>Select desired settings and click [Download Map Image]
+						</li><li>Once the image appears in the new window, use the standard browser commands to Save Image As... or Copy/Paste image into your custom application.
+							</li></td>
+							</tr>
+							</tbody></table>
+	
+					
+					</td>
+					</tr>
+					</tbody></table>
+		
+		</td>
+		</tr>
+		</tbody></table>
+		
+
+<!-- here -->
+</td>
+</tr>
+</tbody></table>
+		
+			
+			
+
+
+
+
+
+
+</div> <!-- saveGIS -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+<div id="gisTools_Print_div">
+
+<table cellpadding="0" cellspacing="0" width="100%" border="0" bgcolor="#F1F1EE">
+<tbody><tr>
+<td valign="top">
+	
+	
+	<table class="gisLayers" cellpadding="0" cellspacing="1">
+			
+	<tbody><tr>
+	<td>
+				<table border="0" cellpadding="1" cellspacing="0" class="layerHeadings" width="100%" bgcolor="#DCDAD1">
+				<tbody><tr>
+				<td valign="bottom"><span onclick="ExpandLayer('gisTools_Print');">
+				<img name="gisTools_PrintImg" src="https://columbia.floridapa.com/gis/_images/layer_plus_triangle4.gif" width="16" height="12">&nbsp;<b>Print Map</b></span></td>
+				</tr>
+				</tbody></table>
+	</td>
+	</tr>
+					
+	<tr>
+	<td>
+		<!-- here -->
+			
+				
+	
+		<table id="gisTools_Print" border="0" cellpadding="2" cellspacing="0">
+		<tbody><tr>
+		<td>
+									
+				
+						<table class="gisTool_table" border="0" cellpadding="2" cellspacing="0">
+								
+							<tbody><tr><td>
+							<label style="font-size:8pt;"><input class="gisSideMenuContent_chkBox" type="checkbox" onclick="saveGISimage_showOutline2_click()" id="saveGISimage_showOutline2" name="saveGISimage_showOutline2" value="1" checked="">Show map center outline</label>
+							</td></tr>
+                            		
+							<tr>
+							<td colspan="2">
+							<b style="font-size:8pt;">Paper Size:</b>
+							<br>
+							<select size="1" id="Print_PaperSize" name="Print_PaperSize" onchange="gisPrint_Print_PaperSize()" onkeyup="this.blur();this.focus();">
+							<option value="1" checked="">8.5 x 11
+							</option><option value="2">8.5 x 14
+							</option><option value="3">11 x 17
+							</option><option value="4">17 x 22
+							</option></select></td>
+							</tr>
+				
+				
+							<tr>
+							<td colspan="2">
+							<b style="font-size:8pt;">Paper Orientation:</b>
+							<br>
+							<select size="1" id="Print_PaperOrientation" name="Print_PaperOrientation" onchange="gisPrint_Print_PaperSize()" onkeyup="this.blur();this.focus();">
+							<option value="1" checked="">Portrait
+							</option><option value="2">Landscape
+							</option></select></td>
+							</tr>
+				
+				
+							<tr>
+							<td colspan="2">
+							<b style="font-size:8pt;">Highlight Current Parcel:</b> <i style="font-size:7pt;">(if any)</i>
+							<br>
+							<label style="font-size:8pt;"><input class="gisSideMenuContent_chkBox" type="checkbox" id="saveGISimage_outlineParcel2" name="saveGISimage_outlineParcel2" value="1" checked="">Outline</label>
+							&nbsp;
+							<label style="font-size:8pt;"><input class="gisSideMenuContent_chkBox" type="checkbox" id="saveGISimage_fillParcel2" name="saveGISimage_fillParcel2" value="1">Color Fill</label>
+							&nbsp;
+							<label style="font-size:8pt;"><input class="gisSideMenuContent_chkBox" type="checkbox" id="saveGISimage_labelParcel2" name="saveGISimage_labelParcel2" value="1">Label</label>
+							</td>
+							</tr>
+								
+			
+							<tr>
+							<td colspan="2">
+						
+                        <label style="font-family:Arial; font-size:8pt;"><input class="gisSideMenuContent_chkBox" type="checkbox" onclick="saveGISimage_showTraverseOnPrintOut_click()" id="saveGISimage_showTraverseOnPrintOut" name="saveGISimage_showTraverseOnPrintOut" value="1" checked=""><b>Show Traverse on printout</b></label>
+						
+
+							</td>
+							</tr>
+		
+							<tr>
+							<td colspan="2">
+							<b style="font-size:8pt;">Notes for Title Block:</b> <i style="font-size:7pt;">(optional)</i>
+							<br>
+							<textarea id="Print_OptionalText" name="Print_OptionalText" rows="8" cols="30" style="font-family:arial; font-size:8pt;width:180px;"></textarea>
+							</td>
+							</tr>
+				
+												
+					
+							
+							<tr>
+							<td colspan="2" height="22px">
+							<input class="submit" type="button" onclick="gisSideMenu_saveGISimage_submit('2');" value="Print Preview / Send to Printer" name="button_Print">
+							</td>
+							</tr>
+							
+										
+						
+							<tr>
+							<td colspan="2" bgcolor="white" style="font-family:Arial; font-size:8pt; color:#7a0000">
+								<u><b>Printer Settings</b></u>
+								<br><b>• </b>You must set the same Paper Size and Orientation in the system Printer Dialog box to match the settings above.
+								<br><b>• </b>For best results: Use your printer's minimum margin setting (ie: 0.5" on sides and top).  You may need to test several margins settings for your specfic printer.
+								<br><b>• </b>Turn off any "Shrink to Fit" option or set scale factor to 100%
+								<br>
+								<b>DISCLAIMER:</b>
+								<br><b>• </b>Web browsers are not designed to print maps to scale, this site makes no guarantee of the accuracy of the final product. 
+								<br><b>• </b>Please contact our office to obtain printed maps to scale.
+							</td>
+							</tr>
+		
+							</tbody></table>
+	
+					
+					</td>
+					</tr>
+					</tbody></table>
+		
+		</td>
+		</tr>
+		</tbody></table>
+		
+
+<!-- here -->
+</td>
+</tr>
+</tbody></table>
+		
+
+
+
+
+
+
+</div> <!-- gisTools_Print -->
+
+
+
+	
+		
+		
+
+
+
+<!--Tools -->
+
+
+	
+<div id="gisTools_Options_div">
+
+<table cellpadding="0" cellspacing="0" width="100%" border="0" bgcolor="#F1F1EE">
+<tbody><tr>
+<td valign="top">
+	
+	
+	<table class="gisLayers" cellpadding="0" cellspacing="1">
+			
+	<tbody><tr>
+	<td>
+				<table border="0" cellpadding="1" cellspacing="0" class="layerHeadings" width="100%" bgcolor="#DCDAD1">
+				<tbody><tr>
+				<td valign="bottom"><span onclick="ExpandLayer('gisTools_Options');">
+				<img name="gisTools_OptionsImg" src="https://columbia.floridapa.com/gis/_images/layer_minus_triangle4.gif" width="16" height="12">&nbsp;<b>Options</b></span></td>
+				</tr>
+				</tbody></table>
+	</td>
+	</tr>
+					
+	<tr>
+	<td>
+		<!-- here -->
+			
+				
+	
+		<table id="gisTools_Options" border="0" cellpadding="2" cellspacing="0" style="width:100%;white-space: wrap;">
+		<tbody><tr>
+		<td>
+									
+				
+						<table class="gisTool_table" border="0" cellpadding="2" cellspacing="0" bg-color="#0E3E2F">
+						<tbody><tr>
+						<td>
+	
+<form id="form1" name="form1">
+<label style="font-family: arial;font-size: 8pt;">
+<input class="gisSideMenuContent_chkBox" type="checkbox" name="showscalebar" value="1" id="showscalebar" onclick="toggleScaleBar(this);" checked="" autocomplete="off">Show Scalebar</label>
+
+<br>
+
+
+<label style="font-family: arial;font-size: 8pt;">
+<input class="gisSideMenuContent_chkBox" type="checkbox" name="gisTools_autoDim" value="1" id="gisTools_autoDim" on-click="toggleAutoDim(this);" autocomplete="off">Auto-hide PRINT panel</label>
+
+
+<br>
+
+<label style="font-family: arial;font-size: 8pt;">
+<input class="gisSideMenuContent_chkBox" type="checkbox" name="gisTools_showCustomZoomIn" value="1" id="gisTools_showCustomZoomIn" onclick="toggleCustomZoomIn(this);" autocomplete="off" checked="">Show Zoom IN/OUT menu icons</label>
+
+<br>
+
+<label style="font-family: arial;font-size: 8pt;">
+<input class="gisSideMenuContent_chkBox" type="checkbox" name="GPSlocationWatch" value="1" id="GPSlocationWatch" onclick="toggleGPSlocationWatch(this);" autocomplete="off">Auto-track GPS location</label>
+
+<br>
+
+
+
+
+
+
+					</form>
+					</td>
+					</tr>
+					</tbody></table>
+		
+		</td>
+		</tr>
+		</tbody></table>
+		
+
+<!-- here -->
+</td>
+</tr>
+</tbody></table>
+		
+			
+			
+
+
+</td>
+</tr>
+</tbody></table>
+
+</div> <!-- Tools -->
+
+
+
+
+
+		
+		
+</div> <!-- div id="gisToolsWrapper -->
+		
+
+
+
+<!-- gisSideMenu_4_Tools\ -->
+
+		
+		</div>
+				
+
+   
+</div><!-- gisSideMenuContentWrapperDiv --> 
+
+</div> <!--  gisSideMenu_WrapperDiv  -->
+  
+<!--/div--> <!-- wrapper -->
+
+
+
+<div id="div_Alert_OnLoad" class="shadow">
+
+				<div id="div_Alert_OnLoad_titlebar">
+				<table cellpadding="2" cellspacing="1" width="100%" border="0" class="tb8">
+				<tbody><tr bgcolor="#7A7A7A">
+				<td align="center"><font color="#FFFFFF"><b>Columbia County Property Appraiser</b></font></td>
+				<td width="17" align="right" valign="bottom"><a href="javascript:close_AlertOnLoad()"><img id="img_filters" src="https://columbia.floridapa.com/images/closeWindow.gif" width="16" height="16" border="0"></a></td>
+				</tr>
+				</tbody></table>
+				</div>
+
+			<table cellpadding="8" cellspacing="0" width="100%" border="0" class="tb8">
+			<tbody><tr>
+			<td bgcolor="#DADAD0">
+
+				<table cellpadding="8" cellspacing="4" width="100%" border="0" style="font-family: Tahoma;font-size: 9pt;">
+				<tbody><tr>
+				<td align="center" bgcolor="#ffffff">The information on this website was derived from data which was compiled by the Columbia County Property Appraiser Office solely for the governmental purpose of property assessment.<br><br>This information should not be relied upon by anyone as a determination of the ownership of property or market value.<br><br>The GIS Map image is not a survey and shall not be used in a Title Search or any official capacity. <br><br>No warranties, expressed or implied, are provided for the accuracy of the data herein, it's use, or it's interpretation.<br><br>Although it is periodically updated, this information may not reflect the data currently on file in the Property Appraiser's office.</td>
+				</tr>
+				</tbody></table>
+			</td>
+			</tr>
+			
+				<tr>
+				<td bgcolor="#DADAD0">
+
+				<table cellpadding="0" cellspacing="0" width="100%" border="0" style="font-family: Tahoma;font-size: 10pt;">
+				<tbody><tr>
+				<td align="center"><input type="button" value="I agree, please continue" onclick="close_AlertOnLoad();" id="button1" name="button1"><p></p></td>
+				</tr>
+				</tbody></table>
+			</td>
+			</tr>
+			
+			</tbody></table>
+	
+
+
+</div>  
+  
+ 
+<form name="parentForm" id="parentForm" target="recordSearchContent_1_iframe" method="POST" action="">
+
+<input type="hidden" name="clientWidth" value="inW">
+<input type="hidden" name="clientHeight" value="inH">
+<input type="hidden" name="clientOrientation" value="window.orientation">
+
+<input type="hidden" name="currentTab">
+
+<input type="hidden" name="Show_Rec">
+<input type="hidden" name="iTotalPage">
+<input type="hidden" name="iRecordCount">
+<input type="hidden" name="PageCount">
+<input type="hidden" name="CurrentPage">
+<input type="hidden" name="DisplayPage">
+
+<input type="hidden" name="OrderBy">
+<input type="hidden" name="SearchResults_File">
+<input type="hidden" name="save">
+
+<input type="hidden" name="tempPIN">
+<input type="hidden" name="zoomPIN">
+
+<input type="hidden" name="mapCenter">
+<input type="hidden" name="mapZoom">
+
+<input type="hidden" name="bHandoff" value="">
+<input type="hidden" name="bHandoff_PIN" value="">
+<input type="hidden" name="bHandoff_saleBook" value="">
+<input type="hidden" name="bHandoff_salePage" value="">
+<input type="hidden" name="TabView" value="">
+</form>
+
+
+ 
+ 
+ <form name="gisPrintForm" id="gisPrintForm" target="_blank" method="POST" enct-ype="multipart/form-data" action="https://columbia.floridapa.com/gis/gisPrint/">
+
+<input type="hidden" name="mapCenter">
+<input type="hidden" name="mapScale">
+
+<input type="hidden" name="imgWidth">
+<input type="hidden" name="imgHeight">
+
+<input type="hidden" name="imageType">
+
+<input type="hidden" name="currentPIN">
+
+<input type="hidden" name="outlineParcel">
+<input type="hidden" name="fillParcel">
+<input type="hidden" name="labelParcel">
+
+<input type="hidden" name="currentLayers">
+<input type="hidden" name="currentAerial">
+
+<input type="hidden" name="saveGIS">
+<input type="hidden" name="saveGISimg">
+<input type="hidden" name="Print_PaperSize">
+<input type="hidden" name="Print_PaperOrientation">
+<input type="hidden" name="Print_OptionalText">
+<input type="hidden" name="Print_asPDF">
+
+     <input type="hidden" name="Print_measureKML" id="Print_measureKML">
+     <input type="hidden" name="Print_measureTraverse" id="Print_measureTraverse">
+     <input type="hidden" name="Print_measureTraverseStartXY" id="Print_measureTraverseStartXY">
+
+     
+</form>
+
+ <script type="text/javascript">  
+
+
+     //Public var       
+     //----------------------------------------------------------------------------------------- 
+ 
+     var coordReadout=document.getElementById('coordReadout_left');
+
+     //Tools - Measure output
+     var measureTraverseDD=document.getElementById('measureTraverseDD');
+     var measureTraverseDMS=document.getElementById('measureTraverseDMS');
+     var measureTraverseKML=document.getElementById('measureTraverseKML');
+ 
+     var measureCurrentFeet=document.getElementById('measureCurrentFeet');
+     var measureCurrentMile=document.getElementById('measureCurrentMile');
+ 
+     var measureCurrentDecDeg=document.getElementById('measureCurrentDecDeg');
+     var measureCurrentBearing=document.getElementById('measureCurrentBearing');
+ 
+     var measureTotalFeet=document.getElementById('measureTotalFeet');
+     var measureTotalMiles=document.getElementById('measureTotalMiles');
+ 
+     var measureCurrentPerimeterFeet=document.getElementById('measureCurrentPerimeterFeet');
+     var measureCurrentPerimeterMiles=document.getElementById('measureCurrentPerimeterMiles');
+ 
+     var measureTotalSqFt=document.getElementById('measureTotalSqFt');
+     var measureTotalSqMiles=document.getElementById('measureTotalSqMiles');
+     var measureTotalAcres=document.getElementById('measureTotalAcres');
+ 
+     var mapdiv = document.getElementById('mapdiv');
+     //var scalebardiv = document.getElementById('mapScaleBar_Div');
+     mapScaleBar_image =  document.getElementById('mapScaleBar_image')
+     mapScaleBarRotate_Div = document.getElementById('mapScaleBarRotate_Div');
+     mapScaleBar_Div = document.getElementById('mapScaleBar_Div');
+
+     Drag.init(mapScaleBar_Div);
+     var draggable = mapScaleBar_Div;
+
+     draggable.addEventListener('touchmove', function(event) {
+         var touch = event.targetTouches[0];
+ 
+         draggable.style.left = touch.pageX-150 + 'px';
+         draggable.style.top = touch.pageY-24 + 'px';
+         event.preventDefault();
+     }, false);
+  
+     var looper;
+     var degrees = 0;
+
+ 
+
+
+ </script>
+
+
+</body></html>

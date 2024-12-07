@@ -1,0 +1,8 @@
+Xray 1.8.16 (Xray, Penetrates Everything.) 9432a60 (go1.22.4 linux/amd64)
+A unified platform for anti-censorship.
+2024/08/06 09:30:08 [Info] infra/conf/serial: Reading config: /home/anton/proj/proxy/10811/config.json
+2024/08/06 09:30:08 [Debug] app/log: Logger started
+2024/08/06 09:30:08 [Debug] app/proxyman/inbound: creating stream worker on 0.0.0.0:10811
+2024/08/06 09:30:08 [Info] transport/internet/tcp: listening TCP on 0.0.0.0:10811
+2024/08/06 09:30:08 [Info] transport/internet/udp: listening UDP on 0.0.0.0:10811
+2024/08/06 09:30:08 [Warning] core: Xray 1.8.16 started
